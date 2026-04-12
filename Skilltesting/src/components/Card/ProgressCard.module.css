@@ -1,0 +1,84 @@
+.progressCard {
+  background-color: var(--background-secondary, #ffffff);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md, 16px);
+  padding: var(--pad-md, 12px);
+  border-radius: var(--radius-sm, 8px);
+  box-shadow: 0px 9px 19px rgba(105, 105, 105, 0.15);
+  width: 330px;
+  transition: all 0.2s ease;
+}
+
+.progressCard:hover {
+  box-shadow: 0px 12px 24px rgba(105, 105, 105, 0.2);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-md, 16px);
+}
+
+.textHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs, 4px);
+  flex: 1;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-heading-h4, 'Solomon Sans Bold');
+  font-size: var(--font-size-h4, 20px);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--text-heading, #0041a3);
+  line-height: 1.4;
+}
+
+.subtitle {
+  margin: 0;
+  font-family: var(--font-body-small, 'Solomon Sans Normal');
+  font-size: var(--font-size-body-small, 12px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-caption, #737373);
+  line-height: 1.4;
+}
+
+.percentage {
+  font-family: var(--font-heading-h4, 'Solomon Sans Bold');
+  font-size: var(--font-size-h4, 20px);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--text-heading, #0041a3);
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.progressBar {
+  display: flex;
+  width: 100%;
+  height: 12px;
+  background-color: var(--gray-light, #c4c7ce);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.progressPrimary .progressFill {
+  background-color: var(--primary, #0041a3);
+}
+
+.progressSuccess .progressFill {
+  background-color: var(--status-success, #3bd4ae);
+}
+
+.progressWarning .progressFill {
+  background-color: var(--status-warning, #ca4949);
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 24px;
+  transition: width 0.3s ease;
+  background-color: var(--primary, #0041a3);
+}

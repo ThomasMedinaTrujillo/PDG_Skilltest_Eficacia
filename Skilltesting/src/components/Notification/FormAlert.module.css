@@ -1,0 +1,42 @@
+.formAlert {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--spacing-sm, 8px);
+  padding: var(--pad-sm, 8px) var(--pad-lg, 16px);
+  border-radius: var(--radius-xs, 4px);
+  width: 336px;
+  height: 25px;
+}
+
+.alertError {
+  background-color: var(--error-red, #eb5757);
+  color: var(--text-white, #ffffff);
+}
+
+.alertWarning {
+  background-color: var(--status-warning, #ca4949);
+  color: var(--text-white, #ffffff);
+}
+
+.alertInfo {
+  background-color: var(--status-pending, #ffcd00);
+  color: var(--text-primary, #595959);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: var(--font-weight-bold, 700);
+  font-size: 16px;
+}
+
+.message {
+  font-family: var(--font-body-small, 'Solomon Sans Normal');
+  font-size: var(--font-size-caption, 12px);
+  font-weight: var(--font-weight-normal, 400);
+  line-height: 1.4;
+  flex: 1;
+}

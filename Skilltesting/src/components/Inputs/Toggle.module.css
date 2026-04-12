@@ -1,0 +1,65 @@
+.toggleWrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-md, 16px);
+}
+
+.label {
+  font-family: var(--font-body-large, 'Solomon Sans Normal');
+  font-size: var(--font-size-body-large, 14px);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--text-primary, #595959);
+  line-height: 1.4;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 40px;
+  height: 24px;
+  background-color: var(--gray-dark, #70777b);
+  border: none;
+  border-radius: 24px;
+  padding: 2px;
+  gap: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.toggle:hover:not(.disabled) {
+  background-color: var(--gray-medium, #a9adb0);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--primary, #0041a3);
+  outline-offset: 2px;
+}
+
+.toggle.checked {
+  background-color: var(--status-success, #3bd4ae);
+  justify-content: flex-end;
+}
+
+.toggleButton {
+  width: 20px;
+  height: 20px;
+  background-color: var(--button-background-disabled, #a9adb0);
+  border-radius: 48px;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.toggle.checked .toggleButton {
+  background-color: var(--text-white, #ffffff);
+}
+
+.toggle.disabled {
+  opacity: var(--opacity-disabled, 0.5);
+  cursor: not-allowed;
+}
+
+.toggle.disabled:hover {
+  background-color: var(--gray-dark, #70777b);
+}

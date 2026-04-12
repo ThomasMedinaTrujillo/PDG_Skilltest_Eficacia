@@ -1,0 +1,82 @@
+.checkboxWrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  padding: 0;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  margin: 0;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  min-height: 18px;
+  border: 2px solid var(--gray-dark, #70777b);
+  border-radius: var(--radius-xs, 4px);
+  background-color: var(--background-secondary, #ffffff);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.input:checked ~ .label .box {
+  background-color: var(--button-background, #0041a3);
+  border-color: var(--button-background, #0041a3);
+}
+
+.input:hover ~ .label .box {
+  border-color: var(--text-primary, #595959);
+}
+
+.input:focus-visible ~ .label .box {
+  outline: 2px solid var(--primary, #0041a3);
+  outline-offset: 2px;
+}
+
+.input:disabled ~ .label {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.checkmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-white, #ffffff);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.labelText {
+  font-family: 'Solomon Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--text-primary, #595959);
+}
+
+.input:checked ~ .label .labelText {
+  font-weight: 500;
+}
+
+.input:disabled ~ .label .labelText {
+  color: var(--text-disabled, #70777b);
+}

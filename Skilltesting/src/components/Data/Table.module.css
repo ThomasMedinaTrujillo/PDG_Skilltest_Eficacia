@@ -1,0 +1,86 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body-large, 'Solomon Sans Normal');
+  font-size: var(--font-size-body-large, 14px);
+  color: var(--text-primary, #595959);
+  background-color: var(--text-white, #ffffff);
+  border: 1px solid var(--gray-light, #dfe5e8);
+  border-radius: var(--radius-md, 12px);
+  overflow: hidden;
+}
+
+.row {
+  border-bottom: 1px solid var(--gray-light, #dfe5e8);
+  transition: background-color 0.2s ease;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.row:hover {
+  background-color: var(--gray-lightest, #f7f8f9);
+}
+
+.rowHovered {
+  background-color: var(--gray-lightest, #f7f8f9);
+}
+
+.headerRow {
+  background-color: var(--primary-background, #f4f7f9);
+  border-bottom: 2px solid var(--gray-light, #dfe5e8);
+}
+
+.cell {
+  padding: var(--pad-md, 12px) var(--pad-lg, 16px);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.headerCell {
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--text-heading, #0041a3);
+  font-size: var(--font-size-body-regular, 13px);
+  padding: var(--pad-lg, 16px);
+}
+
+.cell.left {
+  text-align: left;
+}
+
+.cell.center {
+  text-align: center;
+}
+
+.cell.right {
+  text-align: right;
+}
+
+.striped tbody tr:nth-child(odd) {
+  background-color: var(--gray-lightest, #f7f8f9);
+}
+
+.striped tbody tr:nth-child(odd):hover {
+  background-color: var(--primary-background, #f4f7f9);
+}
+
+.bordered {
+  border: 2px solid var(--gray-light, #dfe5e8);
+}
+
+.bordered .cell {
+  border-right: 1px solid var(--gray-light, #dfe5e8);
+}
+
+.bordered .cell:last-child {
+  border-right: none;
+}
+
+.compact .cell {
+  padding: var(--pad-sm, 8px) var(--pad-md, 12px);
+}
+
+.compact .headerCell {
+  padding: var(--pad-md, 12px) var(--pad-md, 12px);
+}

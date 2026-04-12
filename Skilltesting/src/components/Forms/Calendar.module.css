@@ -1,0 +1,276 @@
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs, 4px);
+  align-items: flex-start;
+  width: 100%;
+  max-width: 330px;
+}
+
+.stateClosed {
+  gap: var(--spacing-minimum-spacing, 4px);
+}
+
+.stateOpened {
+  gap: 0;
+}
+
+/* Closed state */
+.closedState {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs, 4px);
+  width: 100%;
+}
+
+.closedLabel {
+  font-family: var(--font-solomon-sans-semibold, 'Solomon Sans SemiBold');
+  font-size: var(--font-size-mobile-content-btn, 14px);
+  font-weight: 600;
+  color: var(--primaries-primary-blue, #0041a3);
+  margin: 0;
+  padding: 0;
+}
+
+.dropdownHeaderClosed {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--padding-sm, 8px);
+  border: 1px solid var(--color-texts-ns-blue-input-placeholder, #99b3da);
+  border-radius: var(--radius-xs, 4px);
+  background-color: var(--color-texts-ns-white, #ffffff);
+}
+
+.dropdownInputClosed {
+  flex: 1;
+  font-family: var(--font-solomon-sans-normal, 'Solomon Sans');
+  font-size: var(--font-size-mobile-content-overline, 12px);
+  color: var(--color-texts-ns-blue-input-placeholder, #99b3da);
+}
+
+/* Title section */
+.titleSection {
+  display: flex;
+  gap: var(--spacing-minimum-spacing, 4px);
+  width: 100%;
+}
+
+.titleLabel {
+  font-family: var(--font-solomon-sans-semibold, 'Solomon Sans SemiBold');
+  font-size: var(--font-size-mobile-content-btn, 14px);
+  font-weight: 600;
+  color: var(--primaries-primary-blue, #0041a3);
+  margin: 0;
+  padding: 0;
+}
+
+/* Dropdown header */
+.dropdownHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--padding-sm, 8px);
+  border: 1px solid var(--color-texts-ns-blue-input-placeholder, #99b3da);
+  border-radius: var(--radius-xs, 4px) var(--radius-xs, 4px) 0 0;
+  background-color: var(--color-texts-ns-white, #ffffff);
+}
+
+.dropdownInput {
+  flex: 1;
+  background: none;
+  border: none;
+  font-family: var(--font-solomon-sans-normal, 'Solomon Sans');
+  font-size: var(--font-size-mobile-content-overline, 12px);
+  color: var(--color-texts-ns-blue-input-placeholder, #99b3da);
+  outline: none;
+  padding: 0;
+}
+
+.dropdownIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 21px;
+  height: 21px;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* Calendar body */
+.calendarBody {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  background-color: var(--color-texts-ns-white, #ffffff);
+  border: 1px solid var(--color-texts-ns-blue-input-placeholder, #99b3da);
+  border-top: none;
+  border-radius: 0 0 var(--radius-xs, 4px) var(--radius-xs, 4px);
+  overflow: hidden;
+}
+
+/* Month header */
+.monthHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background-color: var(--color-background-light, #f4f4f4);
+  border-bottom: 1px solid var(--color-border, #e0e0e0);
+}
+
+.monthNav {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  color: var(--primaries-primary-blue, #0041a3);
+}
+
+.monthNav:hover {
+  opacity: 0.7;
+}
+
+.monthTitle {
+  font-family: var(--font-solomon-sans-bold, 'Solomon Sans Bold');
+  font-size: var(--font-size-mobile-titulos-h4, 20px);
+  font-weight: 700;
+  color: var(--primaries-primary-blue, #0041a3);
+}
+
+/* Days header */
+.daysHeader {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 24px;
+  padding: 8px 4px;
+  text-align: center;
+  background-color: var(--color-texts-ns-white, #ffffff);
+}
+
+.dayHeader {
+  font-family: var(--font-solomon-sans-bold, 'Solomon Sans Bold');
+  font-size: var(--font-size-mobile-content-body, 14px);
+  font-weight: 700;
+  color: var(--color-texts-haders-titles, #0041a3);
+  padding: 8px 0;
+}
+
+/* Dates grid */
+.datesGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 16px;
+  padding: 8px 4px;
+  background-color: var(--color-texts-ns-white, #ffffff);
+}
+
+.dateCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  font-family: var(--font-solomon-sans-normal, 'Solomon Sans');
+  font-size: var(--font-size-mobile-content-overline, 12px);
+  color: var(--primaries-primary-blue, #0041a3);
+  cursor: pointer;
+  padding: 8px 0;
+  position: relative;
+  border-radius: 244px;
+  transition: all 0.2s ease;
+  width: 16px;
+  height: 14px;
+  min-width: 16px;
+}
+
+.dateCell:hover:not(.selectedDate) {
+  opacity: 0.7;
+}
+
+.selectedDate {
+  background-color: var(--primaries-primary-blue, #0041a3);
+  color: var(--primaries-sb100, #ffffff);
+  font-weight: 600;
+}
+
+.selectedDate::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-color: var(--primaries-primary-blue, #0041a3);
+  border-radius: 200px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--primary, #0041a3);
+  padding: var(--pad-xs, 4px) var(--pad-sm, 8px);
+  transition: color 0.2s;
+}
+
+.arrow:hover {
+  color: var(--blue-darkest, #002a68);
+}
+
+.monthTitle {
+  margin: 0;
+  font-family: var(--font-heading-h4, 'Solomon Sans Bold');
+  font-size: var(--font-size-h4, 20px);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--primary, #0041a3);
+}
+
+.weekDays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--spacing-md, 16px);
+  text-align: center;
+  margin-bottom: var(--spacing-md, 16px);
+  font-family: var(--font-body-bold, 'Solomon Sans Bold');
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--primary, #0041a3);
+  font-size: var(--font-size-body-large, 14px);
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--spacing-md, 16px);
+  margin-top: var(--spacing-md, 16px);
+}
+
+.day {
+  aspect-ratio: 1;
+  border: none;
+  background: transparent;
+  color: var(--primary, #0041a3);
+  cursor: pointer;
+  font-family: var(--font-body-large, 'Solomon Sans Normal');
+  font-size: var(--font-size-overline, 12px);
+  border-radius: var(--radius-xs, 4px);
+  transition: all 0.2s;
+}
+
+.day:hover {
+  background-color: var(--blue-lightest, #c2d1e9);
+}
+
+.day:active {
+  background-color: var(--primary, #0041a3);
+  color: var(--text-white, #ffffff);
+}
+
+.open .toggle {
+  border-color: var(--primary, #0041a3);
+  background-color: var(--primary-background, #f4f7f9);
+}

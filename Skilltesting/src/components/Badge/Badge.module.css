@@ -1,0 +1,50 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-button-small, 'Solomon Sans SemiBold');
+  font-weight: var(--font-weight-semibold, 600);
+  border-radius: 200px;
+  white-space: nowrap;
+  font-size: var(--font-size-overline, 12px);
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: var(--pad-xs, 4px) var(--pad-sm, 8px);
+  border: none;
+}
+
+.badgeSM {
+  padding: var(--pad-xs, 4px) var(--pad-sm, 8px);
+  font-size: 10px;
+}
+
+.badgeMd {
+  padding: var(--pad-sm, 8px) var(--pad-md, 12px);
+  font-size: var(--font-size-overline, 12px);
+}
+
+.badgeLG {
+  padding: var(--pad-md, 12px) var(--pad-lg, 16px);
+  font-size: var(--font-size-button-small, 14px);
+}
+
+.badgeSuccess {
+  background-color: var(--status-success, #3bd4ae);
+  color: var(--text-white, #ffffff);
+}
+
+.badgeWarning {
+  background-color: var(--status-warning, #ca4949);
+  color: var(--text-white, #ffffff);
+}
+
+.badgeError {
+  background-color: var(--error-red, #eb5757);
+  color: var(--text-white, #ffffff);
+}
+
+.badgeInfo {
+  background-color: var(--status-pending, #ffcd00);
+  color: var(--text-primary, #595959);
+}
