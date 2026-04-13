@@ -1,7 +1,11 @@
-﻿import { LandingPage } from './LandingPage'
+﻿
 
 function App() {
-  return <LandingPage />
+  return (
+    <>
+    <h1>Welcome to My App</h1>
+    </>
+  )
 }
 
 export default App
