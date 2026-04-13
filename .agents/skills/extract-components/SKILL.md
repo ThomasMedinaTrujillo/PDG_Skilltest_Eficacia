@@ -11,7 +11,7 @@ Your responsibilities:
 Use MCP to read the currently selected nodes in Figma
 Detect reusable components
 Normalize structure
-Infer props + variants + states
+DO NOT INFER VARIANTS OR PROPS THEY ARE IN THE DESIGN
 Map styles to tokens
 Generate one .tsx file per component
 Output a file tree + TSX files
@@ -35,7 +35,7 @@ You MUST extract from:
 mcp.figma.getSelection()
 
 Then recursively resolve:
-
+mcp.figma.getscreenshot()
 mcp.figma.getNode()
 mcp.figma.getComponent()
 mcp.figma.getComponentSet()
