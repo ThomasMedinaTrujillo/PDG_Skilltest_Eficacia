@@ -44,21 +44,21 @@ export const tokens = {
 
   typography: {
     caption: {
-      fontFamily: "Solomon Sans Book",
+      fontFamily: "Solomon Sans",
       fontSize: "12px",
-      fontWeight: 400,
+      fontWeight: 500,
       lineHeight: "100",
       letterSpacing: "0"
     },
     body: {
-      fontFamily: "Solomon Sans Normal",
+      fontFamily: "Solomon Sans",
       fontSize: "14px",
       fontWeight: 400,
       lineHeight: "100",
       letterSpacing: "0"
     },
     heading1: {
-      fontFamily: "Solomon Sans Bold",
+      fontFamily: "Solomon Sans",
       fontSize: "36px",
       fontWeight: 700,
       lineHeight: "100",
