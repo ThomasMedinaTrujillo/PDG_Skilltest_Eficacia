@@ -1,87 +1,99 @@
 ﻿
 import './App.css'
-import { AlertsState } from './components/AlertsState/AlertsState'
 import { Button } from './components/Button/Button'
 import { CardCheck } from './components/CardCheck/CardCheck'
 import { CheckBoxStatus } from './components/CheckBoxStatus/CheckBoxStatus'
 import { DropdownCard } from './components/DropdownCard/DropdownCard'
-import { Input } from './components/Input/Input'
 import { MenuBar } from './components/MenuBar/MenuBar'
 import { PrincipalMenu } from './components/PrincipalMenu/PrincipalMenu'
 
+const categories = [
+  { title: 'Adhesivos', checked: true },
+  { title: 'Apple', checked: true },
+  { title: 'Coloración del cabello', checked: false },
+  { title: 'Compuestos de moldeo', checked: false },
+  { title: 'Cuidado personal', checked: false },
+]
+
 function App() {
   return (
-    <main className="app-screen">
-      <div className="app-shell">
-        <header className="app-shell__header">
-          <PrincipalMenu property1="Header" />
+    <main className="report-screen">
+      <div className="report-screen__phone">
+        <header className="report-screen__topbar">
+          <PrincipalMenu property1="Header" style={{ width: '100%' }} />
         </header>
 
-        <div className="app-shell__content">
-          <section className="hero-card">
-            <p className="hero-card__eyebrow">Eficacia operativa</p>
-            <h1>Control de visitas</h1>
-            <p className="hero-card__copy">
-              Supervisa el estado de ejecución, consulta alertas y avanza con la revisión diaria desde una sola pantalla.
-            </p>
+        <div className="report-screen__body">
+          <Button appearance="text" color="primary" size="small" state="active" orientation="left" className="back-button" style={{ width: 'auto', minHeight: 'auto', padding: 0, background: 'transparent' }} leftIcon={<span aria-hidden>‹</span>}>
+            Volver
+          </Button>
 
-            <div className="hero-card__status">
+          <div className="status-shell">
+            <div className="status-shell__content">
               <CheckBoxStatus status="Add" />
-              <span>8 categorías aprobadas</span>
+              <span>Tiempo PDV - 00:18:25 / 00:22:00</span>
             </div>
+
+            <Button appearance="text" color="primary" size="small" state="active" orientation="center" className="status-shell__close" style={{ width: 'auto', minHeight: 'auto', padding: 0, background: 'transparent' }}>
+              ×
+            </Button>
+          </div>
+
+          <h1 className="report-screen__title">PDV Unicentro</h1>
+
+          <DropdownCard
+            state="Card open"
+            header="Reporte de inventario"
+            caption="Nombre del PDV - Ubicación / Regional"
+            showState={false}
+            title="Detalle"
+            subtitle="¿Qué debo hacer?"
+            body="En esta actividad se deben capturar los volúmenes o cantidad de elementos disponibles en las referencias seleccionadas, las categorías o productos a continuación definen cuáles deben ser reportados."
+            style={{ width: '100%' }}
+          />
+
+          <div className="section-header">
+            <h2>Categorías por reportar</h2>
+            <Button appearance="text" color="primary" size="small" state="active" orientation="center" className="filter-button" style={{ width: 'auto', minHeight: 'auto', padding: 0, background: 'transparent' }}>
+              <span className="filter-button__plus" aria-hidden>
+                <span />
+                <span />
+              </span>
+              <span>Filtrar</span>
+            </Button>
+          </div>
+
+          <div className="categories-table-head">
+            <span>Categoría</span>
+            <span>Estado de reporte</span>
+          </div>
+
+          <section className="categories-list" aria-label="Categorías por reportar">
+            {categories.map((category) => (
+              <CardCheck
+                key={category.title}
+                state={category.checked ? 'enabled' : 'disabled'}
+                title={category.title}
+                subTitle="10 Productos"
+                label=""
+                number=""
+                showLabel={false}
+                showNumber={false}
+                showIconRight={false}
+                style={{ width: '100%' }}
+              />
+            ))}
           </section>
 
-          <AlertsState styleType="default" textAlert="Ejecución cerrada con éxito. 92% de cobertura registrada." showIcon />
-
-          <section className="panel-card">
-            <div className="panel-card__header">
-              <h2>Buscar y filtrar</h2>
-              <span>Filtro activo</span>
-            </div>
-            <Input state="selected" label="Buscar categoría" required={false} valueText="Verificación de limpieza en góndola" />
-          </section>
-
-          <section className="panel-card">
-            <div className="panel-card__header">
-              <h2>Detalle de la visita</h2>
-              <span>Abierto</span>
-            </div>
-            <DropdownCard
-              state="Card open"
-              header="Verificación de limpieza en góndola"
-              caption="Única ejecución"
-              textState="Completado"
-              title="Ruta activa"
-              subtitle="Lunes · 08:30 - 12:00"
-              body="La inspección quedó registrada con observaciones leves y cierre conforme."
-            />
-          </section>
-
-          <section className="panel-card">
-            <div className="panel-card__header">
-              <h2>Tareas</h2>
-              <span>3 ítems</span>
-            </div>
-
-            <div className="task-stack">
-              <CardCheck state="enabled" title="Validación comercial" subTitle="Completada" label="01" number="2" />
-              <CardCheck state="Prueba" title="Alertas pendientes" subTitle="Requiere revisión" label="02" number="1" />
-              <CardCheck state="disabled" title="Cierre administrativo" subTitle="Bloqueado" label="03" number="0" />
-            </div>
-          </section>
-
-          <section className="actions-card">
+          <div className="report-screen__actions">
             <Button appearance="contained" color="primary" size="medium" state="active">
-              Guardar cambios
+              Guardar reporte
             </Button>
-            <Button appearance="outline" color="primary" size="medium" state="active">
-              Ver detalle
-            </Button>
-          </section>
+          </div>
         </div>
 
-        <footer className="app-shell__footer">
-          <MenuBar items="5" />
+        <footer className="report-screen__footer">
+          <MenuBar items="3" style={{ width: '100%' }} />
         </footer>
       </div>
     </main>
