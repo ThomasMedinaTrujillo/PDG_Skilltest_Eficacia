@@ -1,87 +1,64 @@
-import * as React from 'react'
-import { tokens } from '../../Token'
-import { cn } from '../../lib/cn'
+import * as React from "react";
+import { cn } from "../../lib/cn";
+import { tokens } from "../../Token";
+
+type AlertStyle = "default" | "success" | "pending" | "warning";
 
 export interface AlertsStateProps extends React.HTMLAttributes<HTMLDivElement> {
-  styleType?: 'default' | 'success' | 'pending' | 'warning'
-  textAlert?: string
-  showIcon?: boolean
+  styleType?: AlertStyle;
+  textAlert?: string;
+  showIcon?: boolean;
+  onClose?: () => void;
 }
 
-function getAlertStyle(styleType: NonNullable<AlertsStateProps['styleType']>): React.CSSProperties {
-  if (styleType === 'success') {
-    return {
-      backgroundColor: tokens.colors.success,
-      color: tokens.colors.white,
-    }
-  }
-
-  if (styleType === 'pending') {
-    return {
-      backgroundColor: tokens.colors.pending,
-      color: tokens.colors.white,
-    }
-  }
-
-  if (styleType === 'warning') {
-    return {
-      backgroundColor: tokens.colors.warning,
-      color: tokens.colors.white,
-    }
-  }
-
-  return {
-    backgroundColor: tokens.colors.backgroundSecondary,
-    color: tokens.colors.textCaption,
-  }
-}
+const toneByStyle: Record<AlertStyle, { bg: string; fg: string }> = {
+  default: { bg: tokens.colors.backgroundSecondary, fg: tokens.colors.textCaption },
+  success: { bg: tokens.colors.success, fg: tokens.colors.white },
+  pending: { bg: tokens.colors.pending, fg: tokens.colors.white },
+  warning: { bg: tokens.colors.warning, fg: tokens.colors.white },
+};
 
 export const AlertsState = React.forwardRef<HTMLDivElement, AlertsStateProps>(
-  ({ className, styleType = 'default', textAlert = 'Estado', showIcon = true, children, style, ...props }, ref) => {
-    const isDefault = styleType === 'default'
+  ({ className, styleType = "default", textAlert = "Estado", showIcon = true, onClose, ...props }, ref) => {
+    const tone = toneByStyle[styleType];
 
     return (
       <div
         ref={ref}
-        className={cn('ds-alerts-state', `ds-alerts-state--${styleType}`, className)}
+        className={cn("ds-alerts-state", `ds-alerts-state--${styleType}`, className)}
         style={{
-          width: '100%',
-          display: 'flex',
-          alignItems: 'center',
+          display: "flex",
+          alignItems: "center",
           gap: tokens.spacing.sm,
+          padding: `${tokens.spacing.sm} ${tokens.spacing.md}`,
           borderRadius: tokens.radius.sm,
-          padding: `${tokens.spacing.md} ${tokens.spacing.md}`,
+          background: tone.bg,
+          color: tone.fg,
           boxShadow: tokens.shadows.card,
-          ...getAlertStyle(styleType),
-          ...style,
         }}
         {...props}
       >
-        {showIcon && (
-          <span aria-hidden style={{ fontSize: tokens.spacing.md, lineHeight: `${tokens.typography.body.lineHeight}%` }}>
-            {isDefault ? 'i' : 'o'}
-          </span>
-        )}
-
-        <span
+        {showIcon && <span className="ds-alerts-state__dot" aria-hidden style={{ width: "14px", height: "14px", borderRadius: "50%", background: tokens.colors.white }} />}
+        <span style={{ flex: 1, fontFamily: "Solomon Sans", fontSize: "14px" }}>{textAlert}</span>
+        <button
+          type="button"
+          className={cn("ds-alerts-state__close", "ds-alerts-state--active")}
+          aria-label="Close alert"
+          onClick={onClose}
           style={{
-            flex: 1,
-            fontFamily: tokens.typography.caption.fontFamily,
-            fontSize: tokens.typography.caption.fontSize,
-            fontWeight: tokens.typography.caption.fontWeight,
-            lineHeight: `${tokens.typography.caption.lineHeight}%`,
+            border: "none",
+            background: "transparent",
+            color: tone.fg,
+            fontSize: "20px",
+            lineHeight: 1,
+            cursor: "pointer",
           }}
         >
-          {textAlert}
-        </span>
-
-        <span aria-hidden style={{ fontSize: tokens.spacing.md, lineHeight: `${tokens.typography.body.lineHeight}%` }}>
-          x
-        </span>
-        {children}
+          ×
+        </button>
       </div>
-    )
-  },
-)
+    );
+  }
+);
 
-AlertsState.displayName = 'AlertsState'
+AlertsState.displayName = "AlertsState";

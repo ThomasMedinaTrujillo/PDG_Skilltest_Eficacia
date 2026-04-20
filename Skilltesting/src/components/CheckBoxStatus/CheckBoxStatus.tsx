@@ -1,50 +1,42 @@
-import * as React from 'react'
-import { tokens } from '../../Token'
-import { cn } from '../../lib/cn'
+import * as React from "react";
+import { cn } from "../../lib/cn";
+import { tokens } from "../../Token";
 
-const addIcon = 'http://localhost:3845/assets/ae50abf1ed3a7f8b2535055340e6e7ed7d2d03f8.svg'
-const removeIcon = 'http://localhost:3845/assets/809cc1d49086e1feaabcdf11ef85e0b351dcf9de.svg'
-
-export interface CheckBoxStatusProps extends React.HTMLAttributes<HTMLDivElement> {
-  status?: 'Add' | 'Remove'
+export interface CheckBoxStatusProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  status?: "add" | "remove";
 }
 
-export const CheckBoxStatus = React.forwardRef<HTMLDivElement, CheckBoxStatusProps>(
-  ({ className, status = 'Add', children, style, ...props }, ref) => {
-    const isRemove = status === 'Remove'
+export const CheckBoxStatus = React.forwardRef<HTMLButtonElement, CheckBoxStatusProps>(
+  ({ className, status = "add", ...props }, ref) => {
+    const symbol = status === "remove" ? "−" : "+";
 
     return (
-      <div
+      <button
         ref={ref}
-        className={cn('ds-checkbox-status', className)}
+        type="button"
+        className={cn("ds-checkbox-status", `ds-checkbox-status--${status}`, className)}
         style={{
-          position: 'relative',
-          width: 18.547,
-          height: 17.773,
-          flexShrink: 0,
-          fontFamily: tokens.typography.body.fontFamily,
-          ...style,
+          width: "18px",
+          height: "18px",
+          border: "none",
+          borderRadius: "3px",
+          background: tokens.colors.buttonBackground,
+          color: tokens.colors.white,
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          fontFamily: "Solomon Sans",
+          fontWeight: 700,
+          lineHeight: 1,
         }}
         {...props}
       >
-        <div style={{ position: 'absolute', inset: 0, borderRadius: 3, backgroundColor: tokens.colors.buttonBackground }} />
-        <span
-          aria-hidden
-          style={{
-            position: 'absolute',
-            width: 10.667,
-            height: 10.667,
-            left: isRemove ? 4.33 : 'calc(50% + 0.39px)',
-            top: isRemove ? 4.33 : 'calc(50% + 0.78px)',
-            transform: isRemove ? undefined : 'translate(-50%, -50%)',
-          }}
-        >
-          <img alt="" src={isRemove ? removeIcon : addIcon} style={{ display: 'block', width: '100%', height: '100%', maxWidth: 'none' }} />
-        </span>
-        {children}
-      </div>
-    )
-  },
-)
+        {symbol}
+      </button>
+    );
+  }
+);
 
-CheckBoxStatus.displayName = 'CheckBoxStatus'
+CheckBoxStatus.displayName = "CheckBoxStatus";

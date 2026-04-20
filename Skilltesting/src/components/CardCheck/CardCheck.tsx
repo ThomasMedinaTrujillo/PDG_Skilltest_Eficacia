@@ -1,199 +1,82 @@
-import * as React from 'react'
-import { tokens } from '../../Token'
-import { cn } from '../../lib/cn'
+import * as React from "react";
+import { cn } from "../../lib/cn";
+import { tokens } from "../../Token";
 
-const enabledIconA = 'http://localhost:3845/assets/172fb3f0da39b2e319540672632d196a455abe6e.svg'
-const enabledIconB = 'http://localhost:3845/assets/9fdca7a630696a1af4526bdca61cee5e7482f4b4.svg'
-const enabledIconC = 'http://localhost:3845/assets/f820e167747b2dbd95ebc52bf88e2191e97d2f8d.svg'
-const enabledIconD = 'http://localhost:3845/assets/9e498722d8b7b6a4fde41c332131ab285aa5e3ce.svg'
-const disabledIconA = 'http://localhost:3845/assets/8d9da7568ec82d42586970d46322771c32d475af.svg'
-const disabledIconB = 'http://localhost:3845/assets/34188cfe4d16c0ec05c2bb1771a5a8a047deaf51.svg'
-const disabledIconC = 'http://localhost:3845/assets/c66ff95ca5efde5986f1934de9ee1f629c59d6e2.svg'
-const disabledIconD = 'http://localhost:3845/assets/e7d248cf505dceb1ff0665b55fe5bc96524ccc9f.svg'
-const errorIconA = 'http://localhost:3845/assets/12fab362454690abf5dec2750b51ed1679f14a73.svg'
-const errorIconB = 'http://localhost:3845/assets/699ff7e444d9681e34243dd60ec16094c1c44fa4.svg'
-const errorIconC = 'http://localhost:3845/assets/2e768609c0595c013716c86942603d2bbfc38729.svg'
-const errorIconD = 'http://localhost:3845/assets/158bec8ff20d2b6d25dd915ea9c211ad5948ead7.svg'
-const arrowEnabled = 'http://localhost:3845/assets/1c6fa4b1a5d2a0d8fd7461854a849b5bb0d72b95.svg'
-const arrowDisabled = 'http://localhost:3845/assets/f394be806ed83e0d0e6375322771f1129a5923be.svg'
+type CardCheckState = "enabled" | "disabled" | "prueba";
 
-function CategoryIcon({ state }: { state: 'enabled' | 'disabled' | 'Prueba' }) {
-  const icons =
-    state === 'enabled'
-      ? [enabledIconA, enabledIconB, enabledIconC, enabledIconD]
-      : state === 'disabled'
-        ? [disabledIconA, disabledIconB, disabledIconC, disabledIconD]
-        : [errorIconA, errorIconB, errorIconC, errorIconD]
-
-  return (
-    <span aria-hidden style={{ position: 'relative', display: 'block', width: 24, height: 24, flexShrink: 0 }}>
-      <span style={{ position: 'absolute', inset: '4.76% 4.76% 58.85% 58.81%' }}>
-        <img alt="" src={icons[0]} style={{ display: 'block', width: '100%', height: '100%', maxWidth: 'none' }} />
-      </span>
-      <span style={{ position: 'absolute', inset: '54.05% 4.76% 9.52% 58.81%' }}>
-        <img alt="" src={icons[1]} style={{ display: 'block', width: '100%', height: '100%', maxWidth: 'none' }} />
-      </span>
-      <span style={{ position: 'absolute', inset: '4.76% 54.05% 58.85% 9.52%' }}>
-        <img alt="" src={icons[2]} style={{ display: 'block', width: '100%', height: '100%', maxWidth: 'none' }} />
-      </span>
-      <span style={{ position: 'absolute', inset: '54.05% 54.05% 9.52% 9.52%' }}>
-        <img alt="" src={icons[3]} style={{ display: 'block', width: '100%', height: '100%', maxWidth: 'none' }} />
-      </span>
-    </span>
-  )
+export interface CardCheckProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  state?: CardCheckState;
+  title?: string;
+  subTitle?: string;
+  label?: string;
+  number?: string;
+  checked?: boolean;
+  onCheckedChange?: (checked: boolean) => void;
 }
 
-function ArrowRight({ state }: { state: 'enabled' | 'disabled' | 'Prueba' }) {
-  return (
-    <span aria-hidden style={{ position: 'relative', display: 'block', width: 24, height: 24, flexShrink: 0 }}>
-      <span style={{ position: 'absolute', inset: '14.29% 27.4% 13.65% 28.57%' }}>
-        <img alt="" src={state === 'enabled' ? arrowEnabled : arrowDisabled} style={{ display: 'block', width: '100%', height: '100%', maxWidth: 'none' }} />
-      </span>
-    </span>
-  )
-}
-
-function CheckBox({ state }: { state: 'enabled' | 'disabled' | 'Prueba' }) {
-  const borderColor = state === 'Prueba' ? tokens.colors.warning : tokens.colors.textSecondary
-  return <div style={{ width: 18, height: 18, flexShrink: 0, borderRadius: 4, border: `1px solid ${borderColor}` }} />
-}
-
-export interface CardCheckProps extends React.HTMLAttributes<HTMLDivElement> {
-  categoryIcon?: React.ReactNode | null
-  label?: string
-  number?: string
-  showCheckBox?: boolean
-  showIconLeft?: boolean
-  showIconRight?: boolean
-  showLabel?: boolean
-  showNumber?: boolean
-  showSubTitle?: boolean
-  showTitle?: boolean
-  state?: 'enabled' | 'disabled' | 'Prueba'
-  subTitle?: string
-  title?: string
-}
-
-export const CardCheck = React.forwardRef<HTMLDivElement, CardCheckProps>(
+export const CardCheck = React.forwardRef<HTMLButtonElement, CardCheckProps>(
   (
     {
       className,
-      categoryIcon = null,
-      label = '| TQ',
-      number = '2',
-      showCheckBox = true,
-      showIconLeft = true,
-      showIconRight = true,
-      showLabel = true,
-      showNumber = true,
-      showSubTitle = true,
-      showTitle = true,
-      state = 'enabled',
-      subTitle = 'label',
-      title = 'Categoria 1',
-      children,
-      style,
+      state = "enabled",
+      title = "Categoria 1",
+      subTitle = "label",
+      label = "| TQ",
+      number = "2",
+      checked = false,
+      onCheckedChange,
       ...props
     },
-    ref,
+    ref
   ) => {
-    const isDisabled = state === 'disabled'
-    const isEnabled = state === 'enabled'
-    const isPrueba = state === 'Prueba'
-    const mainColor = isPrueba ? tokens.colors.warning : isDisabled ? tokens.colors.textSecondary : tokens.colors.buttonBackground
-    const secondaryColor = isPrueba ? tokens.colors.warning : tokens.colors.textSecondary
+    const isError = state === "prueba";
+    const isDisabled = state === "disabled";
+    const titleColor = isError ? tokens.colors.warning : isDisabled ? tokens.colors.textSecondary : tokens.colors.primary;
 
     return (
-      <div
+      <button
         ref={ref}
-        className={cn('ds-card-check', className)}
+        type="button"
+        className={cn("ds-card-check", `ds-card-check--${state}`, className)}
         style={{
-          display: 'flex',
-          width: 339,
-          alignItems: 'center',
-          padding: 12,
-          backgroundColor: tokens.colors.white,
+          width: "100%",
+          border: "none",
           borderRadius: tokens.radius.sm,
+          background: tokens.colors.white,
           boxShadow: tokens.shadows.card,
-          fontFamily: tokens.typography.body.fontFamily,
-          ...style,
+          padding: tokens.spacing.sm,
+          display: "flex",
+          alignItems: "center",
+          gap: tokens.spacing.sm,
+          textAlign: "left",
+          cursor: isDisabled ? "not-allowed" : "pointer",
+          opacity: isDisabled ? 0.8 : 1,
         }}
         {...props}
       >
-        <div style={{ display: 'flex', minWidth: 0, flex: '1 0 0', alignItems: 'center', gap: !['disabled', 'Prueba'].includes(state) ? 4 : 0 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 20, padding: '0 4px' }}>
-            {showIconLeft && (categoryIcon || <CategoryIcon state={state} />)}
+        <span aria-hidden style={{ width: "24px", height: "24px", borderRadius: tokens.radius.xs, background: titleColor, display: "inline-block" }} />
 
-            {isEnabled && (
-              <div style={{ display: 'flex', flexShrink: 0, flexDirection: 'column', justifyContent: 'center', gap: 4, padding: 4 }}>
-                {showTitle && <div style={{ color: mainColor, fontFamily: tokens.typography.body.fontFamily, fontSize: 14, fontWeight: 600, lineHeight: '100%', whiteSpace: 'nowrap' }}>{title}</div>}
-                {showSubTitle && <div style={{ color: secondaryColor, fontFamily: tokens.typography.body.fontFamily, fontSize: 12, fontWeight: 400, lineHeight: '100%', whiteSpace: 'nowrap' }}>{subTitle}</div>}
-              </div>
-            )}
+        <span style={{ flex: 1, display: "flex", alignItems: "center", gap: tokens.spacing.xs }}>
+          <span style={{ display: "flex", flexDirection: "column", gap: tokens.spacing.xs }}>
+            <span style={{ color: titleColor, fontFamily: "Solomon Sans", fontSize: "14px", fontWeight: 600 }}>{title}</span>
+            <span style={{ color: titleColor, fontFamily: "Solomon Sans", fontSize: "12px" }}>{subTitle}</span>
+          </span>
+          <span style={{ color: titleColor, fontFamily: "Solomon Sans", fontSize: "12px" }}>{label}</span>
+        </span>
 
-            {isDisabled && (
-              <div style={{ display: 'flex', flexShrink: 0, flexDirection: 'column', justifyContent: 'center', gap: 4, padding: 4 }}>
-                {showTitle && <div style={{ color: mainColor, fontFamily: tokens.typography.body.fontFamily, fontSize: 14, fontWeight: 600, lineHeight: '100%', whiteSpace: 'nowrap' }}>{title}</div>}
-                {showSubTitle && <div style={{ color: secondaryColor, fontFamily: tokens.typography.body.fontFamily, fontSize: 12, fontWeight: 400, lineHeight: '100%', whiteSpace: 'nowrap' }}>{subTitle}</div>}
-              </div>
-            )}
+        <span style={{ color: titleColor, fontFamily: "Solomon Sans", fontSize: "16px", fontWeight: 600 }}>{number}</span>
 
-            {isPrueba && (
-              <div style={{ display: 'flex', flexShrink: 0, flexDirection: 'column', justifyContent: 'center', gap: 4, padding: 4 }}>
-                {showTitle && <div style={{ color: mainColor, fontFamily: tokens.typography.body.fontFamily, fontSize: 14, fontWeight: 600, lineHeight: '100%', whiteSpace: 'nowrap' }}>{title}</div>}
-                {showSubTitle && <div style={{ color: mainColor, fontFamily: tokens.typography.body.fontFamily, fontSize: 12, fontWeight: 400, lineHeight: '100%', whiteSpace: 'nowrap' }}>{subTitle}</div>}
-              </div>
-            )}
-          </div>
+        <input
+          type="checkbox"
+          checked={checked}
+          onChange={(e) => onCheckedChange?.(e.target.checked)}
+          style={{ width: "18px", height: "18px", accentColor: isError ? tokens.colors.warning : tokens.colors.textSecondary }}
+        />
 
-          {((isEnabled || isDisabled) && showLabel) && (
-            <div style={{ display: 'flex', width: 31, flexShrink: 0, flexDirection: 'column', alignItems: 'flex-start' }}>
-              <div style={{ color: secondaryColor, fontFamily: tokens.typography.caption.fontFamily, fontSize: 12, fontWeight: 400, lineHeight: '100%', whiteSpace: 'nowrap' }}>{label}</div>
-            </div>
-          )}
+        <span aria-hidden style={{ color: titleColor, fontSize: "20px", lineHeight: 1 }}>›</span>
+      </button>
+    );
+  }
+);
 
-          {isPrueba && showLabel && (
-            <div style={{ display: 'flex', width: 31, flexShrink: 0, flexDirection: 'column', alignItems: 'flex-start' }}>
-              <div style={{ color: mainColor, fontFamily: tokens.typography.caption.fontFamily, fontSize: 12, fontWeight: 400, lineHeight: '100%', whiteSpace: 'nowrap' }}>{label}</div>
-            </div>
-          )}
-        </div>
-
-        {((isEnabled || isDisabled) && showNumber) && (
-          <div style={{ display: 'flex', width: 26, flexShrink: 0, flexDirection: 'column', alignItems: 'flex-start', padding: 8 }}>
-            <div style={{ color: secondaryColor, fontFamily: tokens.typography.body.fontFamily, fontSize: 16, fontWeight: 600, lineHeight: '100%', textAlign: 'right', whiteSpace: 'nowrap' }}>{number}</div>
-          </div>
-        )}
-
-        {((isEnabled || isDisabled) && showCheckBox) && (
-          <div style={{ display: 'flex', flexShrink: 0, alignItems: 'flex-start', justifyContent: 'center' }}>
-            <div style={{ display: 'flex', width: 24, height: 24, alignItems: 'center', justifyContent: 'center' }}>
-              <CheckBox state={state} />
-            </div>
-          </div>
-        )}
-
-        {((isEnabled || isDisabled) && showIconRight) && <ArrowRight state={state} />}
-
-        {isPrueba && showNumber && (
-          <div style={{ display: 'flex', width: 26, flexShrink: 0, flexDirection: 'column', alignItems: 'flex-start', padding: 8 }}>
-            <div style={{ color: mainColor, fontFamily: tokens.typography.body.fontFamily, fontSize: 16, fontWeight: 600, lineHeight: '100%', textAlign: 'right', whiteSpace: 'nowrap' }}>{number}</div>
-          </div>
-        )}
-
-        {isPrueba && showCheckBox && (
-          <div style={{ display: 'flex', flexShrink: 0, alignItems: 'flex-start', justifyContent: 'center' }}>
-            <div style={{ display: 'flex', width: 24, height: 24, alignItems: 'center', justifyContent: 'center' }}>
-              <CheckBox state={state} />
-            </div>
-          </div>
-        )}
-
-        {isPrueba && showIconRight && <ArrowRight state={state} />}
-        {children}
-      </div>
-    )
-  },
-)
-
-CardCheck.displayName = 'CardCheck'
+CardCheck.displayName = "CardCheck";

@@ -1,154 +1,99 @@
-import * as React from 'react'
-import { tokens } from '../../Token'
-import { cn } from '../../lib/cn'
+import * as React from "react";
+import { cn } from "../../lib/cn";
+import { tokens } from "../../Token";
+
+type InputState = "enable" | "selected" | "error";
+type InputType = "textfield" | "multiline";
 
 export interface InputProps extends React.HTMLAttributes<HTMLDivElement> {
-  state?: 'enable' | 'selected' | 'error'
-  type?: 'textField' | 'multiline'
-  label?: string
-  required?: boolean
-  valueText?: string
-  multilineText?: string
-  rightIcon?: React.ReactNode
-  showAlert?: boolean
-  alertText?: string
-  errorText?: string
+  labelText?: string;
+  requested?: boolean;
+  state?: InputState;
+  type?: InputType;
+  value?: string;
+  onValueChange?: (value: string) => void;
+  placeholder?: string;
 }
 
-function getFieldColors(state: NonNullable<InputProps['state']>): React.CSSProperties {
-  if (state === 'selected') {
-    return {
-      borderColor: tokens.colors.primary,
-      color: tokens.colors.primary,
-    }
-  }
-
-  if (state === 'error') {
-    return {
-      borderColor: tokens.colors.warning,
-      color: tokens.colors.warning,
-    }
-  }
-
-  return {
-    borderColor: tokens.colors.buttonDisabled,
-    color: tokens.colors.ns400,
-  }
-}
-
-export const Input = React.forwardRef<HTMLDivElement, InputProps>(
+export const Input = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(
   (
     {
       className,
-      state = 'enable',
-      type = 'textField',
-      label = 'Label',
-      required = true,
-      valueText = 'Value',
-      multilineText =
-        'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-      rightIcon,
-      showAlert = false,
-      alertText = 'Participacion diferente de lo esperado',
-      errorText = 'Datos incorrectos',
-      children,
-      style,
+      labelText = "Label",
+      requested = true,
+      state = "enable",
+      type = "textfield",
+      value,
+      onValueChange,
+      placeholder = "Value",
       ...props
     },
-    ref,
+    ref
   ) => {
-    const colors = getFieldColors(state)
-    const isMultiline = type === 'multiline'
-    const displayText = isMultiline ? multilineText : valueText
+    const isError = state === "error";
+    const isSelected = state === "selected";
+
+    const borderColor = isError
+      ? tokens.colors.warning
+      : isSelected
+        ? tokens.colors.primary
+        : tokens.colors.buttonDisabled;
+
+    const textColor = isError
+      ? tokens.colors.warning
+      : isSelected
+        ? tokens.colors.primary
+        : tokens.colors.graySoft;
 
     return (
-      <div
-        ref={ref}
-        className={cn('ds-input', `ds-input--${state}`, `ds-input--${type}`, className)}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: tokens.spacing.xs,
-          width: '100%',
-          ...style,
-        }}
-        {...props}
-      >
-        <div
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: tokens.spacing.xs,
-            fontFamily: tokens.typography.body.fontFamily,
-            fontSize: tokens.typography.body.fontSize,
-            fontWeight: 600,
-            lineHeight: `${tokens.typography.body.lineHeight}%`,
-            color: tokens.colors.primary,
-          }}
-        >
-          <span>{label}</span>
-          {required && <span>*</span>}
-        </div>
+      <div className={cn("ds-input", `ds-input--${state}`, `ds-input--${type}`, className)} style={{ display: "flex", flexDirection: "column", gap: tokens.spacing.xs, width: "100%" }} {...props}>
+        <label style={{ color: tokens.colors.primary, fontFamily: "Solomon Sans", fontSize: "14px", fontWeight: 600 }}>
+          {labelText}
+          {requested && " *"}
+        </label>
 
-        <div
-          style={{
-            display: 'flex',
-            alignItems: isMultiline ? 'flex-start' : 'center',
-            justifyContent: 'space-between',
-            gap: tokens.spacing.sm,
-            border: `1px solid ${colors.borderColor}`,
-            borderRadius: tokens.radius.xs,
-            backgroundColor: tokens.colors.white,
-            padding: tokens.spacing.sm,
-            color: colors.color,
-            minHeight: isMultiline ? '70px' : '40px',
-            fontFamily: tokens.typography.body.fontFamily,
-            fontSize: tokens.typography.body.fontSize,
-            lineHeight: `${tokens.typography.body.lineHeight}%`,
-          }}
-        >
-          <span style={{ flex: 1 }}>{displayText}</span>
-          {rightIcon}
-        </div>
-
-        {state === 'error' && (
-          <span
+        {type === "textfield" ? (
+          <input
+            ref={ref as React.ForwardedRef<HTMLInputElement>}
+            value={value}
+            onChange={(e) => onValueChange?.(e.target.value)}
+            placeholder={placeholder}
+            className="ds-input__field"
             style={{
-              color: tokens.colors.warning,
-              fontFamily: tokens.typography.caption.fontFamily,
-              fontSize: tokens.typography.caption.fontSize,
-              lineHeight: `${tokens.typography.caption.lineHeight}%`,
+              border: `1px solid ${borderColor}`,
+              borderRadius: tokens.radius.xs,
+              padding: tokens.spacing.sm,
+              color: textColor,
+              fontFamily: "Solomon Sans",
+              fontSize: "14px",
+              outline: "none",
             }}
-          >
-            {errorText}
-          </span>
+          />
+        ) : (
+          <textarea
+            ref={ref as React.ForwardedRef<HTMLTextAreaElement>}
+            value={value}
+            onChange={(e) => onValueChange?.(e.target.value)}
+            placeholder={placeholder}
+            className="ds-input__field ds-input__field--multiline"
+            rows={3}
+            style={{
+              border: `1px solid ${borderColor}`,
+              borderRadius: tokens.radius.xs,
+              padding: tokens.spacing.sm,
+              color: textColor,
+              fontFamily: "Solomon Sans",
+              fontSize: "14px",
+              outline: "none",
+              resize: "vertical",
+            }}
+          />
         )}
 
-        {showAlert && (
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              borderRadius: '2px',
-              backgroundColor: tokens.colors.pending,
-              color: tokens.colors.primary,
-              padding: `0 ${tokens.spacing.sm}`,
-              minHeight: '25px',
-              fontFamily: tokens.typography.caption.fontFamily,
-              fontSize: tokens.typography.caption.fontSize,
-              lineHeight: `${tokens.typography.caption.lineHeight}%`,
-            }}
-          >
-            <span>{alertText}</span>
-            <span aria-hidden>x</span>
-          </div>
-        )}
-
-        {children}
+        {isError && <span style={{ color: tokens.colors.warning, fontFamily: "Solomon Sans", fontSize: "12px" }}>Datos incorrectos</span>}
       </div>
-    )
-  },
-)
+    );
+  }
+);
 
-Input.displayName = 'Input'
+Input.displayName = "Input";
