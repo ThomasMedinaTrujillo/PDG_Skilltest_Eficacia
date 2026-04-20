@@ -17,6 +17,11 @@ import { FormAlert } from "../components/FormAlert/FormAlert";
 import { IconText } from "../components/IconText/IconText";
 import { PriceCardSmall } from "../components/PriceCardSmall/PriceCardSmall";
 import { Toggle } from "../components/Toggle/Toggle";
+import { RadioButtons } from "../components/RadioButtons/RadioButtons";
+import { QuestionButton } from "../components/QuestionButton/QuestionButton";
+import { InputCheck } from "../components/InputCheck/InputCheck";
+import { ContenidoDeTabla } from "../components/ContenidoDeTabla/ContenidoDeTabla";
+import { TablaDeSeleccion } from "../components/TablaDeSeleccion/TablaDeSeleccion";
 
 const pageStyle: CSSProperties = {
     minHeight: "100vh",
@@ -191,6 +196,32 @@ function ShowcaseScreen() {
                         <AvatarMobile size="32" content="text" avatarText="AA" showBadge />
                         <AvatarMobile size="40" content="image" showBadge />
                         <AvatarMobile size="92" content="text" avatarText="AA" showBadge />
+                    </div>
+                </div>
+            </Section>
+
+            <Section title="Selection Components">
+                <div style={{ display: "grid", gap: "20px" }}>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", alignItems: "center" }}>
+                        <RadioButtons defaultChecked={false} />
+                        <RadioButtons defaultChecked />
+                        <InputCheck label="Input" controlType="round" defaultChecked />
+                        <InputCheck label="Input" controlType="check" defaultChecked={false} />
+                    </div>
+
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", alignItems: "flex-start" }}>
+                        <QuestionButton defaultActive={false} />
+                        <QuestionButton defaultActive />
+                    </div>
+
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "20px", alignItems: "start" }}>
+                        <ContenidoDeTabla mode="radio" />
+                        <ContenidoDeTabla mode="checkbox" />
+                    </div>
+
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: "20px", alignItems: "start" }}>
+                        <TablaDeSeleccion mode="radio" />
+                        <TablaDeSeleccion mode="checkbox" title="selecciona multiples respuestas" />
                     </div>
                 </div>
             </Section>
