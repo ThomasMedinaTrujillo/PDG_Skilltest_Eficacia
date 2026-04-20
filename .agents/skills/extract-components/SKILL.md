@@ -30,9 +30,22 @@ Read effects
 Read strokes
 Read component instances
 
-You MUST extract from:
+INPUT SOURCE
 
-mcp.figma.getSelection()
+You MUST extract components from explicit Figma node references provided in the prompt.
+
+Accepted inputs:
+- nodeIds[]
+- Figma URLs (file + node-id)
+
+DO NOT rely on mcp.figma.getSelection()
+
+Instead, you MUST:
+
+For each node:
+- mcp.figma.getNode(nodeId)
+- mcp.figma.getComponent(nodeId) (if applicable)
+- mcp.figma.getComponentSet(nodeId) (if applicable)
 
 Then recursively resolve:
 mcp.figma.getscreenshot()
@@ -42,8 +55,6 @@ mcp.figma.getComponentSet()
 mcp.figma.getStyles()
 mcp.figma.getVariables()
 EXTRACTION SCOPE
-
-Extract components ONLY from selected nodes in Figma.
 
 If a selected node contains nested components, extract them too.
 
@@ -172,6 +183,106 @@ Vertical → flex-col
 Gap → token
 Padding → token
 
+SEMANTIC HTML + INTERACTIVITY (MANDATORY)
+
+You MUST map components to real HTML elements when applicable:
+
+- Button → <button>
+- Input → <input> / <textarea>
+- Checkbox → <input type="checkbox">
+- Radio → <input type="radio">
+- Select → <select>
+- Link → <a>
+
+DO NOT use <div> for interactive elements.
+
+INTERACTION SUPPORT:
+
+- Inputs must support value, onChange
+- Checkbox must support checked, onCheckedChange
+- Buttons must support onClick
+- Forms must support submission behavior
+
+If interaction is implied visually, you MUST implement it.
+
+INTERACTION MAPPING (FIGMA PROTOTYPING → REACT)
+
+You MUST extract interactions from Figma:
+
+- On click → onClick
+- On hover → :hover / onMouseEnter
+- While pressed → :active
+- Toggle states → useState
+- Variant switching → controlled props
+
+If a component switches between variants based on interaction:
+
+You MUST:
+
+- Convert variants → state (useState)
+- OR controlled props (preferred)
+
+Example:
+
+Figma:
+Toggle: On / Off
+
+React:
+const [checked, setChecked] = useState(false)
+
+INTERACTIVITY DEFAULTS (MANDATORY)
+
+Components MUST support both:
+
+1. Controlled usage (via props)
+2. Uncontrolled usage (internal state)
+
+If a component has interactive states (toggle, active, selected, checked):
+
+You MUST:
+
+- Add internal state using useState
+- Sync with external prop if provided
+
+Pattern:
+
+const [internalValue, setInternalValue] = useState(defaultValue)
+
+const isControlled = propValue !== undefined
+const value = isControlled ? propValue : internalValue
+
+const handleChange = (newValue) => {
+  if (!isControlled) setInternalValue(newValue)
+  onChange?.(newValue)
+}
+
+INTERACTION INFERENCE RULES
+
+If a component has:
+
+- Mutually exclusive variants → use selection state (tabs, nav, radio)
+- Boolean variants → use toggle state (checkbox, switch)
+- Hover/pressed states → use CSS states
+- Visual feedback on click → add onClick handler
+
+You MUST assume interaction even if not explicitly prototyped.
+
+INTERACTION SAFETY
+
+Do NOT invent complex logic.
+
+ONLY infer:
+
+- toggle
+- select one
+- click feedback
+
+DO NOT infer:
+
+- async behavior
+- API calls
+- navigation
+
 CHILDREN DETECTION
 
 If slot exists:
@@ -209,6 +320,7 @@ No explanations
 No markdown docs
 No AST
 Only code
+
 FINAL OUTPUT EXAMPLE
 /components
    Button.tsx
