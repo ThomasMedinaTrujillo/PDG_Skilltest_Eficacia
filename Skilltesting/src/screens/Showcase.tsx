@@ -8,6 +8,15 @@ import { MenuBar } from "../components/MenuBar/MenuBar";
 import { MobileButtons } from "../components/MobileButtons/MobileButtons";
 import { PrincipalMenu } from "../components/PrincipalMenu/PrincipalMenu";
 import { PrincipalMenuMenuItem } from "../components/PrincipalMenuMenuItem/PrincipalMenuMenuItem";
+import { ActionMenu } from "../components/ActionMenu/ActionMenu";
+import { AvatarMobile } from "../components/AvatarMobile/AvatarMobile";
+import { CaptionWarning } from "../components/CaptionWarning/CaptionWarning";
+import { CheckBox } from "../components/CheckBox/CheckBox";
+import { EmailAlert } from "../components/EmailAlert/EmailAlert";
+import { FormAlert } from "../components/FormAlert/FormAlert";
+import { IconText } from "../components/IconText/IconText";
+import { PriceCardSmall } from "../components/PriceCardSmall/PriceCardSmall";
+import { Toggle } from "../components/Toggle/Toggle";
 
 const pageStyle: CSSProperties = {
     minHeight: "100vh",
@@ -152,6 +161,37 @@ function ShowcaseScreen() {
                 <div style={{ display: "grid", gap: "12px", maxWidth: "360px" }}>
                     <PrincipalMenuMenuItem itemMenuText="Text" />
                     <PrincipalMenuMenuItem itemMenuText="Text" active leftIcon="↩" />
+                </div>
+            </Section>
+
+            <Section title="New Batch Components">
+                <div style={{ display: "grid", gap: "20px" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "16px", alignItems: "start" }}>
+                        <FormAlert textAlert="Participación diferente de lo esperado" />
+                        <EmailAlert name="Daniela Perez" email="daniela1.perez2@xxx.co" />
+                        <CaptionWarning caption="Debes completar las preguntas (*)" />
+                    </div>
+
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "16px", alignItems: "start" }}>
+                        <IconText text="C.C 1130618976 Gaiman, Argentina" />
+                        <PriceCardSmall productName="Adhesivo Aquence" price="$120.000" />
+                        <ActionMenu editLabel="Editar" deleteLabel="Eliminar" />
+                    </div>
+
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", alignItems: "center" }}>
+                        <CheckBox defaultChecked={false} />
+                        <CheckBox defaultChecked={true} />
+                        <Toggle defaultChecked={false} />
+                        <Toggle defaultChecked={true} />
+                    </div>
+
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", alignItems: "center" }}>
+                        <AvatarMobile size="18" content="text" avatarText="AA" showBadge />
+                        <AvatarMobile size="24" content="image" showBadge />
+                        <AvatarMobile size="32" content="text" avatarText="AA" showBadge />
+                        <AvatarMobile size="40" content="image" showBadge />
+                        <AvatarMobile size="92" content="text" avatarText="AA" showBadge />
+                    </div>
                 </div>
             </Section>
         </main>

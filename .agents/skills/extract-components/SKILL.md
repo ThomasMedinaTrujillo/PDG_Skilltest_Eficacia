@@ -283,6 +283,28 @@ DO NOT infer:
 - API calls
 - navigation
 
+SIZE SAFETY RULES (MANDATORY)
+
+To prevent oversized or stretched generated components:
+
+- Never use undefined CSS variables for width, height, line-height, spacing, or icon size.
+- If a token/variable is missing, use explicit px fallback values from Figma.
+- For text styles, convert Figma lineHeight 100% to line-height: 1 (never line-height: 100).
+- Do not use height: 100% unless the parent has an explicit fixed height and this is required by design.
+- Avoid layout stretching in grids/flex when not intended:
+  - use align-items: start for preview/demo grids
+  - avoid forcing children to stretch vertically
+- Icon and image rules:
+  - always set explicit width and height
+  - use object-fit: contain for icons and object-fit: cover for avatar/photos
+- Components must size to content by default:
+  - prefer min-height or auto height over full-height behavior
+  - do not add fixed heights unless clearly present in the design spec
+
+Validation checkpoint before output:
+- Verify each generated component keeps expected visual size when rendered in isolation and inside a responsive grid.
+- Reject output if any component appears vertically inflated, stretched, or out of scale relative to its Figma node.
+
 CHILDREN DETECTION
 
 If slot exists:
