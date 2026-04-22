@@ -39,7 +39,11 @@ export const tokens = {
     buttonBgOutlinePressed: "#99b3da4d",
     buttonSelected: "#002a68",
     buttonBgOutlineErrorPressed: "#ca494933",
-    buttonBgContentPressed: "#a23a3a"
+    buttonBgContentPressed: "#a23a3a",
+    inputBorder: "#99b3da",
+    textMuted: "#696969",
+    sliderTrack: "#a9adb0",
+    sliderFill: "#0041a3"
   },
 
   typography: {

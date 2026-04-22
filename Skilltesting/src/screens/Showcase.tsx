@@ -22,6 +22,17 @@ import { QuestionButton } from "../components/QuestionButton/QuestionButton";
 import { InputCheck } from "../components/InputCheck/InputCheck";
 import { ContenidoDeTabla } from "../components/ContenidoDeTabla/ContenidoDeTabla";
 import { TablaDeSeleccion } from "../components/TablaDeSeleccion/TablaDeSeleccion";
+import { NewsCard } from "../components/NewsCard/NewsCard";
+import { FileUpload } from "../components/FileUpload/FileUpload";
+import { StatePopup } from "../components/StatePopup/StatePopup";
+import { InfoCard } from "../components/InfoCard/InfoCard";
+import { CategoryCard } from "../components/CategoryCard/CategoryCard";
+import { TestimonialCard } from "../components/TestimonialCard/TestimonialCard";
+import { ProgressBar } from "../components/ProgressBar/ProgressBar";
+import { CounterCard } from "../components/CounterCard/CounterCard";
+import { NumberSlider } from "../components/NumberSlider/NumberSlider";
+import { Slider } from "../components/Slider/Slider";
+import { Dropdown } from "../components/Dropdown/Dropdown";
 
 const pageStyle: CSSProperties = {
     minHeight: "100vh",
@@ -222,6 +233,71 @@ function ShowcaseScreen() {
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))", gap: "20px", alignItems: "start" }}>
                         <TablaDeSeleccion mode="radio" />
                         <TablaDeSeleccion mode="checkbox" title="selecciona multiples respuestas" />
+                    </div>
+                </div>
+            </Section>
+
+            <Section title="Extracted Figma Components">
+                <div style={{ display: "grid", gap: "24px" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "16px", alignItems: "start" }}>
+                        <NewsCard />
+                        <FileUpload state="default" />
+                        <FileUpload state="loaded" />
+                    </div>
+
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(369px, 1fr))", gap: "16px", alignItems: "start" }}>
+                        <StatePopup tone="success" stateText="Text state" />
+                    </div>
+
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(339px, 1fr))", gap: "16px", alignItems: "start" }}>
+                        <InfoCard variant="with-image" />
+                        <InfoCard variant="default" />
+                        <CategoryCard state="complete" />
+                        <CategoryCard state="incomplete" />
+                        <CategoryCard state="prueba" />
+                    </div>
+
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(339px, 1fr))", gap: "16px", alignItems: "start" }}>
+                        <TestimonialCard showImage showAvatar />
+                    </div>
+
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(382px, 1fr))", gap: "16px", alignItems: "start" }}>
+                        <ProgressBar status="green" defaultValue={65} />
+                        <ProgressBar status="yellow" defaultValue={65} />
+                        <ProgressBar status="red" defaultValue={65} />
+                    </div>
+                </div>
+            </Section>
+
+            <Section title="Figma Designs">
+                <div style={{ display: "grid", gap: "24px" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "16px", alignItems: "start" }}>
+                        <CounterCard variant="number" value="12 / 15" />
+                        <CounterCard variant="inventory-lg" />
+                        <CounterCard variant="inventory-sm" />
+                        <CounterCard variant="price" />
+                    </div>
+
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "16px", alignItems: "start" }}>
+                        <NumberSlider defaultValue={1} max={3} />
+                        <NumberSlider defaultValue={2} max={4} />
+                        <NumberSlider defaultValue={3} max={5} />
+                        <NumberSlider defaultValue={4} max={6} disabled />
+                    </div>
+
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "16px", alignItems: "start" }}>
+                        <Slider defaultValue={0} />
+                        <Slider defaultValue={1} />
+                        <Slider defaultValue={2} />
+                        <Slider defaultValue={3} />
+                        <Slider defaultValue={4} />
+                        <Slider defaultValue={5} />
+                    </div>
+
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "16px", alignItems: "start" }}>
+                        <Dropdown />
+                        <Dropdown defaultOpen />
+                        <Dropdown error />
                     </div>
                 </div>
             </Section>
