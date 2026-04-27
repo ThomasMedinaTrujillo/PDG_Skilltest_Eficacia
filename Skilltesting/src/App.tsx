@@ -12,6 +12,12 @@ import FormularioVisitasScreen from "./screens/FormularioVisitasScreen";
 import LoginFormScreen from "./screens/LoginFormScreen";
 import CardCheckDemoScreen from "./screens/CardCheckDemoScreen";
 import FlujoVisualizacionScreen from "./screens/FlujoVisualizacionScreen";
+import ShortCutCapturarFormulariosScreen from "./screens/ShortCutCapturarFormulariosScreen";
+import FormulariosListScreen from "./screens/FormulariosListScreen";
+import AgendaDetallesEncuestasScreen from "./screens/AgendaDetallesEncuestasScreen";
+import FormInputMixedScreen from "./screens/FormInputMixedScreen";
+import FormInputAdvancedScreen from "./screens/FormInputAdvancedScreen";
+import FormSelectionComplexScreen from "./screens/FormSelectionComplexScreen";
 
 function App() {
   return (
@@ -30,6 +36,12 @@ function App() {
         <Route path="/login-form" element={<LoginFormScreen />} />
         <Route path="/card-check-demo" element={<CardCheckDemoScreen />} />
         <Route path="/flujo-visualizacion" element={<FlujoVisualizacionScreen />} />
+        <Route path="/shortcut-capturar-formularios" element={<ShortCutCapturarFormulariosScreen />} />
+        <Route path="/formularios-list" element={<FormulariosListScreen />} />
+        <Route path="/agenda-detalles-encuestas" element={<AgendaDetallesEncuestasScreen />} />
+        <Route path="/form-input-mixed" element={<FormInputMixedScreen />} />
+        <Route path="/form-input-advanced" element={<FormInputAdvancedScreen />} />
+        <Route path="/form-selection-complex" element={<FormSelectionComplexScreen />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
