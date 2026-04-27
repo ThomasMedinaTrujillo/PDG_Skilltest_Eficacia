@@ -5,7 +5,7 @@ import { ContenidoDeTabla } from "../ContenidoDeTabla/ContenidoDeTabla";
 
 type Matrix = boolean[][];
 
-export interface TablaDeSeleccionProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TablaDeSeleccionProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'defaultValue'> {
   title?: string;
   mode?: "checkbox" | "radio";
   columnLabels?: [string, string, string];
@@ -61,7 +61,7 @@ export const TablaDeSeleccion = React.forwardRef<HTMLDivElement, TablaDeSeleccio
 
         <div style={{ display: "flex", alignItems: "flex-end", width: "100%" }}>
           <div style={{ width: "83px", minHeight: "171px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-            {rowLabels.map((label, index) => (
+            {rowLabels.map((label) => (
               <div
                 key={label}
                 style={{

@@ -24,7 +24,7 @@ const getDefaultMatrix = (rows: number, columns: number, mode: "checkbox" | "rad
   );
 };
 
-export interface ContenidoDeTablaProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ContenidoDeTablaProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'defaultValue'> {
   mode?: "checkbox" | "radio";
   rows?: number;
   columns?: number;
