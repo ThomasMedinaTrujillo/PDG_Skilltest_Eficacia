@@ -20,7 +20,7 @@ export const PrincipalMenu = React.forwardRef<HTMLElement, PrincipalMenuProps>(
           ref={ref}
           className={cn("ds-principal-menu", "ds-principal-menu--header", className)}
           style={{
-            width: "100%",
+            
             background: tokens.colors.primary,
             padding: tokens.spacing.md,
             display: "flex",
