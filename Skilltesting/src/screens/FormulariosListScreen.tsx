@@ -120,8 +120,9 @@ export default function FormulariosListScreen() {
               headLeftText={form.headLeftText}
               headRightText={form.headRightText}
               activitiesText={form.activitiesText}
-              goalsText={form.goalsText}
               percent={form.percent}
+              showPercent= {false}
+              goalsText={form.goalsText}
               status={form.status}
             />
           ))}

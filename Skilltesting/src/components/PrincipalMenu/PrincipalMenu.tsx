@@ -2,6 +2,7 @@ import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
 import { PrincipalMenuMenuItem } from "../PrincipalMenuMenuItem/PrincipalMenuMenuItem";
+import { Input } from "../Input/Input";
 
 type PrincipalMenuMode = "header" | "floating";
 
@@ -25,25 +26,15 @@ export const PrincipalMenu = React.forwardRef<HTMLElement, PrincipalMenuProps>(
             padding: tokens.spacing.md,
             display: "flex",
             alignItems: "center",
+            justifyContent: "space-between",
             gap: tokens.spacing.sm,
           }}
           {...props}
         >
           <button type="button" style={{ border: "none", background: "transparent", color: tokens.colors.white, fontSize: "20px", cursor: "pointer" }} aria-label="Open menu">☰</button>
-          <input
-            aria-label="Search"
-            placeholder="Buscar"
-            style={{
-              flex: 1,
-              border: "none",
-              borderRadius: tokens.radius.xs,
-              padding: `${tokens.spacing.xs} ${tokens.spacing.sm}`,
-              color: tokens.colors.textSecondary,
-              fontFamily: "Solomon Sans",
-            }}
-          />
+          <Input placeholder="Buscar" state='enable' color='white' ></Input>
           <button type="button" style={{ border: "none", background: "transparent", color: tokens.colors.white, fontSize: "18px", cursor: "pointer" }} aria-label="Notifications">🔔</button>
-          <span aria-hidden style={{ width: "28px", height: "28px", borderRadius: "50%", background: tokens.colors.neutral300, display: "inline-block" }} />
+          <span aria-hidden style={{ width: "28px", height: "28px", borderRadius: "999px", background: tokens.colors.neutral300, }} />
         </nav>
       );
     }

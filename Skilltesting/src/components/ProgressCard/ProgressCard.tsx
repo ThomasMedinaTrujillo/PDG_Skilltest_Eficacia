@@ -13,7 +13,7 @@ interface ProgressBarProps {
   status?: "green" | "yellow" | "red";
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({ percent = 65, showPercent = true, status = "green" }) => {
+const ProgressBar: React.FC<ProgressBarProps> = ({ percent,showPercent = false, status = "green" }) => {
   const statusColorMap = {
     green: tokens.colors.success,
     yellow: tokens.colors.pending,
@@ -119,7 +119,6 @@ export const ProgressCard = React.forwardRef<HTMLDivElement, ProgressCardProps>(
           gap: tokens.spacing.lg,
           alignItems: "center",
           boxShadow: tokens.shadows.card,
-          width: "330px",
         }}
         {...props}
       >
