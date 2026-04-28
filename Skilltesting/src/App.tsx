@@ -1,4 +1,5 @@
 ﻿import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Navigation from "./components/Navigation";
 import ComponentsShowcase from "./components/ComponentsShowcase";
 import PuntosVentaScreen from "./screens/PuntosVentaScreen";
 import ShowcaseScreen from "./screens/Showcase";
@@ -18,32 +19,38 @@ import AgendaDetallesEncuestasScreen from "./screens/AgendaDetallesEncuestasScre
 import FormInputMixedScreen from "./screens/FormInputMixedScreen";
 import FormInputAdvancedScreen from "./screens/FormInputAdvancedScreen";
 import FormSelectionComplexScreen from "./screens/FormSelectionComplexScreen";
+import "./styles/Layout.css";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<ComponentsShowcase />} />
-        <Route path="/showcase" element={<ShowcaseScreen />} />
-        <Route path="/puntos-venta" element={<PuntosVentaScreen />} />
-        <Route path="/reporte-agotados" element={<ReporteAgotadosScreen />} />
-        <Route path="/surtido-punto-venta" element={<SurtidoPuntoVentaScreen />} />
-        <Route path="/tipo-finish" element={<TipoFinishScreen />} />
-        <Route path="/question-button" element={<QuestionButtonWebScreen />} />
-        <Route path="/formularios-disponibles" element={<FormularioDisponiblesScreen />} />
-        <Route path="/login" element={<LoginScreen />} />
-        <Route path="/formulario-visitas" element={<FormularioVisitasScreen />} />
-        <Route path="/login-form" element={<LoginFormScreen />} />
-        <Route path="/card-check-demo" element={<CardCheckDemoScreen />} />
-        <Route path="/flujo-visualizacion" element={<FlujoVisualizacionScreen />} />
-        <Route path="/shortcut-capturar-formularios" element={<ShortCutCapturarFormulariosScreen />} />
-        <Route path="/formularios-list" element={<FormulariosListScreen />} />
-        <Route path="/agenda-detalles-encuestas" element={<AgendaDetallesEncuestasScreen />} />
-        <Route path="/form-input-mixed" element={<FormInputMixedScreen />} />
-        <Route path="/form-input-advanced" element={<FormInputAdvancedScreen />} />
-        <Route path="/form-selection-complex" element={<FormSelectionComplexScreen />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <div className="app-layout">
+        <Navigation />
+        <div className="app-content">
+          <Routes>
+            <Route path="/" element={<ComponentsShowcase />} />
+            <Route path="/showcase" element={<ShowcaseScreen />} />
+            <Route path="/puntos-venta" element={<PuntosVentaScreen />} />
+            <Route path="/reporte-agotados" element={<ReporteAgotadosScreen />} />
+            <Route path="/surtido-punto-venta" element={<SurtidoPuntoVentaScreen />} />
+            <Route path="/tipo-finish" element={<TipoFinishScreen />} />
+            <Route path="/question-button" element={<QuestionButtonWebScreen />} />
+            <Route path="/formularios-disponibles" element={<FormularioDisponiblesScreen />} />
+            <Route path="/login" element={<LoginScreen />} />
+            <Route path="/formulario-visitas" element={<FormularioVisitasScreen />} />
+            <Route path="/login-form" element={<LoginFormScreen />} />
+            <Route path="/card-check-demo" element={<CardCheckDemoScreen />} />
+            <Route path="/flujo-visualizacion" element={<FlujoVisualizacionScreen />} />
+            <Route path="/shortcut-capturar-formularios" element={<ShortCutCapturarFormulariosScreen />} />
+            <Route path="/formularios-list" element={<FormulariosListScreen />} />
+            <Route path="/agenda-detalles-encuestas" element={<AgendaDetallesEncuestasScreen />} />
+            <Route path="/form-input-mixed" element={<FormInputMixedScreen />} />
+            <Route path="/form-input-advanced" element={<FormInputAdvancedScreen />} />
+            <Route path="/form-selection-complex" element={<FormSelectionComplexScreen />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </div>
+      </div>
     </BrowserRouter>
   );
 }
