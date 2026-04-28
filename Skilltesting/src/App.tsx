@@ -34,7 +34,6 @@ function App() {
             <Route path="/reporte-agotados" element={<ReporteAgotadosScreen />} />
             <Route path="/surtido-punto-venta" element={<SurtidoPuntoVentaScreen />} />
             <Route path="/tipo-finish" element={<TipoFinishScreen />} />
-            <Route path="/question-button" element={<QuestionButtonWebScreen />} />
             <Route path="/formularios-disponibles" element={<FormularioDisponiblesScreen />} />
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/formulario-visitas" element={<FormularioVisitasScreen />} />

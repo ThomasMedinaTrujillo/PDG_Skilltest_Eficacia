@@ -36,7 +36,6 @@ export const DropdownCard = React.forwardRef<HTMLDivElement, DropdownCardProps>(
         ref={ref}
         className={cn("ds-dropdown-card", `ds-dropdown-card--${state}`, className)}
         style={{
-          width: "100%",
           background: tokens.colors.white,
           borderRadius: tokens.radius.sm,
           boxShadow: tokens.shadows.card,
