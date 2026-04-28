@@ -20,21 +20,10 @@ export default function ReporteAgotadosScreen() {
         <PrincipalMenu mode="header" />
 
         <div className="reporte-agotados-screen__content">
-          <section className="reporte-agotados-screen__activity-bar" aria-label="Estado de la actividad">
             <AlertsState styleType="success" textAlert={activityTime} showIcon onClose={() => undefined} className="reporte-agotados-screen__alert" />
 
-            <MobileButtons
-              size="small"
-              styleType="text"
-              state="active"
-              color="primary"
-              aria-label="Cerrar actividad"
-              className="reporte-agotados-screen__close-button"
-            >
-              ×
-            </MobileButtons>
-          </section>
-
+           
+        
           <p className="reporte-agotados-screen__context">PDV Unicentro</p>
 
           <DropdownCard
@@ -69,9 +58,8 @@ export default function ReporteAgotadosScreen() {
             />
           </section>
 
-          <section className="reporte-agotados-screen__activity-bar reporte-agotados-screen__activity-bar--bottom" aria-label="Resumen de tiempo">
             <AlertsState styleType="success" textAlert={activityTime} showIcon onClose={() => undefined} className="reporte-agotados-screen__alert" />
-          </section>
+         
 
           <MobileButtons size="medium" styleType="contained" state="active" color="primary">
             Guardar captura

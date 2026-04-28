@@ -34,12 +34,10 @@ function App() {
             <Route path="/reporte-agotados" element={<ReporteAgotadosScreen />} />
             <Route path="/surtido-punto-venta" element={<SurtidoPuntoVentaScreen />} />
             <Route path="/tipo-finish" element={<TipoFinishScreen />} />
-            <Route path="/question-button" element={<QuestionButtonWebScreen />} />
             <Route path="/formularios-disponibles" element={<FormularioDisponiblesScreen />} />
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/formulario-visitas" element={<FormularioVisitasScreen />} />
             <Route path="/login-form" element={<LoginFormScreen />} />
-            <Route path="/card-check-demo" element={<CardCheckDemoScreen />} />
             <Route path="/flujo-visualizacion" element={<FlujoVisualizacionScreen />} />
             <Route path="/shortcut-capturar-formularios" element={<ShortCutCapturarFormulariosScreen />} />
             <Route path="/formularios-list" element={<FormulariosListScreen />} />
