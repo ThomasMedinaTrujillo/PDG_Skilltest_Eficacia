@@ -1,8 +1,9 @@
 import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
+import checkIcon from "../../assets/icons/add.svg";
 
-const CHECK_ICON = "http://localhost:3845/assets/9345b44c9c9e7fa600eeb8d53ef2b209a47af1d0.svg";
+const CHECK_ICON = checkIcon;
 
 export interface InputCheckProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {

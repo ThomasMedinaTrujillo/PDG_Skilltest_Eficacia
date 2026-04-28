@@ -1,8 +1,9 @@
 import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
+import userIcon from "../../assets/icons/user.svg";
 
-const USER_ICON = "http://localhost:3845/assets/cd2ef9df38cc2e2710183f7ee532bf58a2a7db0a.svg";
+const USER_ICON = userIcon;
 
 export interface IconTextProps extends React.HTMLAttributes<HTMLDivElement> {
   text?: string;

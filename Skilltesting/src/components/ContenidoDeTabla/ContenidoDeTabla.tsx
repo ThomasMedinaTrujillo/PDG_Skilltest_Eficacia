@@ -1,8 +1,7 @@
 import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
-
-const CHECK_ICON = "http://localhost:3845/assets/9345b44c9c9e7fa600eeb8d53ef2b209a47af1d0.svg";
+import checkIcon from "../../assets/icons/add.svg";
 
 type Matrix = boolean[][];
 
@@ -122,7 +121,7 @@ export const ContenidoDeTabla = React.forwardRef<HTMLDivElement, ContenidoDeTabl
                         justifyContent: "center",
                       }}
                     >
-                      {isChecked ? <img src={CHECK_ICON} alt="" style={{ width: "10px", height: "10px", objectFit: "contain" }} /> : null}
+                      {isChecked ? <img src={checkIcon} alt="" style={{ width: "10px", height: "10px", objectFit: "contain" }} /> : null}
                     </span>
                   ) : (
                     <span

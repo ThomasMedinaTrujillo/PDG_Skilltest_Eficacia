@@ -1,6 +1,10 @@
 import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
+import homeIcon from "../../assets/icons/home.svg";
+import calendarIcon from "../../assets/icons/calendar-number.svg";
+import userIcon from "../../assets/icons/user.svg";
+import menuIcon from "../../assets/icons/menu.svg";
 
 type MenuItems = 3 | 4 | 5;
 
@@ -9,6 +13,14 @@ export interface MenuBarProps extends React.HTMLAttributes<HTMLElement> {
   activeIndex?: number;
   labels?: string[];
 }
+
+const iconMap: Record<string, string> = {
+  "Inicio": homeIcon,
+  "Agenda": calendarIcon,
+  "Perfil": userIcon,
+  "Gestion": menuIcon,
+  "Portafolio": menuIcon,
+};
 
 export const MenuBar = React.forwardRef<HTMLElement, MenuBarProps>(
   ({ className, items = 5, activeIndex = 0, labels, ...props }, ref) => {
@@ -33,6 +45,7 @@ export const MenuBar = React.forwardRef<HTMLElement, MenuBarProps>(
       >
         {visibleItems.map((label, index) => {
           const isActive = index === activeIndex;
+          const icon = iconMap[label];
           return (
             <button
               key={`${label}-${index}`}
@@ -47,13 +60,17 @@ export const MenuBar = React.forwardRef<HTMLElement, MenuBarProps>(
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                gap: tokens.spacing.none,
+                gap: tokens.spacing.xs,
                 cursor: "pointer",
                 fontFamily: "Solomon Sans",
                 fontSize: "12px",
               }}
             >
-              <span aria-hidden>{isActive ? "⬤" : "◦"}</span>
+              {icon ? (
+                <img src={icon} alt={label} style={{ width: "18px", height: "18px", opacity: isActive ? 1 : 0.6 }} />
+              ) : (
+                <span aria-hidden>{isActive ? "⬤" : "◦"}</span>
+              )}
               <span>{label}</span>
             </button>
           );

@@ -3,6 +3,9 @@ import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
 import { PrincipalMenuMenuItem } from "../PrincipalMenuMenuItem/PrincipalMenuMenuItem";
 import { Input } from "../Input/Input";
+import menuIcon from "../../assets/icons/menu.svg";
+import alertIcon from "../../assets/icons/alert.svg";
+import closeIcon from "../../assets/icons/close.svg";
 
 type PrincipalMenuMode = "header" | "floating";
 
@@ -31,9 +34,9 @@ export const PrincipalMenu = React.forwardRef<HTMLElement, PrincipalMenuProps>(
           }}
           {...props}
         >
-          <button type="button" style={{ border: "none", background: "transparent", color: tokens.colors.white, fontSize: "20px", cursor: "pointer" }} aria-label="Open menu">☰</button>
+          <button type="button" style={{ border: "none", background: "transparent", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", padding: "4px" }} aria-label="Open menu"><img src={menuIcon} alt="" style={{ width: "20px", height: "20px", filter: "brightness(0) invert(1)" }} /></button>
           <Input placeholder="Buscar" state='enable' color='white' ></Input>
-          <button type="button" style={{ border: "none", background: "transparent", color: tokens.colors.white, fontSize: "18px", cursor: "pointer" }} aria-label="Notifications">🔔</button>
+          <button type="button" style={{ border: "none", background: "transparent", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", padding: "4px" }} aria-label="Notifications"><img src={alertIcon} alt="" style={{ width: "18px", height: "18px", filter: "brightness(0) invert(1)" }} /></button>
           <span aria-hidden style={{ width: "28px", height: "28px", borderRadius: "999px", background: tokens.colors.neutral300, }} />
         </nav>
       );
@@ -58,7 +61,7 @@ export const PrincipalMenu = React.forwardRef<HTMLElement, PrincipalMenuProps>(
         <div>
           <div style={{ background: tokens.colors.primary, color: tokens.colors.white, display: "flex", justifyContent: "space-between", alignItems: "center", padding: tokens.spacing.md }}>
             <strong style={{ fontFamily: "Solomon Sans" }}>eficacia</strong>
-            <button type="button" aria-label="Close menu" style={{ border: "none", background: "transparent", color: tokens.colors.white, fontSize: "24px", cursor: "pointer" }}>×</button>
+            <button type="button" aria-label="Close menu" style={{ border: "none", background: "transparent", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", padding: "4px" }}><img src={closeIcon} alt="" style={{ width: "20px", height: "20px", filter: "brightness(0) invert(1)" }} /></button>
           </div>
 
           {resolvedItems.slice(0, 8).map((item, index) => (

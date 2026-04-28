@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
+import cardIcon from "../../assets/icons/card.svg";
 
 type CardCheckState = "enabled" | "disabled" | "prueba";
 
@@ -54,7 +55,7 @@ export const CardCheck = React.forwardRef<HTMLButtonElement, CardCheckProps>(
         }}
         {...props}
       >
-        <span aria-hidden style={{ width: "24px", height: "24px", borderRadius: tokens.radius.xs, background: titleColor, display: "inline-block" }} />
+        <img src={cardIcon} alt="" style={{ width: "24px", height: "24px", opacity: isDisabled ? 0.6 : 1 }} />
 
         <span style={{ flex: 1, display: "flex", alignItems: "center", gap: tokens.spacing.xs }}>
           <span style={{ display: "flex", flexDirection: "column", gap: tokens.spacing.xs }}>

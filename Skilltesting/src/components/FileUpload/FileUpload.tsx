@@ -1,10 +1,11 @@
 import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
+import arrowRightIcon from "../../assets/icons/arrow-right.svg";
 
-const UPLOAD_ICON = "http://localhost:3845/assets/d1ffd84be953298e8565c413d41a5bdc590ac861.svg";
-const IMAGE_ICON = "http://localhost:3845/assets/82bb6c411511219d2b6945a82edf82a59875862c.svg";
-const IMAGE_ICON_2 = "http://localhost:3845/assets/8660252ee7f63eb45154854e75adb458b5891db0.svg";
+const UPLOAD_ICON = arrowRightIcon;
+const IMAGE_ICON = arrowRightIcon;
+const IMAGE_ICON_2 = arrowRightIcon;
 
 type FileUploadState = "default" | "loaded";
 

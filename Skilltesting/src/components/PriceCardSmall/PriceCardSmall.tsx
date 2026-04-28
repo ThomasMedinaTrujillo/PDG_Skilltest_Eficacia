@@ -1,8 +1,9 @@
 import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
+import arrowRightIcon from "../../assets/icons/arrow-right.svg";
 
-const PRODUCT_ICON = "http://localhost:3845/assets/54fe98a31b5e89f273469b876acd148bf4d6369b.svg";
+const PRODUCT_ICON = arrowRightIcon;
 
 export interface PriceCardSmallProps extends React.HTMLAttributes<HTMLDivElement> {
   productName?: string;

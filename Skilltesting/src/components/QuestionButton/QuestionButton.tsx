@@ -1,8 +1,9 @@
 import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
+import questionIcon from "../../assets/icons/question.svg";
 
-const QUESTION_ICON = "http://localhost:3845/assets/f99e7c5855ad51254b148e39c79c2ab68545bfc2.svg";
+const QUESTION_ICON = questionIcon;
 
 export interface QuestionButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onChange"> {
   active?: boolean;

@@ -1,8 +1,7 @@
 import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
-
-const CLOSE_ICON = "http://localhost:3845/assets/cf9bf4b4460d3c81185e303739ddd96f230c2e26.svg";
+import closeIcon from "../../assets/icons/close.svg";
 
 export interface FormAlertProps extends React.HTMLAttributes<HTMLDivElement> {
   textAlert?: string;
@@ -57,7 +56,7 @@ export const FormAlert = React.forwardRef<HTMLDivElement, FormAlertProps>(
               cursor: "pointer",
             }}
           >
-            <img src={CLOSE_ICON} alt="Cerrar" style={{ width: "100%", height: "100%" }} />
+            <img src={closeIcon} alt="Cerrar" style={{ width: "100%", height: "100%" }} />
           </button>
         ) : null}
       </div>

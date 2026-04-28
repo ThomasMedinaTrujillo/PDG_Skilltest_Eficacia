@@ -1,8 +1,9 @@
 import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
+import arrowRightIcon from "../../assets/icons/arrow-right.svg";
 
-const PDF_ICON = "http://localhost:3845/assets/36380dc292f30406dd0a51c37ecb407a58c326c7.svg";
+const PDF_ICON = arrowRightIcon;
 
 type InfoCardVariant = "default" | "with-image";
 

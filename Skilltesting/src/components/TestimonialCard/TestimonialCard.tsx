@@ -3,11 +3,14 @@ import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
 
 const HERO_IMAGE = "http://localhost:3845/assets/8e95e2d423857691449d0c8f5691331e1c1cb27f.png";
-const HERO_MASK = "http://localhost:3845/assets/4c91ee4c74f7113b47ee2d9d2ef5653ed623d369.svg";
 const AVATAR_IMAGE = "http://localhost:3845/assets/76968f9d7d897431c4ace3d4f1989e04d1b9c6b3.png";
-const ICON_LIKE = "http://localhost:3845/assets/275384bef1f75274127ad9c10a465f195f88a49b.svg";
-const ICON_SHARE = "http://localhost:3845/assets/fffbc644c7d9646a6b34c2c0f3e2ceff190170b5.svg";
-const ICON_COMMENT = "http://localhost:3845/assets/263aa0c65b6ad75cef8ddc118990ba34ab2130d8.svg";
+import arrowRightIcon from "../../assets/icons/arrow-right.svg";
+import alertIcon from "../../assets/icons/alert.svg";
+
+const HERO_MASK = arrowRightIcon;
+const ICON_LIKE = alertIcon;
+const ICON_SHARE = arrowRightIcon;
+const ICON_COMMENT = alertIcon;
 
 type ActionType = "like" | "share" | "comment";
 

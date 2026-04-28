@@ -1,14 +1,15 @@
 import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
+import alertIcon from "../../assets/icons/alert.svg";
 
 const PHOTO_40 = "http://localhost:3845/assets/76968f9d7d897431c4ace3d4f1989e04d1b9c6b3.png";
 const PHOTO_32 = "http://localhost:3845/assets/fa682a78fd57f4872faa35ec7177e57f75647e78.png";
 const PHOTO_24 = "http://localhost:3845/assets/017ceb1dfb19c687bf7ae9ac54b74dd22721847b.png";
 const PHOTO_18 = "http://localhost:3845/assets/183f930aa14855c98923f935a37d7f0286bf5bfd.png";
 const PHOTO_92 = "http://localhost:3845/assets/28d4d09f955b7fa3bc10392e4f625607d752e255.png";
-const BADGE_ICON = "http://localhost:3845/assets/9eaac765b3c5d2324ae0cfddf3ead5de0f26aebd.svg";
-const BADGE_ICON_LG = "http://localhost:3845/assets/e1cef0eb903bc4130b741e14d32da2c5991a1ba7.svg";
+const BADGE_ICON = alertIcon;
+const BADGE_ICON_LG = alertIcon;
 
 type AvatarSize = "92" | "40" | "32" | "24" | "18";
 type AvatarContent = "image" | "text";

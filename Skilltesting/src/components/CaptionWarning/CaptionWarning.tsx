@@ -1,9 +1,11 @@
 import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
+import arrowLeftIcon from "../../assets/icons/arrow-left.svg";
+import arrowRightIcon from "../../assets/icons/arrow-right.svg";
 
-const LINE_LEFT = "http://localhost:3845/assets/5b3f4348dd524c4dbf60c871f77cc1b5a4f247f4.svg";
-const LINE_RIGHT = "http://localhost:3845/assets/40f33ce0a38b1a011cfc93a87ec53d53883623a4.svg";
+const LINE_LEFT = arrowLeftIcon;
+const LINE_RIGHT = arrowRightIcon;
 
 export interface CaptionWarningProps extends React.HTMLAttributes<HTMLDivElement> {
   caption?: string;

@@ -1,8 +1,9 @@
 import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
+import closeIcon from "../../assets/icons/close.svg";
 
-const CLOSE_ICON = "http://localhost:3845/assets/d302c7ca7aeccbd827fff3766bd9b7167233b53c.svg";
+const CLOSE_ICON = closeIcon;
 
 export interface EmailAlertProps extends React.HTMLAttributes<HTMLDivElement> {
   email?: string;

@@ -1,8 +1,7 @@
 import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
-
-const CHECK_ICON = "http://localhost:3845/assets/9345b44c9c9e7fa600eeb8d53ef2b209a47af1d0.svg";
+import checkIcon from "../../assets/icons/add.svg";
 
 export interface CheckBoxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size" | "onChange"> {
   checked?: boolean;
@@ -37,31 +36,32 @@ export const CheckBox = React.forwardRef<HTMLInputElement, CheckBoxProps>(
           cursor: disabled ? "not-allowed" : "pointer",
         }}
       >
-        <input
-          ref={ref}
-          type="checkbox"
-          checked={isChecked}
-          disabled={disabled}
-          onChange={handleChange}
-          style={{ display: "none" }}
-          {...props}
-        />
-
-        <span
-          aria-hidden
+        <div
           style={{
             width: "18px",
             height: "18px",
             borderRadius: tokens.radius.xs,
-            border: isChecked ? "none" : `var(--stroke-checkbox, 1px) solid ${tokens.colors.iconGray}`,
-            background: isChecked ? tokens.colors.buttonBackground : "transparent",
-            display: "inline-flex",
+            border: `2px solid ${isChecked ? tokens.colors.primary : tokens.colors.buttonDisabled}`,
+            background: isChecked ? tokens.colors.primary : "transparent",
+            display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            flexShrink: 0,
           }}
         >
-          {isChecked ? <img src={CHECK_ICON} alt="" style={{ width: "10px", height: "10px" }} /> : null}
-        </span>
+          {isChecked && <img src={checkIcon} alt="" style={{ width: "12px", height: "12px", filter: "brightness(0) invert(1)" }} />}
+        </div>
+        <input
+          type="checkbox"
+          ref={ref}
+          disabled={disabled}
+          checked={isChecked}
+          onChange={handleChange}
+          style={{ display: "none" }}
+          aria-hidden
+          tabIndex={-1}
+          {...props}
+        />
       </label>
     );
   }

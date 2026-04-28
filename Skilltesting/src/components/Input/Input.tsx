@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
+import calendarIcon from "../../assets/icons/calendar-number.svg";
 
 type InputState = "enable" | "selected" | "error";
 type InputType = "textfield" | "multiline";
@@ -52,7 +53,7 @@ export const Input = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, In
           {requested && " *"}
         </label>
 
-        {type === "textfield" ? (
+        <div style={{ display: "flex", alignItems: "center", gap: tokens.spacing.xs, position: "relative" }}>
           <input
             ref={ref as React.ForwardedRef<HTMLInputElement>}
             value={value}
@@ -67,9 +68,13 @@ export const Input = React.forwardRef<HTMLInputElement | HTMLTextAreaElement, In
               fontFamily: "Solomon Sans",
               fontSize: "14px",
               outline: "none",
+                          flex: 1,
             }}
           />
-        ) : (
+          {type === "textfield" && <img src={calendarIcon} alt="" style={{ width: "16px", height: "16px", opacity: 0.6 }} />}
+        </div>
+
+        {type === "multiline" && (
           <textarea
             ref={ref as React.ForwardedRef<HTMLTextAreaElement>}
             value={value}

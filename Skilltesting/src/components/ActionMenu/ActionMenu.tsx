@@ -1,9 +1,10 @@
 import * as React from "react";
 import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
+import arrowRightIcon from "../../assets/icons/arrow-right.svg";
 
-const ICON_EDIT = "http://localhost:3845/assets/484ed02cbc1eca6bbfae02129f0d08a8131098f7.svg";
-const ICON_DELETE = "http://localhost:3845/assets/c75fcf45ba2bca6313434c16df64401f9f2dd890.svg";
+const ICON_EDIT = arrowRightIcon;
+const ICON_DELETE = arrowRightIcon;
 
 export interface ActionMenuProps extends React.HTMLAttributes<HTMLDivElement> {
   onEdit?: () => void;

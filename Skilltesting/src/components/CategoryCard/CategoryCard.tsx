@@ -3,11 +3,13 @@ import { cn } from "../../lib/cn";
 import { tokens } from "../../Token";
 
 type CategoryCardState = "complete" | "incomplete" | "prueba";
+import arrowRightIcon from "../../assets/icons/arrow-right.svg";
+import checkIcon from "../../assets/icons/add.svg";
 
-const ICON_COMPLETE = "http://localhost:3845/assets/5e0bd55b4114cf0c8f79691c1300db2ee15626e0.svg";
-const ICON_INCOMPLETE = "http://localhost:3845/assets/8dd1c86c663e94d8cb7eb07ec8cd1c992e7101be.svg";
-const ICON_PRUEBA = "http://localhost:3845/assets/bb1cf9e14a06e9cdde58e21859a0e54d371ad790.svg";
-const CHECK_ICON = "http://localhost:3845/assets/9345b44c9c9e7fa600eeb8d53ef2b209a47af1d0.svg";
+const ICON_COMPLETE = arrowRightIcon;
+const ICON_INCOMPLETE = arrowRightIcon;
+const ICON_PRUEBA = arrowRightIcon;
+const CHECK_ICON = checkIcon;
 
 export interface CategoryCardProps extends React.HTMLAttributes<HTMLDivElement> {
   state?: CategoryCardState;
