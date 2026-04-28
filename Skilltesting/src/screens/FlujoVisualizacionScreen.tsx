@@ -112,7 +112,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ title, description, buttonLabel, on
       display: "flex",
       flexDirection: "column",
       gap: tokens.spacing.md,
-      width: "100%",
+
       minHeight: "123px",
     }}
   >
@@ -288,7 +288,7 @@ export default function FlujoVisualizacionScreen() {
         style={{
           position: "absolute",
           right: tokens.spacing.lg,
-          bottom: "200px",
+          bottom: "100px",
           zIndex: 10,
         }}
       >
