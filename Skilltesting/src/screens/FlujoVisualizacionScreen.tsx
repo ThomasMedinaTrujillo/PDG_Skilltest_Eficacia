@@ -1,6 +1,7 @@
 import * as React from "react";
 import { PrincipalMenu } from "../components/PrincipalMenu/PrincipalMenu";
 import { tokens } from "../Token";
+import { useNavigate } from "react-router";
 
 const imgImage46 = "http://localhost:3845/assets/d35bbfd8606a98d2183a8cad89575cba10c8ca04.png";
 const imgSubtract = "http://localhost:3845/assets/69a3aa8d495165eab493865419e7ee52875496f5.svg";
@@ -169,7 +170,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ title, description, buttonLabel, on
 
 export default function FlujoVisualizacionScreen() {
   const [showTooltip] = React.useState(true);
-
+  const navigate = useNavigate();
   return (
     <div
       style={{
@@ -272,7 +273,7 @@ export default function FlujoVisualizacionScreen() {
             title="Titulo"
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In aliquam ultricies blandit..."
             buttonLabel="Label"
-            onButtonClick={() => console.log("Card 1 clicked")}
+            onButtonClick={() => navigate('/shortcut-capturar-formularios')}
           />
           <InfoCard
             title="Titulo"

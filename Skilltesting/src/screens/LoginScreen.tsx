@@ -1,5 +1,6 @@
 import * as React from "react";
 import { tokens } from "../Token";
+import { useNavigate } from "react-router";
 
 const imgEficaciaLogo = "http://localhost:3845/assets/d35bbfd8606a98d2183a8cad89575cba10c8ca04.png";
 const imgCalendarIcon = "http://localhost:3845/assets/8046ef8a11944dfaabc9f7621d1eb2e088ab69f1.svg";
@@ -16,6 +17,8 @@ export default function LoginScreen({ onSubmit }: LoginScreenProps) {
     e.preventDefault();
     onSubmit?.({ email, password });
   };
+
+  const navigate = useNavigate()
 
   return (
     <div
@@ -197,6 +200,8 @@ export default function LoginScreen({ onSubmit }: LoginScreenProps) {
             cursor: "pointer",
             marginBottom: tokens.spacing.md,
           }}
+
+          onClick={() => navigate('/flujo-visualizacion')}
         >
           Ingresar
         </button>
