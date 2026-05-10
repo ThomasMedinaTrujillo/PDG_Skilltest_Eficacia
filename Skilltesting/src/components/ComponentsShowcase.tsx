@@ -1,81 +1,79 @@
-import { ProductCard } from "./ProductCard/ProductCard";
-import { ProgressCard } from "./ProgressCard/ProgressCard";
-import { tokens } from "../Token";
+import { MobileButtons } from './MobileButtons';
+import { Input } from './Input';
+import { AlertsState } from './AlertsState';
+import { PrincipalMenu } from './PrincipalMenu';
+import { MenuBar } from './MenuBar';
 
 export default function ComponentsShowcase() {
   return (
-    <div style={{ padding: "40px", backgroundColor: tokens.colors.backgroundPrimary, minHeight: "100vh" }}>
-      <h1 style={{ marginBottom: "40px", color: tokens.colors.primary }}>Component Showcase</h1>
+    <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '4rem', fontFamily: 'var(--sans)', background: 'var(--background-primary)' }}>
+      <h1>Components Showcase</h1>
+      
+      <section>
+        <h2>Mobile Buttons</h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+          <MobileButtons label="Primary Contained" btnStyle="Contained" color="Primary" />
+          <MobileButtons label="Primary Outline" btnStyle="Outline" color="Primary" />
+          <MobileButtons label="Primary Text" btnStyle="Text" color="Primary" />
+          <MobileButtons label="Error Contained" btnStyle="Contained" color="Error" />
+          <MobileButtons label="Error Outline" btnStyle="Outline" color="Error" />
+          <MobileButtons label="Disabled" btnState="disable" />
+          <MobileButtons label="With Start Icon" iconStart="★" showIconStart />
+          <MobileButtons label="With End Icon" iconEnd="➔" showIconEnd />
+          <MobileButtons label="Large Full Width" size="Medium" orientation="left" iconEnd="➔" showIconEnd style={{ width: '100%' }} />
+        </div>
+      </section>
 
-      {/* ProductCard Variants */}
-      <section style={{ marginBottom: "60px" }}>
-        <h2 style={{ marginBottom: "20px", fontSize: "20px", fontWeight: 600, color: tokens.colors.primary }}>
-          ProductCard Variants
-        </h2>
+      <section>
+        <h2>Input Fields</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '400px' }}>
+          <Input labelText="Standard Input" inputType="TextField" placeholder="Type here..." />
+          <Input labelText="Selected Input" inputType="TextField" state="Selected" value="User typed value" />
+          <Input labelText="Error Input" inputType="TextField" state="Error" value="Invalid input" />
+          <Input labelText="With Alert" inputType="TextField" alert={true} alertText="Attention needed here" />
+          <Input labelText="With Icon" inputType="TextField" icon={true} selectIcon="★" />
+          <Input labelText="Multiline text area" inputType="Multiline" placeholder="Enter long text..." />
+        </div>
+      </section>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "20px" }}>
+      <section>
+        <h2>Alerts State</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '400px' }}>
+          <AlertsState alertStyle="Default" textAlert="Default Information Message" />
+          <AlertsState alertStyle="Succes" textAlert="Operation Completed Successfully!" />
+          <AlertsState alertStyle="Pending" textAlert="Pending Action Required" />
+          <AlertsState alertStyle="Warning" textAlert="Warning: Something is wrong" />
+        </div>
+      </section>
+
+      <section>
+        <h2>Menu Bar</h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem' }}>
           <div>
-            <h3 style={{ marginBottom: "10px", fontSize: "14px" }}>Product</h3>
-            <ProductCard variant="product" />
+            <h3>3 Items</h3>
+            <MenuBar items="3" activeItem="Inicio" />
           </div>
-
           <div>
-            <h3 style={{ marginBottom: "10px", fontSize: "14px" }}>Price Card</h3>
-            <ProductCard variant="price-card" />
+            <h3>4 Items</h3>
+            <MenuBar items="4" activeItem="Agenda" />
           </div>
-
           <div>
-            <h3 style={{ marginBottom: "10px", fontSize: "14px" }}>Little Card</h3>
-            <ProductCard variant="little-card" />
-          </div>
-
-          <div>
-            <h3 style={{ marginBottom: "10px", fontSize: "14px" }}>Type 5</h3>
-            <ProductCard variant="type5" />
-          </div>
-
-          <div>
-            <h3 style={{ marginBottom: "10px", fontSize: "14px" }}>Type 6</h3>
-            <ProductCard variant="type6" />
-          </div>
-
-          <div>
-            <h3 style={{ marginBottom: "10px", fontSize: "14px" }}>Floating</h3>
-            <ProductCard variant="floating" />
+            <h3>5 Items</h3>
+            <MenuBar items="5" activeItem="Perfil" />
           </div>
         </div>
       </section>
 
-      {/* ProgressCard Variants */}
       <section>
-        <h2 style={{ marginBottom: "20px", fontSize: "20px", fontWeight: 600, color: tokens.colors.primary }}>
-          ProgressCard
-        </h2>
-
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))", gap: "20px" }}>
-          <div>
-            <h3 style={{ marginBottom: "10px", fontSize: "14px" }}>Default (65%)</h3>
-            <ProgressCard percent={65} />
+        <h2>Principal Menu</h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', alignItems: 'flex-start' }}>
+          <div style={{ width: '375px', border: '1px solid #ccc', borderRadius: '8px', overflow: 'hidden' }}>
+            <h3>Header Variant</h3>
+            <PrincipalMenu variant="Header" />
           </div>
-
-          <div>
-            <h3 style={{ marginBottom: "10px", fontSize: "14px" }}>High Progress (90%)</h3>
-            <ProgressCard percent={90} status="green" />
-          </div>
-
-          <div>
-            <h3 style={{ marginBottom: "10px", fontSize: "14px" }}>Warning (50%)</h3>
-            <ProgressCard percent={50} status="yellow" />
-          </div>
-
-          <div>
-            <h3 style={{ marginBottom: "10px", fontSize: "14px" }}>Without Percent Display</h3>
-            <ProgressCard percent={45} showPercent={false} />
-          </div>
-
-          <div>
-            <h3 style={{ marginBottom: "10px", fontSize: "14px" }}>Compact (No Title)</h3>
-            <ProgressCard showTitle={false} />
+          <div style={{ width: '375px', border: '1px solid #ccc', height: '600px', borderRadius: '8px', overflow: 'hidden', position: 'relative' }}>
+            <h3 style={{ position: 'absolute', zIndex: 10, background: 'white', padding: '4px', right: 0 }}>Floating Variant</h3>
+            <PrincipalMenu variant="floating" />
           </div>
         </div>
       </section>
