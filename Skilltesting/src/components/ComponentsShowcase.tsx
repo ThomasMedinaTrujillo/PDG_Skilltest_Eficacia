@@ -1,79 +1,197 @@
-import { MobileButtons } from './MobileButtons';
-import { Input } from './Input';
-import { AlertsState } from './AlertsState';
-import { PrincipalMenu } from './PrincipalMenu';
-import { MenuBar } from './MenuBar';
+
+
+import React from 'react';
+import { tokens } from '../Token';
+import Alert from './Alert';
+import Input from './Input';
+import MenuBar from './MenuBar';
+import MobileButton from './MobileButton';
+import PrincipalMenu from './PrincipalMenu';
 
 export default function ComponentsShowcase() {
   return (
-    <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '4rem', fontFamily: 'var(--sans)', background: 'var(--background-primary)' }}>
-      <h1>Components Showcase</h1>
-      
-      <section>
-        <h2>Mobile Buttons</h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
-          <MobileButtons label="Primary Contained" btnStyle="Contained" color="Primary" />
-          <MobileButtons label="Primary Outline" btnStyle="Outline" color="Primary" />
-          <MobileButtons label="Primary Text" btnStyle="Text" color="Primary" />
-          <MobileButtons label="Error Contained" btnStyle="Contained" color="Error" />
-          <MobileButtons label="Error Outline" btnStyle="Outline" color="Error" />
-          <MobileButtons label="Disabled" btnState="disable" />
-          <MobileButtons label="With Start Icon" iconStart="★" showIconStart />
-          <MobileButtons label="With End Icon" iconEnd="➔" showIconEnd />
-          <MobileButtons label="Large Full Width" size="Medium" orientation="left" iconEnd="➔" showIconEnd style={{ width: '100%' }} />
+    <div style={{ padding: tokens.spacing.lg, fontFamily: tokens.typography.body1.fontFamily }}>
+      <h1 style={{ 
+        fontSize: tokens.typography.text3xl.fontSize, 
+        fontWeight: tokens.typography.text3xl.fontWeight,
+        marginBottom: tokens.spacing.lg,
+        color: tokens.colors.primary 
+      }}>
+        Components Showcase
+      </h1>
+
+      {/* Alert Components */}
+      <section style={{ marginBottom: tokens.spacing.xl }}>
+        <h2 style={{ 
+          fontSize: tokens.typography.text2xl.fontSize, 
+          marginBottom: tokens.spacing.md,
+          color: tokens.colors.dark 
+        }}>
+          Alert Components
+        </h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: tokens.spacing.md }}>
+          <Alert style="default" textAlert="Default alert message" />
+          <Alert style="success" textAlert="Success! Operation completed" />
+          <Alert style="warning" textAlert="Warning! Please review" />
+          <Alert style="pending" textAlert="Pending: Processing..." />
         </div>
       </section>
 
-      <section>
-        <h2>Input Fields</h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '400px' }}>
-          <Input labelText="Standard Input" inputType="TextField" placeholder="Type here..." />
-          <Input labelText="Selected Input" inputType="TextField" state="Selected" value="User typed value" />
-          <Input labelText="Error Input" inputType="TextField" state="Error" value="Invalid input" />
-          <Input labelText="With Alert" inputType="TextField" alert={true} alertText="Attention needed here" />
-          <Input labelText="With Icon" inputType="TextField" icon={true} selectIcon="★" />
-          <Input labelText="Multiline text area" inputType="Multiline" placeholder="Enter long text..." />
+      {/* Input Components */}
+      <section style={{ marginBottom: tokens.spacing.xl }}>
+        <h2 style={{ 
+          fontSize: tokens.typography.text2xl.fontSize, 
+          marginBottom: tokens.spacing.md,
+          color: tokens.colors.dark 
+        }}>
+          Input Components
+        </h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: tokens.spacing.lg }}>
+          <Input 
+            labelText="Name" 
+            placeholder="Enter your name"
+            state="enable"
+            type="textfield"
+          />
+          <Input 
+            labelText="Email" 
+            placeholder="Enter your email"
+            state="selected"
+            type="textfield"
+            value="user@example.com"
+          />
+          <Input 
+            labelText="Message" 
+            placeholder="Type your message"
+            state="error"
+            type="multiline"
+            alert={true}
+          />
         </div>
       </section>
 
-      <section>
-        <h2>Alerts State</h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '400px' }}>
-          <AlertsState alertStyle="Default" textAlert="Default Information Message" />
-          <AlertsState alertStyle="Succes" textAlert="Operation Completed Successfully!" />
-          <AlertsState alertStyle="Pending" textAlert="Pending Action Required" />
-          <AlertsState alertStyle="Warning" textAlert="Warning: Something is wrong" />
+      {/* Menu Bar Components */}
+      <section style={{ marginBottom: tokens.spacing.xl }}>
+        <h2 style={{ 
+          fontSize: tokens.typography.text2xl.fontSize, 
+          marginBottom: tokens.spacing.md,
+          color: tokens.colors.dark 
+        }}>
+          Menu Bar Components
+        </h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: tokens.spacing.lg }}>
+          <MenuBar items={3} />
+          <MenuBar items={4} />
+          <MenuBar items={5} />
         </div>
       </section>
 
-      <section>
-        <h2>Menu Bar</h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem' }}>
+      {/* Mobile Button Components */}
+      <section style={{ marginBottom: tokens.spacing.xl }}>
+        <h2 style={{ 
+          fontSize: tokens.typography.text2xl.fontSize, 
+          marginBottom: tokens.spacing.md,
+          color: tokens.colors.dark 
+        }}>
+          Mobile Button Components
+        </h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: tokens.spacing.lg }}>
+          <MobileButton 
+            size="small" 
+            style="contained" 
+            color="primary"
+            label="Primary Button"
+          />
+          <MobileButton 
+            size="small" 
+            style="outline" 
+            color="primary"
+            label="Outline Button"
+          />
+          <MobileButton 
+            size="medium" 
+            style="text" 
+            color="error"
+            label="Error Button"
+          />
+          <MobileButton 
+            size="small" 
+            style="contained" 
+            color="primary"
+            label="With Icons"
+            showIconStart={true}
+            showIconEnd={true}
+          />
+        </div>
+      </section>
+
+      {/* Principal Menu Components */}
+      <section style={{ marginBottom: tokens.spacing.xl }}>
+        <h2 style={{ 
+          fontSize: tokens.typography.text2xl.fontSize, 
+          marginBottom: tokens.spacing.md,
+          color: tokens.colors.dark 
+        }}>
+          Principal Menu Components
+        </h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: tokens.spacing.lg }}>
+          <PrincipalMenu variant="header" />
+          <div style={{ marginTop: tokens.spacing.lg }}>
+            <PrincipalMenu variant="floating" showItems={false} />
+          </div>
+        </div>
+      </section>
+
+      {/* Token Information */}
+      <section style={{ 
+        marginTop: tokens.spacing.xxl,
+        padding: tokens.spacing.lg,
+        backgroundColor: tokens.colors.bgGray,
+        borderRadius: tokens.radius.md
+      }}>
+        <h2 style={{ 
+          fontSize: tokens.typography.text2xl.fontSize, 
+          marginBottom: tokens.spacing.md,
+          color: tokens.colors.primary 
+        }}>
+          Design Tokens Used
+        </h2>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gap: tokens.spacing.md
+        }}>
           <div>
-            <h3>3 Items</h3>
-            <MenuBar items="3" activeItem="Inicio" />
+            <h4 style={{ fontWeight: 'bold', marginBottom: tokens.spacing.xs }}>Colors</h4>
+            <ul style={{ margin: 0, paddingLeft: tokens.spacing.lg }}>
+              <li>Primary: {tokens.colors.primary}</li>
+              <li>White: {tokens.colors.white}</li>
+              <li>Error: {tokens.colors.error}</li>
+              <li>Success: #3bd4ae</li>
+            </ul>
           </div>
           <div>
-            <h3>4 Items</h3>
-            <MenuBar items="4" activeItem="Agenda" />
+            <h4 style={{ fontWeight: 'bold', marginBottom: tokens.spacing.xs }}>Typography</h4>
+            <ul style={{ margin: 0, paddingLeft: tokens.spacing.lg }}>
+              <li>Body: {tokens.typography.body1.fontSize}</li>
+              <li>Small: {tokens.typography.textSm.fontSize}</li>
+              <li>Large: {tokens.typography.textLg.fontSize}</li>
+            </ul>
           </div>
           <div>
-            <h3>5 Items</h3>
-            <MenuBar items="5" activeItem="Perfil" />
+            <h4 style={{ fontWeight: 'bold', marginBottom: tokens.spacing.xs }}>Spacing</h4>
+            <ul style={{ margin: 0, paddingLeft: tokens.spacing.lg }}>
+              <li>Small: {tokens.spacing.sm}</li>
+              <li>Medium: {tokens.spacing.md}</li>
+              <li>Large: {tokens.spacing.lg}</li>
+            </ul>
           </div>
-        </div>
-      </section>
-
-      <section>
-        <h2>Principal Menu</h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', alignItems: 'flex-start' }}>
-          <div style={{ width: '375px', border: '1px solid #ccc', borderRadius: '8px', overflow: 'hidden' }}>
-            <h3>Header Variant</h3>
-            <PrincipalMenu variant="Header" />
-          </div>
-          <div style={{ width: '375px', border: '1px solid #ccc', height: '600px', borderRadius: '8px', overflow: 'hidden', position: 'relative' }}>
-            <h3 style={{ position: 'absolute', zIndex: 10, background: 'white', padding: '4px', right: 0 }}>Floating Variant</h3>
-            <PrincipalMenu variant="floating" />
+          <div>
+            <h4 style={{ fontWeight: 'bold', marginBottom: tokens.spacing.xs }}>Shadows</h4>
+            <ul style={{ margin: 0, paddingLeft: tokens.spacing.lg }}>
+              <li>Component: {tokens.shadows.component}</li>
+              <li>Medium: {tokens.shadows.md}</li>
+            </ul>
           </div>
         </div>
       </section>

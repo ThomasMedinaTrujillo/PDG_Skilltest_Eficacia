@@ -1,102 +1,228 @@
-import React, { forwardRef, type InputHTMLAttributes, type TextareaHTMLAttributes, useState } from 'react';
-import './Input.css';
+import React from 'react';
+import { tokens } from '../Token';
 
-export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement> & TextareaHTMLAttributes<HTMLTextAreaElement>, 'type'> {
+export interface InputProps {
   className?: string;
   alert?: boolean;
-  alertText?: string;
-  icon?: boolean;
+  icon?: React.ReactNode;
   labelText?: string;
-  requested?: boolean;
-  selectIcon?: React.ReactNode | null;
-  state?: "Enable" | "Selected" | "Error";
-  inputType?: "TextField" | "Multiline";
+  multilineText?: string;
+  placeholder?: string;
+  required?: boolean;
+  state?: 'enable' | 'selected' | 'error';
+  type?: 'textfield' | 'multiline';
+  value?: string;
+  onChange?: (value: string) => void;
+  alertMessage?: string;
 }
 
-export const Input = forwardRef<HTMLElement, InputProps>(
-  (
-    {
-      className,
-      alert = false,
-      alertText = "Participación diferente de lo esperado",
-      icon = false,
-      labelText = "Label",
-      requested = true,
-      selectIcon = null,
-      state = "Enable",
-      inputType = "TextField",
-      value,
-      onChange,
-      ...props
-    },
-    ref
-  ) => {
-    const [internalValue, setInternalValue] = useState("");
-    const isControlled = value !== undefined;
-    const currentValue = isControlled ? value : internalValue;
+const Input: React.FC<InputProps> = ({
+  className,
+  alert = false,
+  icon,
+  labelText = 'Label',
+  multilineText = '',
+  placeholder = 'Value',
+  required = true,
+  state = 'enable',
+  type = 'textfield',
+  value = '',
+  onChange,
+  alertMessage = 'Participación diferente de lo esperado'
+}) => {
+  const getInputStyles = () => {
+    switch (state) {
+      case 'selected':
+        return {
+          border: `2px solid ${tokens.colors.primary}`,
+          backgroundColor: tokens.colors.white,
+          color: tokens.colors.primary
+        };
+      case 'error':
+        return {
+          border: `2px solid ${tokens.colors.error}`,
+          backgroundColor: tokens.colors.white,
+          color: tokens.colors.error
+        };
+      default:
+        return {
+          border: `1px solid ${tokens.colors.gray200}`,
+          backgroundColor: tokens.colors.white,
+          color: '#99b3da'
+        };
+    }
+  };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      if (!isControlled) {
-        setInternalValue(e.target.value);
-      }
-      if (onChange) {
-        onChange(e as any);
-      }
-    };
+  const inputStyles = getInputStyles();
+  const isMultiline = type === 'multiline';
 
-    const wrapperClasses = [
-      "ds-input",
-      `ds-input--${state.toLowerCase()}`,
-      `ds-input--${inputType.toLowerCase()}`,
-      className
-    ].filter(Boolean).join(" ");
+  return (
+    <div className={className} style={{ width: '339px' }}>
+      {/* Label */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'flex-start',
+          gap: tokens.spacing.xs,
+          marginBottom: tokens.spacing.xs,
+          color: tokens.colors.primary,
+          fontFamily: '"Solomon Sans SemiBold", sans-serif',
+          fontSize: '14px',
+          fontWeight: 600,
+          whiteSpace: 'nowrap'
+        }}
+      >
+        <span>{labelText}</span>
+        {required && <span>*</span>}
+      </div>
 
-    return (
-      <div className={wrapperClasses}>
-        <div className="ds-input__header">
-          <label className="ds-input__label">{labelText}</label>
-          {requested && <span className="ds-input__asterisk">*</span>}
-        </div>
-        
-        <div className="ds-input__field-wrapper">
-          {inputType === "Multiline" ? (
-            <textarea
-              ref={ref as any}
-              className="ds-input__field ds-input__textarea"
-              value={currentValue}
-              onChange={handleChange}
-              {...props}
-            />
-          ) : (
-            <input
-              ref={ref as any}
-              className="ds-input__field"
-              type="text"
-              value={currentValue}
-              onChange={handleChange}
-              {...props}
-            />
-          )}
-          {icon && (
-            <span className="ds-input__icon">
-              {selectIcon || <span className="ds-input__icon-placeholder" />}
-            </span>
-          )}
-        </div>
-
-        {state === "Error" && (
-          <span className="ds-input__error-msg">Datos incorrectos</span>
+      {/* Input Field */}
+      <div
+        style={{
+          border: inputStyles.border,
+          backgroundColor: inputStyles.backgroundColor,
+          borderRadius: tokens.radius.sm,
+          padding: tokens.spacing.sm,
+          display: 'flex',
+          alignItems: isMultiline ? 'flex-start' : 'center',
+          justifyContent: 'space-between',
+          height: isMultiline ? '70px' : 'auto',
+          minHeight: isMultiline ? '70px' : '44px'
+        }}
+      >
+        {isMultiline ? (
+          <textarea
+            value={value || multilineText}
+            onChange={(e) => onChange?.(e.target.value)}
+            placeholder={placeholder}
+            style={{
+              flex: 1,
+              border: 'none',
+              outline: 'none',
+              background: 'none',
+              resize: 'none',
+              fontFamily: '"Solomon Sans Normal", sans-serif',
+              fontSize: '14px',
+              color: inputStyles.color,
+              lineHeight: 'normal',
+              minHeight: '54px'
+            }}
+          />
+        ) : (
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => onChange?.(e.target.value)}
+            placeholder={placeholder}
+            style={{
+              flex: 1,
+              border: 'none',
+              outline: 'none',
+              background: 'none',
+              fontFamily: '"Solomon Sans Normal", sans-serif',
+              fontSize: '14px',
+              color: inputStyles.color,
+              lineHeight: 'normal'
+            }}
+          />
         )}
-
-        {alert && (
-          <div className="ds-input__alert">
-            <span className="ds-input__alert-text">{alertText}</span>
-            <span className="ds-input__alert-icon">✕</span>
+        
+        {icon && !isMultiline && (
+          <div style={{ flexShrink: 0, marginLeft: tokens.spacing.sm }}>
+            {icon}
           </div>
         )}
       </div>
-    );
-  }
-);
 
-Input.displayName = "Input";
+      {/* Error Message */}
+      {state === 'error' && (
+        <div
+          style={{
+            marginTop: tokens.spacing.xs,
+            fontFamily: '"Solomon Sans Normal", sans-serif',
+            fontSize: '12px',
+            color: tokens.colors.error,
+            lineHeight: '17px'
+          }}
+        >
+          Datos incorrectos
+        </div>
+      )}
+
+      {/* Alert Message */}
+      {alert && (
+        <div
+          style={{
+            marginTop: tokens.spacing.xs,
+            backgroundColor: '#ffcd00',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: `${tokens.spacing.xs} ${tokens.spacing.sm}`,
+            borderRadius: '2px',
+            height: '25px',
+            width: state === 'error' ? '100%' : '336px'
+          }}
+        >
+          <span
+            style={{
+              fontFamily: '"Solomon Sans Book", sans-serif',
+              fontSize: '12px',
+              color: tokens.colors.primary,
+              lineHeight: '17px',
+              width: '214px'
+            }}
+          >
+            {alertMessage}
+          </span>
+          <button
+            style={{
+              width: '8px',
+              height: '8px',
+              border: 'none',
+              background: 'none',
+              cursor: 'pointer',
+              padding: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <div
+              style={{
+                width: '8px',
+                height: '8px',
+                position: 'relative'
+              }}
+            >
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '0',
+                  width: '100%',
+                  height: '1px',
+                  backgroundColor: tokens.colors.primary,
+                  transform: 'rotate(45deg)'
+                }}
+              />
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '0',
+                  width: '100%',
+                  height: '1px',
+                  backgroundColor: tokens.colors.primary,
+                  transform: 'rotate(-45deg)'
+                }}
+              />
+            </div>
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Input;

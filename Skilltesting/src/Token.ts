@@ -1,452 +1,427 @@
 export const tokens = {
   colors: {
-    headersTitles: "#0041a3",
-    captions: "#a9adb0",
-    subtitleTextBody: "#70777b",
-    disableText: "#70777b",
+    // Primary colors
+    primary: "#0041a3",
     primaryBlue: "#0041a3",
-    nsBlueInputPlaceholder: "#99b3da",
-    nsWhite: "#ffffff",
-    primaryWhiteBackground: "#f4f7f9",
-    eb700: "#002A68",
-    darkBlue300: "#0041a3",
-    backgroungButton: "#0041a3",
-    warningError: "#ca4949",
-    neutral300: "#cccccc",
-    errorColor: "#eb5757",
-    pending: "#ffcd00",
-    success: "#3bd4ae",
-    neutral50: "#ffffff",
-    ns100: "#e6e8ea",
-    neutral500: "#b8b8b8",
-    colorTitleCards: "#0041a3",
-    secondaryBackground: "#ffffff",
-    colorCaption: "#737373",
-    primaryGrayText: "#696969",
-    nsGrayIcons: "#70777B",
-    neutral700: "#737373",
-    shGrayDisabledButton: "#aeb0b1",
-    sb100: "#ffffff",
-    ns400: "#70777b",
-    darkGrey: "#696969",
-    nsWhiteIconsOnBlueBackground: "#FFFFFF",
-    grisOscuro: "#70777B",
-    bgBtnContainedErrorHover: "#f46060",
-    bgBtnOutlinePressed: "#99b3da4d",
-    selectedButton: "#002a68",
-    bgOutlineBtnErrorPressed: "#ca494933",
-    bgContentBtnPressed: "#a23a3a",
-    primaryBackground: "#f4f7f9",
-    eb200: "#C2D1E9",
-    shRedWarning: "#ca4949"
+    primaryLight: "#42c0f0",
+    primaryBlue200: "#b1cee2",
+    
+    // Neutral colors
+    white: "#ffffff",
+    whitePrimary: "#ffffff",
+    black: "#000000",
+    blackPrimary: "#000000",
+    dark: "#263238",
+    darkColor: "#263238",
+    
+    // Gray scale
+    gray50: "#ffffff",
+    gray100: "#f7f8fc",
+    gray200: "#c4c7ce",
+    gray300: "#c5c7cd",
+    gray400: "#dfe0eb",
+    gray500: "#607d8b",
+    graySoft: "#c4c7ce",
+    grayLight: "#c5c7cd",
+    bgGray: "#f7f8fc",
+    divider: "#dfe0eb",
+    
+    // Accent colors
+    accent: "#3751ff",
+    accentDefault: "#3751ff",
+    blueDark: "#253a66",
+    blueGrey500: "#607d8b",
+    
+    // Brand colors
+    brandRed: "#ff0000",
+    brandBlack: "#000000",
+    brandWhite: "#ffffff",
+    
+    // Semantic colors
+    success: "#00c851",
+    success2: "#00c851",
+    error: "#ff4444",
+    error2: "#ff4444",
+    
+    // Additional colors
+    orange: "#ff8800",
+    yellow: "#ffeb3b",
+    salmon: "#ff7f7f",
+    durazno: "#ffb366",
+    grey: "#808080",
+    grey2: "#666666"
   },
 
   typography: {
-    overline: {
-      fontFamily: "Solomon Sans Normal",
-      fontWeight: 400,
-      fontSize: "12px",
-      lineHeight: "100%",
-      letterSpacing: "0px"
-    },
-    body: {
-      fontFamily: "Solomon Sans Normal",
-      fontWeight: 400,
-      fontSize: "14px",
-      lineHeight: "100%",
-      letterSpacing: "0px"
-    },
-    buttonSmall: {
-      fontFamily: "Solomon Sans SemiBold",
-      fontWeight: 600,
-      fontSize: "14px",
-      lineHeight: "100%",
-      letterSpacing: "0px"
-    },
-    caption: {
-      fontFamily: "Solomon Sans Book",
-      fontWeight: 400,
-      fontSize: "12px",
-      lineHeight: "100%",
-      letterSpacing: "0px"
-    },
-    buttonMedium: {
-      fontFamily: "Solomon Sans SemiBold",
-      fontWeight: 600,
+    // IBM Plex Sans family
+    body1: {
+      fontFamily: "\"IBM Plex Sans\", sans-serif",
       fontSize: "16px",
-      lineHeight: "100%",
-      letterSpacing: "0px"
-    },
-    bodySmall: {
-      fontFamily: "Solomon Sans Normal",
       fontWeight: 400,
-      fontSize: "12px",
-      lineHeight: "100%",
-      letterSpacing: "0px"
+      lineHeight: "24px",
+      letterSpacing: "0.44px"
     },
-    subtitle: {
-      fontFamily: "Solomon Sans SemiBold",
-      fontWeight: 600,
-      fontSize: "16px",
-      lineHeight: "100%",
-      letterSpacing: "0px"
-    },
-    heading3: {
-      fontFamily: "Solomon Sans Bold",
-      fontWeight: 700,
-      fontSize: "24px",
-      lineHeight: "100%",
-      letterSpacing: "0px"
-    },
-    bodyBold: {
-      fontFamily: "Solomon Sans Bold",
-      fontWeight: 700,
+    body2: {
+      fontFamily: "\"IBM Plex Sans\", sans-serif",
       fontSize: "14px",
-      lineHeight: "100%",
-      letterSpacing: "0px"
+      fontWeight: 400,
+      lineHeight: "20px",
+      letterSpacing: "0.25px"
     },
-    heading4: {
-      fontFamily: "Solomon Sans Bold",
-      fontWeight: 700,
+    
+    // Solomon Sans family
+    solomonBody1: {
+      fontFamily: "\"Solomon Sans Black\", sans-serif",
+      fontSize: "16px",
+      fontWeight: 900,
+      lineHeight: "24px",
+      letterSpacing: "-0.2px"
+    },
+    
+    // Size-based typography
+    textXs: {
+      fontSize: "12px",
+      fontWeight: 400,
+      lineHeight: "16px"
+    },
+    textSm: {
+      fontSize: "14px",
+      fontWeight: 400,
+      lineHeight: "20px"
+    },
+    textBase: {
+      fontSize: "16px",
+      fontWeight: 400,
+      lineHeight: "24px"
+    },
+    textLg: {
+      fontSize: "18px",
+      fontWeight: 400,
+      lineHeight: "28px"
+    },
+    textXl: {
       fontSize: "20px",
-      lineHeight: "100%",
-      letterSpacing: "0px"
-    },
-    display: {
-      fontFamily: "Solomon Sans Bold",
-      fontWeight: 700,
-      fontSize: "48px",
-      lineHeight: "100%",
-      letterSpacing: "0px"
-    },
-    graphikNotes: {
-      fontFamily: "Nunito Sans",
       fontWeight: 400,
-      fontSize: "9px",
-      lineHeight: "9.5px",
-      letterSpacing: "0px"
+      lineHeight: "30px"
     },
-    heading1: {
-      fontFamily: "Solomon Sans Bold",
+    text2xl: {
+      fontSize: "24px",
+      fontWeight: 400,
+      lineHeight: "36px"
+    },
+    text3xl: {
+      fontSize: "32px",
       fontWeight: 700,
-      fontSize: "36px",
-      lineHeight: "100%",
-      letterSpacing: "0px"
+      lineHeight: "40px"
     }
   },
 
   spacing: {
-    none: "0px",
+    // Base spacing scale
+    none: "0",
     xs: "4px",
     sm: "8px",
-    md: "12px",
-    spacingXs: "4px",
-    spacingSm: "8px",
-    spacingMd: "16px",
-    spacingLg: "24px",
-    spacingXl: "32px",
-    spacingLight: "4px",
-    spacingMedium: "12px",
-    spacingMinimum: "4px",
-    spacingSmall: "8px",
-    spacingLarge: "24px",
-    spacingExtralarge: "32px",
-    paddingNone: "0px",
-    paddingXs: "4px",
-    paddingSm: "8px",
+    md: "16px",
+    lg: "24px",
+    xl: "32px",
+    xxl: "48px",
+    
+    // Specific padding values
+    paddingNone: "0",
     paddingMd: "12px",
     paddingLg: "16px",
     paddingXl: "20px",
     paddingXxl: "24px",
-    paddingXxxl: "32px"
+    
+    // Margin values
+    marginXs: "4px",
+    marginSm: "8px",
+    marginMd: "16px",
+    marginLg: "24px",
+    marginXl: "32px"
   },
 
   radius: {
-    xs: "4px",
-    sm: "8px",
-    md: "16px",
-    xl: "40px",
-    smallCorner: "4px",
-    mediumCorner: "8px"
+    none: "0",
+    sm: "4px",
+    md: "8px",
+    lg: "12px",
+    xl: "16px",
+    full: "9999px"
   },
 
   shadows: {
-    card: "0 9px 19px -7px rgba(105,105,105,0.15)",
-    default: "0 9px 19px -7px rgba(105,105,105,0.15)"
+    none: "none",
+    sm: "0 1px 2px rgba(0, 0, 0, 0.05)",
+    md: "0 4px 6px rgba(0, 0, 0, 0.07)",
+    lg: "0 10px 15px rgba(0, 0, 0, 0.1)",
+    xl: "0 20px 25px rgba(0, 0, 0, 0.15)",
+    component: "0 9px 19px rgba(0, 0, 0, 0.15)",
+    componente: "0 9px 19px -7px rgba(0, 0, 0, 0.15)"
+  },
+
+  borders: {
+    none: "none",
+    sm: "1px solid",
+    md: "2px solid",
+    lg: "4px solid"
+  },
+
+  zIndex: {
+    base: 0,
+    overlay: 10,
+    modal: 100,
+    tooltip: 1000
   },
 
   components: {
-    alertsState: {
+    button: {
       variants: {
-        style: { default: {}, succes: {}, pending: {}, warning: {} }
+        size: {
+          xs: { 
+            padding: "6px 12px",
+            fontSize: "12px",
+            height: "28px"
+          },
+          sm: { 
+            padding: "8px 16px",
+            fontSize: "14px",
+            height: "36px"
+          },
+          md: { 
+            padding: "12px 20px",
+            fontSize: "16px",
+            height: "44px"
+          },
+          lg: { 
+            padding: "16px 24px",
+            fontSize: "18px",
+            height: "52px"
+          },
+          xl: { 
+            padding: "20px 32px",
+            fontSize: "20px",
+            height: "60px"
+          }
+        },
+        variant: {
+          primary: {
+            backgroundColor: "#0041a3",
+            color: "#ffffff",
+            border: "none"
+          },
+          secondary: {
+            backgroundColor: "transparent",
+            color: "#0041a3",
+            border: "1px solid #0041a3"
+          },
+          outline: {
+            backgroundColor: "transparent",
+            color: "#0041a3",
+            border: "2px solid #0041a3"
+          },
+          ghost: {
+            backgroundColor: "transparent",
+            color: "#0041a3",
+            border: "none"
+          },
+          link: {
+            backgroundColor: "transparent",
+            color: "#0041a3",
+            border: "none",
+            textDecoration: "underline"
+          }
+        },
+        state: {
+          default: {
+            opacity: 1,
+            transform: "none"
+          },
+          hover: {
+            opacity: 0.9,
+            transform: "translateY(-1px)"
+          },
+          active: {
+            opacity: 0.8,
+            transform: "translateY(0)"
+          },
+          disabled: {
+            opacity: 0.5,
+            cursor: "not-allowed"
+          },
+          loading: {
+            opacity: 0.7,
+            cursor: "wait"
+          }
+        }
       },
       defaultVariants: {
-        style: "default"
-      }
-    },
-    avatarGroupMobile: {
-      variants: {
-        size: { "40px": {}, "32px": {}, "24px": {} },
-        counter: { "2": {}, "3": {}, "4": {}, "5": {} },
-        spacing: { small: {}, medium: {} }
-      },
-      defaultVariants: {
-        size: "40px",
-        counter: "2",
-        spacing: "small"
-      }
-    },
-    avatarMobile: {
-      variants: {
-        size: { "40px": {}, "32px": {}, "24px": {}, "18px": {}, "92px": {} },
-        content: { image: {}, text: {} }
-      },
-      defaultVariants: {
-        size: "40px",
-        content: "image"
-      }
-    },
-    calendarDropdown: {
-      variants: {
-        state: { opened: {}, closed: {} }
-      },
-      defaultVariants: {
-        state: "closed"
-      }
-    },
-    cardCheck: {
-      variants: {
-        state: { enabled: {}, disabled: {}, prueba: {} }
-      },
-      defaultVariants: {
-        state: "enabled"
-      }
-    },
-    categoryCard: {
-      variants: {
-        state: { complete: {}, incomplete: {}, prueba: {} }
-      },
-      defaultVariants: {
-        state: "complete"
-      }
-    },
-    charts: {
-      variants: {
-        percent: { "10": {}, "20": {}, "30": {}, "40": {}, "50": {}, "60": {}, percent7: {}, percent8: {}, percent9: {} }
-      },
-      defaultVariants: {
-        percent: "10"
-      }
-    },
-    checkBox: {
-      variants: {
-        state: { default: {}, checked: {} }
-      },
-      defaultVariants: {
+        size: "md",
+        variant: "primary",
         state: "default"
       }
     },
-    checkBoxStatus: {
+    
+    mobileButton: {
       variants: {
-        status: { add: {}, remove: {} }
+        size: {
+          sm: { 
+            padding: "8px 12px",
+            fontSize: "14px",
+            height: "40px"
+          },
+          md: { 
+            padding: "12px 16px",
+            fontSize: "16px",
+            height: "48px"
+          },
+          lg: { 
+            padding: "16px 20px",
+            fontSize: "18px",
+            height: "56px"
+          }
+        },
+        variant: {
+          primary: {
+            backgroundColor: "#0041a3",
+            color: "#ffffff"
+          },
+          secondary: {
+            backgroundColor: "#f7f8fc",
+            color: "#0041a3"
+          },
+          danger: {
+            backgroundColor: "#ff4444",
+            color: "#ffffff"
+          }
+        }
       },
       defaultVariants: {
-        status: "add"
+        size: "md",
+        variant: "primary"
       }
     },
-    contenidoDeTabla: {
+    
+    webButton: {
       variants: {
-        estilo: { checkBox: {}, radioButton: {} }
+        size: {
+          sm: { 
+            padding: "8px 16px",
+            fontSize: "14px"
+          },
+          md: { 
+            padding: "12px 24px",
+            fontSize: "16px"
+          },
+          lg: { 
+            padding: "16px 32px",
+            fontSize: "18px"
+          }
+        },
+        variant: {
+          filled: {
+            backgroundColor: "#0041a3",
+            color: "#ffffff"
+          },
+          outlined: {
+            backgroundColor: "transparent",
+            color: "#0041a3",
+            border: "1px solid #0041a3"
+          },
+          text: {
+            backgroundColor: "transparent",
+            color: "#0041a3"
+          }
+        }
       },
       defaultVariants: {
-        estilo: "checkBox"
+        size: "md",
+        variant: "filled"
       }
     },
-    dropdownCard: {
-      variants: {
-        state: { cardOpen: {}, cardClose: {} }
-      },
-      defaultVariants: {
-        state: "cardClose"
-      }
-    },
-    fileUpload: {
-      variants: {
-        type: { default: {}, loaded: {} }
-      },
-      defaultVariants: {
-        type: "default"
-      }
-    },
-    infoCard: {
-      variants: {
-        type: { default: {}, withImage: {} }
-      },
-      defaultVariants: {
-        type: "default"
-      }
-    },
+    
     input: {
       variants: {
-        state: { enable: {}, selected: {}, error: {} },
-        type: { textField: {}, multiline: {} }
+        size: {
+          sm: { 
+            padding: "8px 12px",
+            fontSize: "14px",
+            height: "36px"
+          },
+          md: { 
+            padding: "12px 16px",
+            fontSize: "16px",
+            height: "44px"
+          },
+          lg: { 
+            padding: "16px 20px",
+            fontSize: "18px",
+            height: "52px"
+          }
+        },
+        state: {
+          default: {
+            border: "1px solid #dfe0eb",
+            backgroundColor: "#ffffff"
+          },
+          focus: {
+            border: "2px solid #0041a3",
+            boxShadow: "0 0 0 3px rgba(0, 65, 163, 0.1)"
+          },
+          error: {
+            border: "2px solid #ff4444",
+            boxShadow: "0 0 0 3px rgba(255, 68, 68, 0.1)"
+          },
+          disabled: {
+            border: "1px solid #e0e0e0",
+            backgroundColor: "#f5f5f5",
+            color: "#999999"
+          }
+        }
       },
       defaultVariants: {
-        state: "enable",
-        type: "textField"
+        size: "md",
+        state: "default"
       }
     },
-    inputCheck: {
+    
+    card: {
       variants: {
-        state: { round: {}, check: {} }
+        variant: {
+          default: {
+            backgroundColor: "#ffffff",
+            border: "1px solid #e0e0e0",
+            boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)"
+          },
+          elevated: {
+            backgroundColor: "#ffffff",
+            border: "none",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)"
+          },
+          outlined: {
+            backgroundColor: "transparent",
+            border: "2px solid #0041a3",
+            boxShadow: "none"
+          }
+        },
+        size: {
+          sm: { padding: "16px" },
+          md: { padding: "24px" },
+          lg: { padding: "32px" }
+        }
       },
       defaultVariants: {
-        state: "round"
-      }
-    },
-    itemBottomNav: {
-      variants: {
-        state: { enable: {}, pressed: {} }
-      },
-      defaultVariants: {
-        state: "enable"
-      }
-    },
-    mapCard: {
-      variants: {
-        type: { disable: {}, active: {} }
-      },
-      defaultVariants: {
-        type: "disable"
-      }
-    },
-    menuBar: {
-      variants: {
-        items: { "5": {}, "4": {}, "3": {} }
-      },
-      defaultVariants: {
-        items: "5"
-      }
-    },
-    mobileButtons: {
-      variants: {
-        size: { small: {}, medium: {} },
-        color: { primary: {}, error: {} },
-        state: { active: {}, disable: {}, pressed: {} },
-        style: { contained: {}, outline: {}, text: {} },
-        orientation: { center: {}, left: {} }
-      },
-      defaultVariants: {
-        size: "medium",
-        color: "primary",
-        state: "active",
-        style: "contained",
-        orientation: "center"
-      }
-    },
-    opcionesDeTabla: {
-      variants: {
-        tipo: { horizontales: {}, verticales: {} }
-      },
-      defaultVariants: {
-        tipo: "horizontales"
-      }
-    },
-    principalMenu: {
-      variants: {
-        property1: { floating: {}, header: {} }
-      },
-      defaultVariants: {
-        property1: "header"
-      }
-    },
-    productCards: {
-      variants: {
-        type: { littleCard: {}, floating: {}, product: {}, priceCard: {}, type5: {}, type6: {} }
-      },
-      defaultVariants: {
-        type: "product"
-      }
-    },
-    progressBar: {
-      variants: {
-        status: { green: {}, yellow: {}, red: {} }
-      },
-      defaultVariants: {
-        status: "green"
-      }
-    },
-    questionButton: {
-      variants: {
-        active: { true: {}, false: {} }
-      },
-      defaultVariants: {
-        active: "true"
-      }
-    },
-    radioButtons: {
-      variants: {
-        state: { enabled: {}, pressed: {} }
-      },
-      defaultVariants: {
-        state: "enabled"
-      }
-    },
-    tab: {
-      variants: {
-        property1: { firstSelector3Tabs: {}, secondSelector3Tabs: {}, thirdSelector3Tabs: {}, firstSelector2Tabs: {}, secondSelector2Tabs: {} }
-      },
-      defaultVariants: {
-        property1: "firstSelector3Tabs"
-      }
-    },
-    toggle: {
-      variants: {
-        state: { off: {}, on: {} }
-      },
-      defaultVariants: {
-        state: "off"
-      }
-    },
-    timeSet: {
-      variants: {
-        state: { disable: {}, timeOut: {}, timeStart: {} }
-      },
-      defaultVariants: {
-        state: "disable"
-      }
-    },
-    counterCard: {
-      variants: {
-        type: { unidad1: {}, unidad13: {}, unidad4: {}, price: {} }
-      },
-      defaultVariants: {
-        type: "unidad1"
-      }
-    },
-    dropdown: {
-      variants: {
-        state: { dropdownError: {}, dropdown: {}, dropdownOpen: {} }
-      },
-      defaultVariants: {
-        state: "dropdown"
-      }
-    },
-    slider: {
-      variants: {
-        scale: { "0": {}, "1": {}, "2": {}, "3": {}, "4": {}, "5": {} }
-      },
-      defaultVariants: {
-        scale: "0"
-      }
-    },
-    numberSlider: {
-      variants: {
-        property1: { firtsNumberSelected: {}, secondNumberSelected: {}, thirdNumberSelected: {}, fourtNumberSelected: {}, fiveNumberSelected: {}, desable: {} }
-      },
-      defaultVariants: {
-        property1: "firtsNumberSelected"
+        variant: "default",
+        size: "md"
       }
     }
   }
 } as const;
+
+export type Token = typeof tokens;
+export type Colors = typeof tokens.colors;
+export type Typography = typeof tokens.typography;
+export type Spacing = typeof tokens.spacing;
+export type Radius = typeof tokens.radius;
+export type Shadows = typeof tokens.shadows;
+export type Components = typeof tokens.components;
