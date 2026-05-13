@@ -1,115 +1,80 @@
-import React from 'react';
-import { tokens } from '../Token';
+import * as React from "react";
+import { cn } from "@/lib/cn";
+import { tokens } from "@/Token";
+import home from "@/assets/icons/home.svg";
+import bookmark from "@/assets/icons/bookmark-filled.svg";
+import add from "@/assets/icons/add.svg";
+import portfolio from "@/assets/basket-check.svg";
+import "./MenuBar.css";
 
-export interface MenuBarProps {
-  className?: string;
-  items?: 3 | 4 | 5;
-  onItemClick?: (item: string) => void;
+const c = tokens.colors;
+const sp = tokens.spacing;
+const rad = tokens.radius;
+const sh = tokens.shadows;
+
+export type MenuBarKey = "inicio" | "agenda" | "gestion" | "portafolio";
+
+export interface MenuBarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onSelect"> {
+  activeKey?: MenuBarKey;
+  defaultActiveKey?: MenuBarKey;
+  onItemSelect?: (key: MenuBarKey) => void;
 }
 
-const MenuBar: React.FC<MenuBarProps> = ({
-  className,
-  items = 5,
-  onItemClick
-}) => {
-  const menuItems = [
-    { id: 'inicio', label: 'Inicio', icon: '🏠' },
-    { id: 'agenda', label: 'Agenda', icon: '📖' },
-    { id: 'gestion', label: 'Gestión', icon: '➕' },
-    { id: 'portafolio', label: 'Portafolio', icon: '👜' },
-    { id: 'perfil', label: 'Perfil', icon: '👤' }
-  ].slice(0, items);
+const ITEMS: { key: MenuBarKey; label: string; icon: string }[] = [
+  { key: "inicio", label: "Inicio", icon: home },
+  { key: "agenda", label: "Agenda", icon: bookmark },
+  { key: "gestion", label: "Gestión", icon: add },
+  { key: "portafolio", label: "Portafolio", icon: portfolio },
+];
 
-  const getGap = () => {
-    switch (items) {
-      case 3: return tokens.spacing.xl;
-      case 4: return tokens.spacing.md;
-      default: return tokens.spacing.sm;
-    }
-  };
+export const MenuBar = React.forwardRef<HTMLDivElement, MenuBarProps>(
+  ({ className, activeKey: activeKeyProp, defaultActiveKey = "inicio", onItemSelect, style, ...rest }, ref) => {
+    const [internal, setInternal] = React.useState<MenuBarKey>(defaultActiveKey);
+    const isControlled = activeKeyProp !== undefined;
+    const active = isControlled ? activeKeyProp : internal;
 
-  return (
-    <div
-      className={className}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: getGap(),
-        padding: tokens.spacing.sm,
-        backgroundColor: tokens.colors.white,
-        borderRadius: tokens.radius.sm,
-        boxShadow: tokens.shadows.component,
-        height: items === 5 ? '58px' : 'auto',
-        width: items === 5 ? '283px' : 'auto'
-      }}
-    >
-      {menuItems.map((item, index) => (
-        <button
-          key={item.id}
-          onClick={() => onItemClick?.(item.id)}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '0',
-            padding: `${tokens.spacing.xs} ${tokens.spacing.sm}`,
-            borderRadius: tokens.radius.sm,
-            backgroundColor: index === 0 ? 'rgba(153, 179, 218, 0.3)' : 'transparent',
-            border: 'none',
-            cursor: 'pointer',
-            width: '47px',
-            flexShrink: 0,
-            transition: 'all 0.2s ease'
-          }}
-          onMouseEnter={(e) => {
-            if (index !== 0) {
-              e.currentTarget.style.backgroundColor = 'rgba(153, 179, 218, 0.1)';
-            }
-          }}
-          onMouseLeave={(e) => {
-            if (index !== 0) {
-              e.currentTarget.style.backgroundColor = 'transparent';
-            }
-          }}
-        >
-          {/* Icon */}
-          <div
-            style={{
-              width: '20px',
-              height: '20px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: tokens.spacing.xs,
-              flexShrink: 0
-            }}
+    const cssVars: React.CSSProperties = {
+      ["--mb-bg" as string]: c.text.nsWhite,
+      ["--mb-gap" as string]: sp.padding.lg,
+      ["--mb-pad" as string]: sp.padding.sm,
+      ["--mb-shadow" as string]: sh.card,
+      ["--mb-item-fg" as string]: c.text.headersTitles,
+      ["--mb-item-active-bg" as string]: c.buttons.bgOutlinePressed,
+      ["--mb-item-px" as string]: sp.padding.sm,
+      ["--mb-item-py" as string]: sp.padding.xs,
+      ["--mb-item-radius" as string]: rad.xs,
+    };
+
+    const select = (key: MenuBarKey) => {
+      if (!isControlled) setInternal(key);
+      onItemSelect?.(key);
+    };
+
+    return (
+      <nav
+        ref={ref}
+        className={cn("menu-bar", className)}
+        style={{ ...cssVars, ...style }}
+        aria-label="Navegación principal"
+        {...rest}
+      >
+        {ITEMS.map((item) => (
+          <button
+            key={item.key}
+            type="button"
+            className={cn("menu-bar__item", item.key === active && "menu-bar__item--active")}
+            onClick={() => select(item.key)}
+            aria-current={item.key === active ? "page" : undefined}
           >
-            <span style={{ fontSize: '16px', lineHeight: 1 }}>
-              {item.icon}
+            <span className="menu-bar__icon-wrap">
+              <img src={item.icon} alt="" className="menu-bar__icon" width={20} height={20} />
             </span>
-          </div>
+            <span className="menu-bar__label">{item.label}</span>
+          </button>
+        ))}
+      </nav>
+    );
+  },
+);
 
-          {/* Label */}
-          <div
-            style={{
-              fontFamily: '"Solomon Sans Normal", sans-serif',
-              fontSize: '12px',
-              fontWeight: 400,
-              color: tokens.colors.primary,
-              textAlign: 'center',
-              whiteSpace: 'nowrap',
-              lineHeight: 'normal',
-              width: '100%'
-            }}
-          >
-            {item.label}
-          </div>
-        </button>
-      ))}
-    </div>
-  );
-};
-
-export default MenuBar;
+MenuBar.displayName = "MenuBar";

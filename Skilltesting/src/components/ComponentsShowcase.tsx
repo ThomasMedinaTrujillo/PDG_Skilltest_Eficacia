@@ -1,197 +1,183 @@
+import { Alert } from "./Alert";
+import { Input } from "./Input";
+import { MenuBar, type MenuBarKey } from "./MenuBar";
+import { MobileButton, type MobileButtonColor, type MobileButtonOrientation, type MobileButtonSize, type MobileButtonStyle } from "./MobileButton";
+import { PrincipalMenu } from "./PrincipalMenu";
+import "./ComponentsShowcase.css";
 
+const MENU_KEYS: MenuBarKey[] = ["inicio", "agenda", "gestion", "portafolio"];
 
-import React from 'react';
-import { tokens } from '../Token';
-import Alert from './Alert';
-import Input from './Input';
-import MenuBar from './MenuBar';
-import MobileButton from './MobileButton';
-import PrincipalMenu from './PrincipalMenu';
+const MOBILE_COLORS: MobileButtonColor[] = ["primary", "error"];
+const MOBILE_VARIANTS: MobileButtonStyle[] = ["contained", "outline", "text"];
+const MOBILE_SIZES: MobileButtonSize[] = ["sm", "md"];
+const MOBILE_ORIENTS: MobileButtonOrientation[] = ["center", "left"];
+
+type MobileCombo = {
+  color: MobileButtonColor;
+  variant: MobileButtonStyle;
+  size: MobileButtonSize;
+  orientation: MobileButtonOrientation;
+  disabled: boolean;
+};
+
+function mobileButtonCombos(): MobileCombo[] {
+  const out: MobileCombo[] = [];
+  for (const disabled of [false, true]) {
+    for (const color of MOBILE_COLORS) {
+      for (const variant of MOBILE_VARIANTS) {
+        for (const size of MOBILE_SIZES) {
+          for (const orientation of MOBILE_ORIENTS) {
+            out.push({ color, variant, size, orientation, disabled });
+          }
+        }
+      }
+    }
+  }
+  return out;
+}
+
+const MOBILE_BUTTON_MATRIX = mobileButtonCombos();
+
+function comboLabel(c: MobileCombo): string {
+  const bits = [
+    c.color,
+    c.variant,
+    c.size,
+    c.orientation === "left" ? "izq" : "ctr",
+    c.disabled ? "off" : "on",
+  ];
+  return bits.join(" · ");
+}
 
 export default function ComponentsShowcase() {
   return (
-    <div style={{ padding: tokens.spacing.lg, fontFamily: tokens.typography.body1.fontFamily }}>
-      <h1 style={{ 
-        fontSize: tokens.typography.text3xl.fontSize, 
-        fontWeight: tokens.typography.text3xl.fontWeight,
-        marginBottom: tokens.spacing.lg,
-        color: tokens.colors.primary 
-      }}>
-        Components Showcase
-      </h1>
-
-      {/* Alert Components */}
-      <section style={{ marginBottom: tokens.spacing.xl }}>
-        <h2 style={{ 
-          fontSize: tokens.typography.text2xl.fontSize, 
-          marginBottom: tokens.spacing.md,
-          color: tokens.colors.dark 
-        }}>
-          Alert Components
-        </h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: tokens.spacing.md }}>
-          <Alert style="default" textAlert="Default alert message" />
-          <Alert style="success" textAlert="Success! Operation completed" />
-          <Alert style="warning" textAlert="Warning! Please review" />
-          <Alert style="pending" textAlert="Pending: Processing..." />
+    <div className="components-showcase">
+      <section className="components-showcase__section">
+        <h2 className="components-showcase__title">MobileButton</h2>
+        <p className="components-showcase__caption">
+          Matriz: color × estilo × tamaño × alineación × activo / deshabilitado (48 combinaciones).
+        </p>
+        <div className="components-showcase__variant-grid">
+          {MOBILE_BUTTON_MATRIX.map((c, i) => (
+            <div key={i} className="components-showcase__variant-cell">
+              <span className="components-showcase__variant-tag">{comboLabel(c)}</span>
+              <MobileButton
+                color={c.color}
+                variant={c.variant}
+                size={c.size}
+                orientation={c.orientation}
+                disabled={c.disabled}
+                showIconStart={c.orientation === "left"}
+                showIconEnd={c.orientation === "left"}
+                label="button"
+              />
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Input Components */}
-      <section style={{ marginBottom: tokens.spacing.xl }}>
-        <h2 style={{ 
-          fontSize: tokens.typography.text2xl.fontSize, 
-          marginBottom: tokens.spacing.md,
-          color: tokens.colors.dark 
-        }}>
-          Input Components
-        </h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: tokens.spacing.lg }}>
-          <Input 
-            labelText="Name" 
-            placeholder="Enter your name"
-            state="enable"
-            type="textfield"
-          />
-          <Input 
-            labelText="Email" 
-            placeholder="Enter your email"
-            state="selected"
-            type="textfield"
-            value="user@example.com"
-          />
-          <Input 
-            labelText="Message" 
-            placeholder="Type your message"
-            state="error"
-            type="multiline"
-            alert={true}
-          />
+      <section className="components-showcase__section">
+        <h2 className="components-showcase__title">PrincipalMenu</h2>
+        <h3 className="components-showcase__subtitle">Header</h3>
+        <PrincipalMenu variant="header" />
+
+        <h3 className="components-showcase__subtitle">Drawer · lista completa (8 ítems)</h3>
+        <div className="components-showcase__drawer-shell">
+          <PrincipalMenu variant="drawer" showExtraItems />
+        </div>
+
+        <h3 className="components-showcase__subtitle">Drawer · lista compacta (4 ítems)</h3>
+        <div className="components-showcase__drawer-shell">
+          <PrincipalMenu variant="drawer" showExtraItems={false} />
         </div>
       </section>
 
-      {/* Menu Bar Components */}
-      <section style={{ marginBottom: tokens.spacing.xl }}>
-        <h2 style={{ 
-          fontSize: tokens.typography.text2xl.fontSize, 
-          marginBottom: tokens.spacing.md,
-          color: tokens.colors.dark 
-        }}>
-          Menu Bar Components
-        </h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: tokens.spacing.lg }}>
-          <MenuBar items={3} />
-          <MenuBar items={4} />
-          <MenuBar items={5} />
+      <section className="components-showcase__section">
+        <h2 className="components-showcase__title">MenuBar</h2>
+        <p className="components-showcase__caption">Cada fila fija un tab activo distinto.</p>
+        <div className="components-showcase__stack">
+          {MENU_KEYS.map((key) => (
+            <div key={key} className="components-showcase__menu-preview">
+              <span className="components-showcase__variant-tag">Activo: {key}</span>
+              <MenuBar activeKey={key} onItemSelect={() => {}} />
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Mobile Button Components */}
-      <section style={{ marginBottom: tokens.spacing.xl }}>
-        <h2 style={{ 
-          fontSize: tokens.typography.text2xl.fontSize, 
-          marginBottom: tokens.spacing.md,
-          color: tokens.colors.dark 
-        }}>
-          Mobile Button Components
-        </h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: tokens.spacing.lg }}>
-          <MobileButton 
-            size="small" 
-            style="contained" 
-            color="primary"
-            label="Primary Button"
-          />
-          <MobileButton 
-            size="small" 
-            style="outline" 
-            color="primary"
-            label="Outline Button"
-          />
-          <MobileButton 
-            size="medium" 
-            style="text" 
-            color="error"
-            label="Error Button"
-          />
-          <MobileButton 
-            size="small" 
-            style="contained" 
-            color="primary"
-            label="With Icons"
-            showIconStart={true}
-            showIconEnd={true}
-          />
-        </div>
-      </section>
-
-      {/* Principal Menu Components */}
-      <section style={{ marginBottom: tokens.spacing.xl }}>
-        <h2 style={{ 
-          fontSize: tokens.typography.text2xl.fontSize, 
-          marginBottom: tokens.spacing.md,
-          color: tokens.colors.dark 
-        }}>
-          Principal Menu Components
-        </h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: tokens.spacing.lg }}>
-          <PrincipalMenu variant="header" />
-          <div style={{ marginTop: tokens.spacing.lg }}>
-            <PrincipalMenu variant="floating" showItems={false} />
+      <section className="components-showcase__section">
+        <h2 className="components-showcase__title">Input</h2>
+        <p className="components-showcase__caption">
+          Variantes de error, aviso, icono, asterisco obligatorio y deshabilitado.
+        </p>
+        <div className="components-showcase__variant-grid components-showcase__variant-grid--inputs">
+          <div className="components-showcase__variant-cell">
+            <span className="components-showcase__variant-tag">error + alerta + icono + *</span>
+            <Input defaultValue="" placeholder="Value" showAlert showTrailingIcon />
+          </div>
+          <div className="components-showcase__variant-cell">
+            <span className="components-showcase__variant-tag">error + icono (sin alerta)</span>
+            <Input showAlert={false} showTrailingIcon defaultValue="" placeholder="Value" />
+          </div>
+          <div className="components-showcase__variant-cell">
+            <span className="components-showcase__variant-tag">error + alerta (sin icono)</span>
+            <Input showAlert showTrailingIcon={false} defaultValue="" placeholder="Value" />
+          </div>
+          <div className="components-showcase__variant-cell">
+            <span className="components-showcase__variant-tag">error sin *</span>
+            <Input requiredMark={false} showAlert defaultValue="" placeholder="Value" />
+          </div>
+          <div className="components-showcase__variant-cell">
+            <span className="components-showcase__variant-tag">válido (sin error)</span>
+            <Input
+              error={false}
+              helperText=""
+              showAlert={false}
+              showTrailingIcon={false}
+              placeholder="Texto correcto"
+              label="Campo ok"
+            />
+          </div>
+          <div className="components-showcase__variant-cell">
+            <span className="components-showcase__variant-tag">válido + icono</span>
+            <Input
+              error={false}
+              helperText=""
+              showTrailingIcon
+              label="Con icono"
+              placeholder="Buscar…"
+            />
+          </div>
+          <div className="components-showcase__variant-cell">
+            <span className="components-showcase__variant-tag">válido + alerta amarilla</span>
+            <Input error={false} helperText="" showAlert showTrailingIcon={false} label="Info" />
+          </div>
+          <div className="components-showcase__variant-cell">
+            <span className="components-showcase__variant-tag">deshabilitado · error</span>
+            <Input disabled defaultValue="No editable" showTrailingIcon />
+          </div>
+          <div className="components-showcase__variant-cell">
+            <span className="components-showcase__variant-tag">deshabilitado · válido</span>
+            <Input disabled error={false} helperText="" defaultValue="Ok deshabilitado" label="Solo lectura" />
+          </div>
+          <div className="components-showcase__variant-cell">
+            <span className="components-showcase__variant-tag">error sin texto de ayuda</span>
+            <Input helperText="" showTrailingIcon={false} defaultValue="" placeholder="Value" />
           </div>
         </div>
       </section>
 
-      {/* Token Information */}
-      <section style={{ 
-        marginTop: tokens.spacing.xxl,
-        padding: tokens.spacing.lg,
-        backgroundColor: tokens.colors.bgGray,
-        borderRadius: tokens.radius.md
-      }}>
-        <h2 style={{ 
-          fontSize: tokens.typography.text2xl.fontSize, 
-          marginBottom: tokens.spacing.md,
-          color: tokens.colors.primary 
-        }}>
-          Design Tokens Used
-        </h2>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: tokens.spacing.md
-        }}>
-          <div>
-            <h4 style={{ fontWeight: 'bold', marginBottom: tokens.spacing.xs }}>Colors</h4>
-            <ul style={{ margin: 0, paddingLeft: tokens.spacing.lg }}>
-              <li>Primary: {tokens.colors.primary}</li>
-              <li>White: {tokens.colors.white}</li>
-              <li>Error: {tokens.colors.error}</li>
-              <li>Success: #3bd4ae</li>
-            </ul>
+      <section className="components-showcase__section">
+        <h2 className="components-showcase__title">Alert</h2>
+        <p className="components-showcase__caption">Variantes expuestas por el componente (`showIcon`).</p>
+        <div className="components-showcase__row components-showcase__row--alerts">
+          <div className="components-showcase__variant-cell">
+            <span className="components-showcase__variant-tag">con icono</span>
+            <Alert text="Estado" showIcon />
           </div>
-          <div>
-            <h4 style={{ fontWeight: 'bold', marginBottom: tokens.spacing.xs }}>Typography</h4>
-            <ul style={{ margin: 0, paddingLeft: tokens.spacing.lg }}>
-              <li>Body: {tokens.typography.body1.fontSize}</li>
-              <li>Small: {tokens.typography.textSm.fontSize}</li>
-              <li>Large: {tokens.typography.textLg.fontSize}</li>
-            </ul>
-          </div>
-          <div>
-            <h4 style={{ fontWeight: 'bold', marginBottom: tokens.spacing.xs }}>Spacing</h4>
-            <ul style={{ margin: 0, paddingLeft: tokens.spacing.lg }}>
-              <li>Small: {tokens.spacing.sm}</li>
-              <li>Medium: {tokens.spacing.md}</li>
-              <li>Large: {tokens.spacing.lg}</li>
-            </ul>
-          </div>
-          <div>
-            <h4 style={{ fontWeight: 'bold', marginBottom: tokens.spacing.xs }}>Shadows</h4>
-            <ul style={{ margin: 0, paddingLeft: tokens.spacing.lg }}>
-              <li>Component: {tokens.shadows.component}</li>
-              <li>Medium: {tokens.shadows.md}</li>
-            </ul>
+          <div className="components-showcase__variant-cell">
+            <span className="components-showcase__variant-tag">sin icono</span>
+            <Alert text="Estado" showIcon={false} />
           </div>
         </div>
       </section>

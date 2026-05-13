@@ -1,181 +1,211 @@
-import React from 'react';
-import { tokens } from '../Token';
+import * as React from "react";
+import { cn } from "@/lib/cn";
+import { tokens } from "@/Token";
+import arrowLeft from "@/assets/icons/arrow-left.svg";
+import arrowRight from "@/assets/icons/arrow-right.svg";
+import "./MobileButton.css";
 
-export interface MobileButtonProps {
-  className?: string;
-  color?: 'primary' | 'error';
-  iconEnd?: React.ReactNode;
-  iconStart?: React.ReactNode;
-  label?: string;
-  orientation?: 'left' | 'center';
-  showIconEnd?: boolean;
-  showIconStart?: boolean;
-  size?: 'small' | 'medium';
-  state?: 'active' | 'disable' | 'pressed';
-  style?: 'contained' | 'outline' | 'text';
-  onClick?: () => void;
+const c = tokens.colors;
+const sp = tokens.spacing;
+const sw = tokens.spacing.strokeWidth;
+const rad = tokens.radius;
+const typo = tokens.typography.mobile;
+
+export type MobileButtonColor = "primary" | "error";
+export type MobileButtonSize = "sm" | "md";
+export type MobileButtonStyle = "contained" | "outline" | "text";
+export type MobileButtonOrientation = "center" | "left";
+
+function cssVar(name: string, value: string): React.CSSProperties {
+  return { [name]: value } as React.CSSProperties;
 }
 
-const MobileButton: React.FC<MobileButtonProps> = ({
-  className,
-  color = 'primary',
-  iconEnd,
-  iconStart,
-  label = 'button',
-  orientation = 'center',
-  showIconEnd = false,
-  showIconStart = false,
-  size = 'small',
-  state = 'active',
-  style = 'contained',
-  onClick
-}) => {
-  const getButtonStyles = () => {
-    const baseStyles = {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: orientation === 'center' ? 'center' : 'space-between',
-      gap: tokens.spacing.sm,
-      borderRadius: tokens.radius.sm,
-      cursor: state === 'disable' ? 'not-allowed' : 'pointer',
-      transition: 'all 0.2s ease',
-      fontFamily: '"Solomon Sans SemiBold", sans-serif',
-      fontWeight: 600,
-      border: 'none',
-      outline: 'none',
-      width: '339px'
-    };
+function skin(
+  tone: MobileButtonColor,
+  look: MobileButtonStyle,
+  disabled: boolean,
+): React.CSSProperties {
+  const stroke = c.buttons.disable;
+  const disableFg = c.text.disable;
 
-    // Size styles
-    const sizeStyles = size === 'small' 
-      ? { padding: `${tokens.spacing.paddingMd} ${tokens.spacing.sm}` }
-      : { padding: `${tokens.spacing.paddingLg} ${tokens.spacing.sm}` };
-
-    // Color and style combinations
-    let colorStyles = {};
-    
-    if (style === 'contained') {
-      if (color === 'primary') {
-        colorStyles = {
-          backgroundColor: tokens.colors.primary,
-          color: tokens.colors.white
-        };
-      } else if (color === 'error') {
-        colorStyles = {
-          backgroundColor: tokens.colors.error,
-          color: tokens.colors.white
-        };
-      }
-    } else if (style === 'outline') {
-      if (color === 'primary') {
-        colorStyles = {
-          backgroundColor: 'transparent',
-          color: tokens.colors.primary,
-          border: `2px solid ${tokens.colors.primary}`
-        };
-      } else if (color === 'error') {
-        colorStyles = {
-          backgroundColor: 'transparent',
-          color: tokens.colors.error,
-          border: `2px solid ${tokens.colors.error}`
-        };
-      }
-    } else if (style === 'text') {
-      if (color === 'primary') {
-        if (state === 'pressed') {
-          colorStyles = {
-            backgroundColor: 'rgba(0, 65, 163, 0.1)',
-            color: tokens.colors.primary
-          };
-        } else {
-          colorStyles = {
-            backgroundColor: 'transparent',
-            color: tokens.colors.primary
-          };
-        }
-      } else if (color === 'error') {
-        if (state === 'pressed') {
-          colorStyles = {
-            backgroundColor: 'rgba(202, 73, 73, 0.2)',
-            color: tokens.colors.error
-          };
-        } else {
-          colorStyles = {
-            backgroundColor: 'transparent',
-            color: tokens.colors.error
-          };
-        }
-      }
-    }
-
-    // State styles
-    let stateStyles = {};
-    if (state === 'disable') {
-      stateStyles = {
-        opacity: 0.5,
-        cursor: 'not-allowed'
-      };
-    } else if (state === 'pressed') {
-      stateStyles = {
-        transform: 'scale(0.98)'
+  if (disabled) {
+    if (look === "contained") {
+      return {
+        ...cssVar("--mb-bg", c.buttons.disable),
+        ...cssVar("--mb-fg", disableFg),
+        ...cssVar("--mb-border-w", "0px"),
       };
     }
-
+    if (look === "outline") {
+      return {
+        ...cssVar("--mb-bg", "transparent"),
+        ...cssVar("--mb-fg", disableFg),
+        ...cssVar("--mb-border", stroke),
+        ...cssVar("--mb-border-w", sw.buttonOutline),
+      };
+    }
     return {
-      ...baseStyles,
-      ...sizeStyles,
-      ...colorStyles,
-      ...stateStyles
+      ...cssVar("--mb-bg", "transparent"),
+      ...cssVar("--mb-fg", disableFg),
+      ...cssVar("--mb-border-w", "0px"),
     };
-  };
+  }
 
-  const getTextStyles = () => {
+  if (tone === "primary") {
+    if (look === "contained") {
+      return {
+        ...cssVar("--mb-bg", c.buttons.background),
+        ...cssVar("--mb-bg-hover", c.buttons.bgHover),
+        ...cssVar("--mb-bg-active", c.buttons.selected),
+        ...cssVar("--mb-fg", c.text.nsWhite),
+        ...cssVar("--mb-fg-active", c.primaries.primaryWhiteBackground),
+        ...cssVar("--mb-border-w", "0px"),
+      };
+    }
+    if (look === "outline") {
+      return {
+        ...cssVar("--mb-bg", "transparent"),
+        ...cssVar("--mb-bg-hover", c.buttons.bgOutlineHover),
+        ...cssVar("--mb-bg-active", c.buttons.bgOutlinePressed),
+        ...cssVar("--mb-fg", c.primaries.primaryBlue),
+        ...cssVar("--mb-border", c.buttons.background),
+        ...cssVar("--mb-border-w", sw.buttonOutline),
+      };
+    }
     return {
-      fontSize: size === 'small' ? '14px' : '16px',
-      lineHeight: 'normal',
-      textAlign: 'center' as const,
-      whiteSpace: 'nowrap' as const,
-      flex: orientation === 'left' ? 1 : 'auto'
+      ...cssVar("--mb-bg", "transparent"),
+      ...cssVar("--mb-bg-hover", c.buttons.bgOutlineHover),
+      ...cssVar("--mb-bg-active", c.buttons.bgOutlinePressed),
+      ...cssVar("--mb-fg", c.primaries.primaryBlue),
+      ...cssVar("--mb-border-w", "0px"),
     };
+  }
+
+  if (look === "contained") {
+    return {
+      ...cssVar("--mb-bg", c.semantic.warningError),
+      ...cssVar("--mb-bg-hover", c.buttons.bgContainedErrorHover),
+      ...cssVar("--mb-bg-active", c.buttons.bgContentPressed),
+      ...cssVar("--mb-fg", c.text.nsWhite),
+      ...cssVar("--mb-fg-active", c.primaries.primaryWhiteBackground),
+      ...cssVar("--mb-border-w", "0px"),
+    };
+  }
+  if (look === "outline") {
+    return {
+      ...cssVar("--mb-bg", "transparent"),
+      ...cssVar("--mb-bg-hover", c.buttons.bgOutlineErrorHover),
+      ...cssVar("--mb-bg-active", c.buttons.bgOutlineErrorPressed),
+      ...cssVar("--mb-fg", c.semantic.warningError),
+      ...cssVar("--mb-border", c.semantic.warningError),
+      ...cssVar("--mb-border-w", sw.buttonOutline),
+    };
+  }
+  return {
+    ...cssVar("--mb-bg", "transparent"),
+    ...cssVar("--mb-bg-hover", c.buttons.bgOutlineErrorHover),
+    ...cssVar("--mb-bg-active", c.buttons.bgOutlineErrorPressed),
+    ...cssVar("--mb-fg", c.semantic.warningError),
+    ...cssVar("--mb-border-w", "0px"),
   };
+}
 
-  const buttonStyles = getButtonStyles();
-  const textStyles = getTextStyles();
+export interface MobileButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  color?: MobileButtonColor;
+  size?: MobileButtonSize;
+  variant?: MobileButtonStyle;
+  orientation?: MobileButtonOrientation;
+  label?: string;
+  showIconStart?: boolean;
+  showIconEnd?: boolean;
+  iconStart?: React.ReactNode;
+  iconEnd?: React.ReactNode;
+}
 
-  return (
-    <button
-      className={className}
-      style={buttonStyles}
-      onClick={onClick}
-      disabled={state === 'disable'}
-    >
-      <div style={{ display: 'flex', alignItems: 'center', gap: tokens.spacing.sm, width: '100%' }}>
-        {showIconStart && (
-          <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
-            {iconStart || (
-              <div style={{ width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ fontSize: '16px' }}>←</span>
-              </div>
-            )}
-          </div>
-        )}
+export const MobileButton = React.forwardRef<HTMLButtonElement, MobileButtonProps>(
+  (
+    {
+      className,
+      color = "primary",
+      size = "sm",
+      variant = "contained",
+      orientation = "center",
+      label = "button",
+      showIconStart = false,
+      showIconEnd = false,
+      iconStart,
+      iconEnd,
+      disabled,
+      children,
+      style,
+      ...rest
+    },
+    ref,
+  ) => {
+    const fontSize =
+      size === "sm" ? typo.buttonSmall.fontSize : typo.buttonMedium.fontSize;
+    const py = size === "sm" ? sp.padding.md : sp.padding.lg;
+    const px = sp.padding.sm;
 
-        <span style={textStyles}>
-          {label}
+    const baseStyle: React.CSSProperties = {
+      ...skin(color, variant, Boolean(disabled)),
+      ...cssVar("--mb-radius", rad.sm),
+      ...cssVar("--mb-px", px),
+      ...cssVar("--mb-py", py),
+      ...cssVar("--mb-gap", sp.padding.sm),
+      ...cssVar("--mb-focus", c.primaries.primaryBlue),
+      fontSize,
+      lineHeight: 1,
+    };
+
+    const content = children ?? <span className="ds-mobile-button__label">{label}</span>;
+
+    const start =
+      showIconStart &&
+      (iconStart ?? (
+        <img src={arrowLeft} alt="" className="ds-mobile-button__icon" width={24} height={24} />
+      ));
+
+    const end =
+      showIconEnd &&
+      (iconEnd ?? (
+        <img src={arrowRight} alt="" className="ds-mobile-button__icon" width={24} height={24} />
+      ));
+
+    const inner =
+      orientation === "left" ? (
+        <span className={cn("ds-mobile-button__row", "ds-mobile-button__row--fill")}>
+          <span className="ds-mobile-button__row">
+            {start}
+            {content}
+          </span>
+          {end}
         </span>
+      ) : (
+        <span className="ds-mobile-button__row">
+          {start}
+          {content}
+          {end}
+        </span>
+      );
 
-        {showIconEnd && (
-          <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
-            {iconEnd || (
-              <div style={{ width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ fontSize: '16px' }}>→</span>
-              </div>
-            )}
-          </div>
+    return (
+      <button
+        ref={ref}
+        type="button"
+        disabled={disabled}
+        className={cn(
+          "ds-mobile-button",
+          orientation === "left" && "ds-mobile-button--spread",
+          className,
         )}
-      </div>
-    </button>
-  );
-};
+        style={{ ...baseStyle, ...style }}
+        {...rest}
+      >
+        {inner}
+      </button>
+    );
+  },
+);
 
-export default MobileButton;
+MobileButton.displayName = "MobileButton";

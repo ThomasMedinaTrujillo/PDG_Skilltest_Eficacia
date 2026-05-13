@@ -1,206 +1,69 @@
-import React from 'react';
-import { tokens } from '../Token';
+import * as React from "react";
+import { cn } from "@/lib/cn";
+import { tokens } from "@/Token";
+import alertIcon from "@/assets/icons/alert.svg";
+import arrowRight from "@/assets/icons/arrow-right.svg";
+import "./Alert.css";
 
-export interface AlertProps {
-  className?: string;
+const c = tokens.colors;
+const sp = tokens.spacing;
+const sh = tokens.shadows;
+
+export type AlertTone = "pending";
+
+export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
+  tone?: AlertTone;
   showIcon?: boolean;
-  style?: 'default' | 'success' | 'warning' | 'pending';
-  textAlert?: string;
-  onClose?: () => void;
+  text?: string;
+  onTrailClick?: () => void;
 }
 
-const Alert: React.FC<AlertProps> = ({
-  className,
-  showIcon = true,
-  style = 'default',
-  textAlert = 'Estado',
-  onClose
-}) => {
-  const getAlertStyles = () => {
-    switch (style) {
-      case 'success':
-        return {
-          backgroundColor: '#3bd4ae',
-          color: tokens.colors.white,
-          borderColor: '#3bd4ae'
-        };
-      case 'warning':
-        return {
-          backgroundColor: '#ca4949',
-          color: tokens.colors.white,
-          borderColor: '#ca4949'
-        };
-      case 'pending':
-        return {
-          backgroundColor: '#ffcd00',
-          color: tokens.colors.primary,
-          borderColor: '#ffcd00'
-        };
-      default:
-        return {
-          backgroundColor: tokens.colors.white,
-          color: tokens.colors.gray200,
-          borderColor: tokens.colors.divider
-        };
-    }
-  };
+export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
+  (
+    {
+      className,
+      tone = "pending",
+      showIcon = true,
+      text = "Estado",
+      onTrailClick,
+      style,
+      ...rest
+    },
+    ref,
+  ) => {
+    const cssVars: React.CSSProperties = {
+      ["--al-gap" as string]: sp.padding.sm,
+      ["--al-px" as string]: sp.padding.lg,
+      ["--al-py" as string]: sp.padding.md,
+      ["--al-radius" as string]: sp.padding.sm,
+      ["--al-shadow" as string]: sh.card,
+      ["--al-body-pad" as string]: sp.padding.xs,
+      ["--al-fg" as string]: c.text.nsWhite,
+      ["--al-bg" as string]: tone === "pending" ? c.semantic.pending : c.semantic.pending,
+    };
 
-  const alertStyles = getAlertStyles();
-
-  return (
-    <div
-      className={className}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: tokens.spacing.sm,
-        padding: `${tokens.spacing.paddingMd} ${tokens.spacing.paddingLg}`,
-        borderRadius: tokens.radius.sm,
-        backgroundColor: alertStyles.backgroundColor,
-        boxShadow: tokens.shadows.component,
-        minHeight: '44px',
-        width: '339px'
-      }}
-    >
-      {showIcon && (
-        <div
-          style={{
-            width: '18px',
-            height: '18px',
-            borderRadius: tokens.radius.sm,
-            backgroundColor: style === 'default' ? tokens.colors.gray200 : 'transparent',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0
-          }}
-        >
-          {style !== 'default' && (
-            <div
-              style={{
-                width: '16px',
-                height: '16px',
-                borderRadius: '50%',
-                backgroundColor: alertStyles.color
-              }}
-            />
-          )}
-        </div>
-      )}
-      
+    return (
       <div
-        style={{
-          flex: 1,
-          padding: tokens.spacing.xs,
-          minWidth: 0
-        }}
+        ref={ref}
+        role="status"
+        className={cn("ds-alert", className)}
+        style={{ ...cssVars, ...style }}
+        {...rest}
       >
-        <p
-          style={{
-            ...tokens.typography.textXs,
-            color: alertStyles.color,
-            margin: 0,
-            fontFamily: '"Nunito Sans", sans-serif'
-          }}
-        >
-          {textAlert}
-        </p>
-      </div>
-
-      {(style === 'success' || style === 'warning' || style === 'pending') && (
-        <button
-          onClick={onClose}
-          style={{
-            width: '18px',
-            height: '18px',
-            border: 'none',
-            background: 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0,
-            padding: 0
-          }}
-        >
-          <div
-            style={{
-              width: '10px',
-              height: '10px',
-              position: 'relative'
-            }}
-          >
-            <div
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '0',
-                width: '100%',
-                height: '2px',
-                backgroundColor: alertStyles.color,
-                transform: 'rotate(45deg)'
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '0',
-                width: '100%',
-                height: '2px',
-                backgroundColor: alertStyles.color,
-                transform: 'rotate(-45deg)'
-              }}
-            />
+        {showIcon ? (
+          <div className="ds-alert__icon" aria-hidden>
+            <img src={alertIcon} alt="" width={16} height={16} />
           </div>
-        </button>
-      )}
-
-      {style === 'default' && (
-        <div
-          style={{
-            width: '18px',
-            height: '18px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0
-          }}
-        >
-          <div
-            style={{
-              width: '10px',
-              height: '10px',
-              position: 'relative'
-            }}
-          >
-            <div
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '0',
-                width: '100%',
-                height: '2px',
-                backgroundColor: tokens.colors.gray200,
-                transform: 'rotate(45deg)'
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '0',
-                width: '100%',
-                height: '2px',
-                backgroundColor: tokens.colors.gray200,
-                transform: 'rotate(-45deg)'
-              }}
-            />
-          </div>
+        ) : null}
+        <div className="ds-alert__body">
+          <p className="ds-alert__text">{text}</p>
         </div>
-      )}
-    </div>
-  );
-};
+        <button type="button" className="ds-alert__trail" onClick={onTrailClick} aria-label="Más">
+          <img src={arrowRight} alt="" width={10} height={10} />
+        </button>
+      </div>
+    );
+  },
+);
 
-export default Alert;
+Alert.displayName = "Alert";

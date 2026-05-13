@@ -1,427 +1,245 @@
 export const tokens = {
-  colors: {
-    // Primary colors
-    primary: "#0041a3",
-    primaryBlue: "#0041a3",
-    primaryLight: "#42c0f0",
-    primaryBlue200: "#b1cee2",
-    
-    // Neutral colors
-    white: "#ffffff",
-    whitePrimary: "#ffffff",
-    black: "#000000",
-    blackPrimary: "#000000",
-    dark: "#263238",
-    darkColor: "#263238",
-    
-    // Gray scale
-    gray50: "#ffffff",
-    gray100: "#f7f8fc",
-    gray200: "#c4c7ce",
-    gray300: "#c5c7cd",
-    gray400: "#dfe0eb",
-    gray500: "#607d8b",
-    graySoft: "#c4c7ce",
-    grayLight: "#c5c7cd",
-    bgGray: "#f7f8fc",
-    divider: "#dfe0eb",
-    
-    // Accent colors
-    accent: "#3751ff",
-    accentDefault: "#3751ff",
-    blueDark: "#253a66",
-    blueGrey500: "#607d8b",
-    
-    // Brand colors
-    brandRed: "#ff0000",
-    brandBlack: "#000000",
-    brandWhite: "#ffffff",
-    
-    // Semantic colors
-    success: "#00c851",
-    success2: "#00c851",
-    error: "#ff4444",
-    error2: "#ff4444",
-    
-    // Additional colors
-    orange: "#ff8800",
-    yellow: "#ffeb3b",
-    salmon: "#ff7f7f",
-    durazno: "#ffb366",
-    grey: "#808080",
-    grey2: "#666666"
-  },
-
-  typography: {
-    // IBM Plex Sans family
-    body1: {
-      fontFamily: "\"IBM Plex Sans\", sans-serif",
-      fontSize: "16px",
-      fontWeight: 400,
-      lineHeight: "24px",
-      letterSpacing: "0.44px"
+  "colors": {
+    "primaries": {
+      "primaryBlue": "#0041A3",
+      "sb100": "#FFFFFF",
+      "eb100": "#E5F0FE",
+      "eb200": "#C2D1E9",
+      "eb300": "#99B3DA",
+      "eb400": "#668DC8",
+      "eb500": "#0041A3",
+      "eb600": "#003482",
+      "eb700": "#002A68",
+      "primaryWhiteBackground": "#F4F7F9"
     },
-    body2: {
-      fontFamily: "\"IBM Plex Sans\", sans-serif",
-      fontSize: "14px",
-      fontWeight: 400,
-      lineHeight: "20px",
-      letterSpacing: "0.25px"
+    "text": {
+      "headersTitles": "#0041A3",
+      "nsBlueInputPlaceholder": "#99B3DA",
+      "subtitleBody": "#70777B",
+      "disable": "#70777B",
+      "captions": "#A9ADB0",
+      "nsWhite": "#FFFFFF",
+      "ns600": "#242728"
     },
-    
-    // Solomon Sans family
-    solomonBody1: {
-      fontFamily: "\"Solomon Sans Black\", sans-serif",
-      fontSize: "16px",
-      fontWeight: 900,
-      lineHeight: "24px",
-      letterSpacing: "-0.2px"
+    "neutral": {
+      "nsWhite": "#FFFFFF",
+      "ns100": "#E6E8EA",
+      "ns200": "#AAAEB1",
+      "ns300": "#82898D",
+      "ns400": "#70777B",
+      "ns500": "#464B4D",
+      "ns600": "#242728"
     },
-    
-    // Size-based typography
-    textXs: {
-      fontSize: "12px",
-      fontWeight: 400,
-      lineHeight: "16px"
+    "semantic": {
+      "warningError": "#CA4949",
+      "pending": "#FFCD00",
+      "success": "#3BD4AE",
+      "disable": "#A9ADB0"
     },
-    textSm: {
-      fontSize: "14px",
-      fontWeight: 400,
-      lineHeight: "20px"
+    "buttons": {
+      "background": "#0041A3",
+      "bgHover": "#1B60C7",
+      "selected": "#002A68",
+      "disable": "#A9ADB0",
+      "bgOutlineHover": "rgba(153, 179, 218, 0.1)",
+      "bgOutlinePressed": "rgba(153, 179, 218, 0.3)",
+      "bgContainedErrorHover": "#F46060",
+      "bgOutlineErrorHover": "rgba(202, 73, 73, 0.1)",
+      "bgOutlineErrorPressed": "rgba(202, 73, 73, 0.2)",
+      "bgContentPressed": "#A23A3A"
     },
-    textBase: {
-      fontSize: "16px",
-      fontWeight: 400,
-      lineHeight: "24px"
-    },
-    textLg: {
-      fontSize: "18px",
-      fontWeight: 400,
-      lineHeight: "28px"
-    },
-    textXl: {
-      fontSize: "20px",
-      fontWeight: 400,
-      lineHeight: "30px"
-    },
-    text2xl: {
-      fontSize: "24px",
-      fontWeight: 400,
-      lineHeight: "36px"
-    },
-    text3xl: {
-      fontSize: "32px",
-      fontWeight: 700,
-      lineHeight: "40px"
+    "paints": {
+      "marcaPrimaryBlue": "#0041A3",
+      "marcaPrimaryWhiteBackground": "#F4F7F9",
+      "marcaSemanticGreen": "#3BD4AE",
+      "marcaSemanticRed": "#CA4949",
+      "marcaSemanticYellow": "#FFCD00",
+      "marcaNeutralGrayIcons": "#70777B",
+      "marcaNeutralGraySubtitleText": "#8D9295",
+      "marcaNeutralDisabledButton": "#A9ADB0",
+      "marcaNeutralWhiteOnBlue": "#FFFFFF",
+      "btnLegacy": "#3F51B5"
     }
   },
-
-  spacing: {
-    // Base spacing scale
-    none: "0",
-    xs: "4px",
-    sm: "8px",
-    md: "16px",
-    lg: "24px",
-    xl: "32px",
-    xxl: "48px",
-    
-    // Specific padding values
-    paddingNone: "0",
-    paddingMd: "12px",
-    paddingLg: "16px",
-    paddingXl: "20px",
-    paddingXxl: "24px",
-    
-    // Margin values
-    marginXs: "4px",
-    marginSm: "8px",
-    marginMd: "16px",
-    marginLg: "24px",
-    marginXl: "32px"
-  },
-
-  radius: {
-    none: "0",
-    sm: "4px",
-    md: "8px",
-    lg: "12px",
-    xl: "16px",
-    full: "9999px"
-  },
-
-  shadows: {
-    none: "none",
-    sm: "0 1px 2px rgba(0, 0, 0, 0.05)",
-    md: "0 4px 6px rgba(0, 0, 0, 0.07)",
-    lg: "0 10px 15px rgba(0, 0, 0, 0.1)",
-    xl: "0 20px 25px rgba(0, 0, 0, 0.15)",
-    component: "0 9px 19px rgba(0, 0, 0, 0.15)",
-    componente: "0 9px 19px -7px rgba(0, 0, 0, 0.15)"
-  },
-
-  borders: {
-    none: "none",
-    sm: "1px solid",
-    md: "2px solid",
-    lg: "4px solid"
-  },
-
-  zIndex: {
-    base: 0,
-    overlay: 10,
-    modal: 100,
-    tooltip: 1000
-  },
-
-  components: {
-    button: {
-      variants: {
-        size: {
-          xs: { 
-            padding: "6px 12px",
-            fontSize: "12px",
-            height: "28px"
-          },
-          sm: { 
-            padding: "8px 16px",
-            fontSize: "14px",
-            height: "36px"
-          },
-          md: { 
-            padding: "12px 20px",
-            fontSize: "16px",
-            height: "44px"
-          },
-          lg: { 
-            padding: "16px 24px",
-            fontSize: "18px",
-            height: "52px"
-          },
-          xl: { 
-            padding: "20px 32px",
-            fontSize: "20px",
-            height: "60px"
-          }
-        },
-        variant: {
-          primary: {
-            backgroundColor: "#0041a3",
-            color: "#ffffff",
-            border: "none"
-          },
-          secondary: {
-            backgroundColor: "transparent",
-            color: "#0041a3",
-            border: "1px solid #0041a3"
-          },
-          outline: {
-            backgroundColor: "transparent",
-            color: "#0041a3",
-            border: "2px solid #0041a3"
-          },
-          ghost: {
-            backgroundColor: "transparent",
-            color: "#0041a3",
-            border: "none"
-          },
-          link: {
-            backgroundColor: "transparent",
-            color: "#0041a3",
-            border: "none",
-            textDecoration: "underline"
-          }
-        },
-        state: {
-          default: {
-            opacity: 1,
-            transform: "none"
-          },
-          hover: {
-            opacity: 0.9,
-            transform: "translateY(-1px)"
-          },
-          active: {
-            opacity: 0.8,
-            transform: "translateY(0)"
-          },
-          disabled: {
-            opacity: 0.5,
-            cursor: "not-allowed"
-          },
-          loading: {
-            opacity: 0.7,
-            cursor: "wait"
-          }
-        }
+  "typography": {
+    "web": {
+      "display": {
+        "fontFamily": "Solomon Sans Bold",
+        "fontWeight": 700,
+        "fontSize": "64px"
       },
-      defaultVariants: {
-        size: "md",
-        variant: "primary",
-        state: "default"
+      "heading1": {
+        "fontFamily": "Solomon Sans Bold",
+        "fontWeight": 700,
+        "fontSize": "48px"
+      },
+      "heading2": {
+        "fontFamily": "Solomon Sans Bold",
+        "fontWeight": 700,
+        "fontSize": "36px"
+      },
+      "heading3": {
+        "fontFamily": "Solomon Sans Bold",
+        "fontWeight": 700,
+        "fontSize": "28px"
+      },
+      "heading4": {
+        "fontFamily": "Solomon Sans Bold",
+        "fontWeight": 700,
+        "fontSize": "24px"
+      },
+      "subtitle": {
+        "fontFamily": "Solomon Sans Bold",
+        "fontWeight": 700,
+        "fontSize": "18px"
+      },
+      "body": {
+        "fontFamily": "Solomon Sans Normal",
+        "fontWeight": 400,
+        "fontSize": "16px"
+      },
+      "bodySmall": {
+        "fontFamily": "Solomon Sans Normal",
+        "fontWeight": 400,
+        "fontSize": "14px"
+      },
+      "caption": {
+        "fontFamily": "Solomon Sans Book",
+        "fontWeight": 400,
+        "fontSize": "12px"
+      },
+      "buttonSmall": {
+        "fontFamily": "Solomon Sans SemiBold",
+        "fontWeight": 600,
+        "fontSize": "16px"
+      },
+      "buttonMedium": {
+        "fontFamily": "Solomon Sans SemiBold",
+        "fontWeight": 600,
+        "fontSize": "18px"
+      },
+      "overline": {
+        "fontFamily": "Solomon Sans Normal",
+        "fontWeight": 400,
+        "fontSize": "14px"
+      },
+      "bodyBold": {
+        "fontFamily": "Solomon Sans Bold",
+        "fontWeight": 700,
+        "fontSize": "16px"
+      },
+      "bodyBlack": {
+        "fontFamily": "Solomon Sans Black",
+        "fontWeight": 900,
+        "fontSize": "16px"
       }
     },
-    
-    mobileButton: {
-      variants: {
-        size: {
-          sm: { 
-            padding: "8px 12px",
-            fontSize: "14px",
-            height: "40px"
-          },
-          md: { 
-            padding: "12px 16px",
-            fontSize: "16px",
-            height: "48px"
-          },
-          lg: { 
-            padding: "16px 20px",
-            fontSize: "18px",
-            height: "56px"
-          }
-        },
-        variant: {
-          primary: {
-            backgroundColor: "#0041a3",
-            color: "#ffffff"
-          },
-          secondary: {
-            backgroundColor: "#f7f8fc",
-            color: "#0041a3"
-          },
-          danger: {
-            backgroundColor: "#ff4444",
-            color: "#ffffff"
-          }
-        }
+    "mobile": {
+      "display": {
+        "fontFamily": "Solomon Sans Bold",
+        "fontWeight": 700,
+        "fontSize": "48px"
       },
-      defaultVariants: {
-        size: "md",
-        variant: "primary"
-      }
-    },
-    
-    webButton: {
-      variants: {
-        size: {
-          sm: { 
-            padding: "8px 16px",
-            fontSize: "14px"
-          },
-          md: { 
-            padding: "12px 24px",
-            fontSize: "16px"
-          },
-          lg: { 
-            padding: "16px 32px",
-            fontSize: "18px"
-          }
-        },
-        variant: {
-          filled: {
-            backgroundColor: "#0041a3",
-            color: "#ffffff"
-          },
-          outlined: {
-            backgroundColor: "transparent",
-            color: "#0041a3",
-            border: "1px solid #0041a3"
-          },
-          text: {
-            backgroundColor: "transparent",
-            color: "#0041a3"
-          }
-        }
+      "heading1": {
+        "fontFamily": "Solomon Sans Bold",
+        "fontWeight": 700,
+        "fontSize": "36px"
       },
-      defaultVariants: {
-        size: "md",
-        variant: "filled"
-      }
-    },
-    
-    input: {
-      variants: {
-        size: {
-          sm: { 
-            padding: "8px 12px",
-            fontSize: "14px",
-            height: "36px"
-          },
-          md: { 
-            padding: "12px 16px",
-            fontSize: "16px",
-            height: "44px"
-          },
-          lg: { 
-            padding: "16px 20px",
-            fontSize: "18px",
-            height: "52px"
-          }
-        },
-        state: {
-          default: {
-            border: "1px solid #dfe0eb",
-            backgroundColor: "#ffffff"
-          },
-          focus: {
-            border: "2px solid #0041a3",
-            boxShadow: "0 0 0 3px rgba(0, 65, 163, 0.1)"
-          },
-          error: {
-            border: "2px solid #ff4444",
-            boxShadow: "0 0 0 3px rgba(255, 68, 68, 0.1)"
-          },
-          disabled: {
-            border: "1px solid #e0e0e0",
-            backgroundColor: "#f5f5f5",
-            color: "#999999"
-          }
-        }
+      "heading2": {
+        "fontFamily": "Solomon Sans Bold",
+        "fontWeight": 700,
+        "fontSize": "28px"
       },
-      defaultVariants: {
-        size: "md",
-        state: "default"
-      }
-    },
-    
-    card: {
-      variants: {
-        variant: {
-          default: {
-            backgroundColor: "#ffffff",
-            border: "1px solid #e0e0e0",
-            boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)"
-          },
-          elevated: {
-            backgroundColor: "#ffffff",
-            border: "none",
-            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)"
-          },
-          outlined: {
-            backgroundColor: "transparent",
-            border: "2px solid #0041a3",
-            boxShadow: "none"
-          }
-        },
-        size: {
-          sm: { padding: "16px" },
-          md: { padding: "24px" },
-          lg: { padding: "32px" }
-        }
+      "heading3": {
+        "fontFamily": "Solomon Sans Bold",
+        "fontWeight": 700,
+        "fontSize": "24px"
       },
-      defaultVariants: {
-        variant: "default",
-        size: "md"
+      "heading4": {
+        "fontFamily": "Solomon Sans Bold",
+        "fontWeight": 700,
+        "fontSize": "20px"
+      },
+      "subtitle": {
+        "fontFamily": "Solomon Sans SemiBold",
+        "fontWeight": 600,
+        "fontSize": "16px"
+      },
+      "body": {
+        "fontFamily": "Solomon Sans Normal",
+        "fontWeight": 400,
+        "fontSize": "14px"
+      },
+      "bodySmall": {
+        "fontFamily": "Solomon Sans Normal",
+        "fontWeight": 400,
+        "fontSize": "12px"
+      },
+      "caption": {
+        "fontFamily": "Solomon Sans Book",
+        "fontWeight": 400,
+        "fontSize": "12px"
+      },
+      "buttonSmall": {
+        "fontFamily": "Solomon Sans SemiBold",
+        "fontWeight": 600,
+        "fontSize": "14px"
+      },
+      "buttonMedium": {
+        "fontFamily": "Solomon Sans SemiBold",
+        "fontWeight": 600,
+        "fontSize": "16px"
+      },
+      "overline": {
+        "fontFamily": "Solomon Sans Normal",
+        "fontWeight": 400,
+        "fontSize": "12px"
+      },
+      "bodyBold": {
+        "fontFamily": "Solomon Sans Bold",
+        "fontWeight": 700,
+        "fontSize": "14px"
       }
     }
-  }
+  },
+  "spacing": {
+    "padding": {
+      "none": "0px",
+      "xs": "4px",
+      "sm": "8px",
+      "md": "12px",
+      "lg": "16px",
+      "xl": "20px",
+      "xxl": "24px",
+      "xxxl": "32px"
+    },
+    "gap": {
+      "none": "0px",
+      "xs": "4px",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "24px",
+      "xl": "32px"
+    },
+    "strokeWidth": {
+      "form": "1px",
+      "dividerLineInside": "2px",
+      "dividerLineDash": "0.5px",
+      "tableBorder": "1px",
+      "paginator": "0.5px",
+      "dropdownBorder": "1px",
+      "buttonOutline": "1px"
+    }
+  },
+  "radius": {
+    "none": "0px",
+    "xs": "4px",
+    "sm": "8px",
+    "md": "16px",
+    "lg": "24px",
+    "xl": "40px"
+  },
+  "shadows": {
+    "card": "0px 9px 19px -7px rgba(105, 105, 105, 0.15)"
+  },
 } as const;
-
-export type Token = typeof tokens;
-export type Colors = typeof tokens.colors;
-export type Typography = typeof tokens.typography;
-export type Spacing = typeof tokens.spacing;
-export type Radius = typeof tokens.radius;
-export type Shadows = typeof tokens.shadows;
-export type Components = typeof tokens.components;

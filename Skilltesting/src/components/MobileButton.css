@@ -1,0 +1,75 @@
+.ds-mobile-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 339px;
+  min-height: 0;
+  margin: 0;
+  cursor: pointer;
+  font-family: "Solomon Sans", system-ui, sans-serif;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  border-style: solid;
+  border-color: var(--mb-border, transparent);
+  border-width: var(--mb-border-w, 0);
+  border-radius: var(--mb-radius, 8px);
+  background: var(--mb-bg);
+  color: var(--mb-fg);
+  padding: var(--mb-py) var(--mb-px);
+  gap: var(--mb-gap, 8px);
+  transition: background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+}
+
+.ds-mobile-button:disabled {
+  cursor: not-allowed;
+  background: var(--mb-bg-disabled, var(--mb-bg));
+  color: var(--mb-fg-disabled, var(--mb-fg));
+  border-color: var(--mb-border-disabled, var(--mb-border));
+}
+
+.ds-mobile-button:enabled:hover {
+  background: var(--mb-bg-hover, var(--mb-bg));
+  color: var(--mb-fg-hover, var(--mb-fg));
+  border-color: var(--mb-border-hover, var(--mb-border));
+}
+
+.ds-mobile-button:enabled:active {
+  background: var(--mb-bg-active, var(--mb-bg-hover, var(--mb-bg)));
+  color: var(--mb-fg-active, var(--mb-fg-hover, var(--mb-fg)));
+  border-color: var(--mb-border-active, var(--mb-border-hover, var(--mb-border)));
+}
+
+.ds-mobile-button:focus-visible {
+  outline: 2px solid var(--mb-focus, #0041a3);
+  outline-offset: 2px;
+}
+
+.ds-mobile-button--spread {
+  justify-content: space-between;
+}
+
+.ds-mobile-button__row {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mb-gap, 8px);
+}
+
+.ds-mobile-button__row--fill {
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: space-between;
+}
+
+.ds-mobile-button__icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.ds-mobile-button__label {
+  white-space: nowrap;
+}

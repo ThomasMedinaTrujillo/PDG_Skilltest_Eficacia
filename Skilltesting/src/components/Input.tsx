@@ -1,228 +1,138 @@
-import React from 'react';
-import { tokens } from '../Token';
+import * as React from "react";
+import { cn } from "@/lib/cn";
+import { tokens } from "@/Token";
+import question from "@/assets/icons/question.svg";
+import close from "@/assets/icons/close.svg";
+import "./Input.css";
 
-export interface InputProps {
-  className?: string;
-  alert?: boolean;
-  icon?: React.ReactNode;
-  labelText?: string;
-  multilineText?: string;
-  placeholder?: string;
-  required?: boolean;
-  state?: 'enable' | 'selected' | 'error';
-  type?: 'textfield' | 'multiline';
-  value?: string;
-  onChange?: (value: string) => void;
-  alertMessage?: string;
+const c = tokens.colors;
+const sp = tokens.spacing;
+const rad = tokens.radius;
+const typo = tokens.typography.mobile;
+
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
+  label?: string;
+  requiredMark?: boolean;
+  helperText?: string;
+  error?: boolean;
+  /** Inline yellow notice under the field (Figma `alert`). */
+  showAlert?: boolean;
+  alertText?: string;
+  trailingIcon?: React.ReactNode;
+  showTrailingIcon?: boolean;
 }
 
-const Input: React.FC<InputProps> = ({
-  className,
-  alert = false,
-  icon,
-  labelText = 'Label',
-  multilineText = '',
-  placeholder = 'Value',
-  required = true,
-  state = 'enable',
-  type = 'textfield',
-  value = '',
-  onChange,
-  alertMessage = 'Participación diferente de lo esperado'
-}) => {
-  const getInputStyles = () => {
-    switch (state) {
-      case 'selected':
-        return {
-          border: `2px solid ${tokens.colors.primary}`,
-          backgroundColor: tokens.colors.white,
-          color: tokens.colors.primary
-        };
-      case 'error':
-        return {
-          border: `2px solid ${tokens.colors.error}`,
-          backgroundColor: tokens.colors.white,
-          color: tokens.colors.error
-        };
-      default:
-        return {
-          border: `1px solid ${tokens.colors.gray200}`,
-          backgroundColor: tokens.colors.white,
-          color: '#99b3da'
-        };
-    }
-  };
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  (
+    {
+      className,
+      label = "Label",
+      requiredMark = true,
+      helperText = "Datos incorrectos",
+      error = true,
+      showAlert = false,
+      alertText = "Participación diferente de lo esperado",
+      trailingIcon,
+      showTrailingIcon = false,
+      disabled,
+      value: valueProp,
+      defaultValue,
+      onChange,
+      placeholder = "Value",
+      id,
+      ...rest
+    },
+    ref,
+  ) => {
+    const genId = React.useId();
+    const inputId = id ?? genId;
+    const [internal, setInternal] = React.useState(defaultValue ?? "");
+    const isControlled = valueProp !== undefined;
+    const value = isControlled ? valueProp : internal;
 
-  const inputStyles = getInputStyles();
-  const isMultiline = type === 'multiline';
+    const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+      if (!isControlled) setInternal(e.target.value);
+      onChange?.(e);
+    };
 
-  return (
-    <div className={className} style={{ width: '339px' }}>
-      {/* Label */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'flex-start',
-          gap: tokens.spacing.xs,
-          marginBottom: tokens.spacing.xs,
-          color: tokens.colors.primary,
-          fontFamily: '"Solomon Sans SemiBold", sans-serif',
-          fontSize: '14px',
-          fontWeight: 600,
-          whiteSpace: 'nowrap'
-        }}
-      >
-        <span>{labelText}</span>
-        {required && <span>*</span>}
-      </div>
+    const cssVars: React.CSSProperties = {
+      ["--in-gap-xs" as string]: sp.padding.xs,
+      ["--in-pad" as string]: sp.padding.sm,
+      ["--in-radius" as string]: rad.xs,
+      ["--in-border-w" as string]: sp.strokeWidth.form,
+      ["--in-label" as string]: c.text.headersTitles,
+      ["--in-label-size" as string]: typo.buttonSmall.fontSize,
+      ["--in-value-size" as string]: typo.body.fontSize,
+      ["--in-focus" as string]: c.primaries.primaryBlue,
+      ["--in-placeholder" as string]: c.text.nsBlueInputPlaceholder,
+      ["--in-alert-px" as string]: sp.padding.sm,
+    };
 
-      {/* Input Field */}
-      <div
-        style={{
-          border: inputStyles.border,
-          backgroundColor: inputStyles.backgroundColor,
-          borderRadius: tokens.radius.sm,
-          padding: tokens.spacing.sm,
-          display: 'flex',
-          alignItems: isMultiline ? 'flex-start' : 'center',
-          justifyContent: 'space-between',
-          height: isMultiline ? '70px' : 'auto',
-          minHeight: isMultiline ? '70px' : '44px'
-        }}
-      >
-        {isMultiline ? (
-          <textarea
-            value={value || multilineText}
-            onChange={(e) => onChange?.(e.target.value)}
-            placeholder={placeholder}
-            style={{
-              flex: 1,
-              border: 'none',
-              outline: 'none',
-              background: 'none',
-              resize: 'none',
-              fontFamily: '"Solomon Sans Normal", sans-serif',
-              fontSize: '14px',
-              color: inputStyles.color,
-              lineHeight: 'normal',
-              minHeight: '54px'
-            }}
-          />
-        ) : (
+    const palette =
+      disabled
+        ? {
+            ...cssVar("--in-border", c.semantic.disable),
+            ...cssVar("--in-value", c.text.disable),
+            ...cssVar("--in-hint", c.text.disable),
+          }
+        : error
+          ? {
+              ...cssVar("--in-border", c.semantic.warningError),
+              ...cssVar("--in-value", c.semantic.warningError),
+              ...cssVar("--in-hint", c.semantic.warningError),
+            }
+          : {
+              ...cssVar("--in-border", c.neutral.ns200),
+              ...cssVar("--in-value", c.text.ns600),
+              ...cssVar("--in-hint", c.text.subtitleBody),
+            };
+
+    return (
+      <div className={cn("ds-input", className)} style={{ ...cssVars, ...palette }}>
+        <label className="ds-input__label-row" htmlFor={inputId}>
+          <span>{label}</span>
+          {requiredMark ? <span aria-hidden>*</span> : null}
+        </label>
+        <div className="ds-input__control" style={{ ...cssVar("--in-bg", c.text.nsWhite) }}>
           <input
-            type="text"
+            ref={ref}
+            id={inputId}
+            className="ds-input__field"
+            disabled={disabled}
             value={value}
-            onChange={(e) => onChange?.(e.target.value)}
+            onChange={handleChange}
             placeholder={placeholder}
-            style={{
-              flex: 1,
-              border: 'none',
-              outline: 'none',
-              background: 'none',
-              fontFamily: '"Solomon Sans Normal", sans-serif',
-              fontSize: '14px',
-              color: inputStyles.color,
-              lineHeight: 'normal'
-            }}
+            aria-invalid={error}
+            aria-describedby={helperText ? `${inputId}-hint` : undefined}
+            {...rest}
           />
-        )}
-        
-        {icon && !isMultiline && (
-          <div style={{ flexShrink: 0, marginLeft: tokens.spacing.sm }}>
-            {icon}
+          {showTrailingIcon &&
+            (trailingIcon ?? (
+              <img src={question} alt="" className="ds-input__icon" width={20} height={20} />
+            ))}
+        </div>
+        {helperText ? (
+          <p className="ds-input__hint" id={`${inputId}-hint`}>
+            {helperText}
+          </p>
+        ) : null}
+        {showAlert ? (
+          <div className="ds-input__alert" style={{ ...cssVar("--in-alert-bg", c.semantic.pending) }}>
+            <p className="ds-input__alert-text" style={{ ...cssVar("--in-alert-fg", c.text.headersTitles) }}>
+              {alertText}
+            </p>
+            <button type="button" className="ds-input__alert-dismiss" aria-label="Cerrar aviso">
+              <img src={close} alt="" width={8} height={8} />
+            </button>
           </div>
-        )}
+        ) : null}
       </div>
+    );
+  },
+);
 
-      {/* Error Message */}
-      {state === 'error' && (
-        <div
-          style={{
-            marginTop: tokens.spacing.xs,
-            fontFamily: '"Solomon Sans Normal", sans-serif',
-            fontSize: '12px',
-            color: tokens.colors.error,
-            lineHeight: '17px'
-          }}
-        >
-          Datos incorrectos
-        </div>
-      )}
+Input.displayName = "Input";
 
-      {/* Alert Message */}
-      {alert && (
-        <div
-          style={{
-            marginTop: tokens.spacing.xs,
-            backgroundColor: '#ffcd00',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: `${tokens.spacing.xs} ${tokens.spacing.sm}`,
-            borderRadius: '2px',
-            height: '25px',
-            width: state === 'error' ? '100%' : '336px'
-          }}
-        >
-          <span
-            style={{
-              fontFamily: '"Solomon Sans Book", sans-serif',
-              fontSize: '12px',
-              color: tokens.colors.primary,
-              lineHeight: '17px',
-              width: '214px'
-            }}
-          >
-            {alertMessage}
-          </span>
-          <button
-            style={{
-              width: '8px',
-              height: '8px',
-              border: 'none',
-              background: 'none',
-              cursor: 'pointer',
-              padding: 0,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            <div
-              style={{
-                width: '8px',
-                height: '8px',
-                position: 'relative'
-              }}
-            >
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '0',
-                  width: '100%',
-                  height: '1px',
-                  backgroundColor: tokens.colors.primary,
-                  transform: 'rotate(45deg)'
-                }}
-              />
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '0',
-                  width: '100%',
-                  height: '1px',
-                  backgroundColor: tokens.colors.primary,
-                  transform: 'rotate(-45deg)'
-                }}
-              />
-            </div>
-          </button>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default Input;
+function cssVar(name: string, value: string): React.CSSProperties {
+  return { [name]: value } as React.CSSProperties;
+}
