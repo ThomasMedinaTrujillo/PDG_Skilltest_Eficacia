@@ -1,245 +1,353 @@
 export const tokens = {
-  "colors": {
-    "primaries": {
-      "primaryBlue": "#0041A3",
-      "sb100": "#FFFFFF",
-      "eb100": "#E5F0FE",
-      "eb200": "#C2D1E9",
-      "eb300": "#99B3DA",
-      "eb400": "#668DC8",
-      "eb500": "#0041A3",
-      "eb600": "#003482",
-      "eb700": "#002A68",
-      "primaryWhiteBackground": "#F4F7F9"
-    },
-    "text": {
-      "headersTitles": "#0041A3",
-      "nsBlueInputPlaceholder": "#99B3DA",
-      "subtitleBody": "#70777B",
-      "disable": "#70777B",
-      "captions": "#A9ADB0",
-      "nsWhite": "#FFFFFF",
-      "ns600": "#242728"
-    },
-    "neutral": {
-      "nsWhite": "#FFFFFF",
-      "ns100": "#E6E8EA",
-      "ns200": "#AAAEB1",
-      "ns300": "#82898D",
-      "ns400": "#70777B",
-      "ns500": "#464B4D",
-      "ns600": "#242728"
-    },
-    "semantic": {
-      "warningError": "#CA4949",
-      "pending": "#FFCD00",
-      "success": "#3BD4AE",
-      "disable": "#A9ADB0"
-    },
-    "buttons": {
-      "background": "#0041A3",
-      "bgHover": "#1B60C7",
-      "selected": "#002A68",
-      "disable": "#A9ADB0",
-      "bgOutlineHover": "rgba(153, 179, 218, 0.1)",
-      "bgOutlinePressed": "rgba(153, 179, 218, 0.3)",
-      "bgContainedErrorHover": "#F46060",
-      "bgOutlineErrorHover": "rgba(202, 73, 73, 0.1)",
-      "bgOutlineErrorPressed": "rgba(202, 73, 73, 0.2)",
-      "bgContentPressed": "#A23A3A"
-    },
-    "paints": {
-      "marcaPrimaryBlue": "#0041A3",
-      "marcaPrimaryWhiteBackground": "#F4F7F9",
-      "marcaSemanticGreen": "#3BD4AE",
-      "marcaSemanticRed": "#CA4949",
-      "marcaSemanticYellow": "#FFCD00",
-      "marcaNeutralGrayIcons": "#70777B",
-      "marcaNeutralGraySubtitleText": "#8D9295",
-      "marcaNeutralDisabledButton": "#A9ADB0",
-      "marcaNeutralWhiteOnBlue": "#FFFFFF",
-      "btnLegacy": "#3F51B5"
-    }
+  spacing: {
+    xs: "4px",
+    sm: "8px",
+    md: "16px",
+    lg: "24px",
+    xl: "32px",
+    "2xl": "40px",
   },
-  "typography": {
-    "web": {
-      "display": {
-        "fontFamily": "Solomon Sans Bold",
-        "fontWeight": 700,
-        "fontSize": "64px"
-      },
-      "heading1": {
-        "fontFamily": "Solomon Sans Bold",
-        "fontWeight": 700,
-        "fontSize": "48px"
-      },
-      "heading2": {
-        "fontFamily": "Solomon Sans Bold",
-        "fontWeight": 700,
-        "fontSize": "36px"
-      },
-      "heading3": {
-        "fontFamily": "Solomon Sans Bold",
-        "fontWeight": 700,
-        "fontSize": "28px"
-      },
-      "heading4": {
-        "fontFamily": "Solomon Sans Bold",
-        "fontWeight": 700,
-        "fontSize": "24px"
-      },
-      "subtitle": {
-        "fontFamily": "Solomon Sans Bold",
-        "fontWeight": 700,
-        "fontSize": "18px"
-      },
-      "body": {
-        "fontFamily": "Solomon Sans Normal",
-        "fontWeight": 400,
-        "fontSize": "16px"
-      },
-      "bodySmall": {
-        "fontFamily": "Solomon Sans Normal",
-        "fontWeight": 400,
-        "fontSize": "14px"
-      },
-      "caption": {
-        "fontFamily": "Solomon Sans Book",
-        "fontWeight": 400,
-        "fontSize": "12px"
-      },
-      "buttonSmall": {
-        "fontFamily": "Solomon Sans SemiBold",
-        "fontWeight": 600,
-        "fontSize": "16px"
-      },
-      "buttonMedium": {
-        "fontFamily": "Solomon Sans SemiBold",
-        "fontWeight": 600,
-        "fontSize": "18px"
-      },
-      "overline": {
-        "fontFamily": "Solomon Sans Normal",
-        "fontWeight": 400,
-        "fontSize": "14px"
-      },
-      "bodyBold": {
-        "fontFamily": "Solomon Sans Bold",
-        "fontWeight": 700,
-        "fontSize": "16px"
-      },
-      "bodyBlack": {
-        "fontFamily": "Solomon Sans Black",
-        "fontWeight": 900,
-        "fontSize": "16px"
-      }
+
+  colors: {
+    // Neutral Colors
+    neutralBbvaBlack100: "#fefefe",
+    neutralBbvaBlack200: "#f4f4f4",
+    neutralBbvaBlack300: "#e9e9e9",
+    neutralBbvaBlack400: "#d4d3d3",
+    neutralBbvaBlack500: "#bebebe",
+    neutralBbvaBlack600: "#666666",
+    neutralBbvaBlack700: "#090909",
+
+    // Brand Colors - Primary
+    brandPrimaryCoreBlue500: "#001b45",
+    brandPrimaryCoreBlue400: "#002e64",
+    brandPrimaryCoreBlue300: "#004284",
+    brandPrimaryCoreBlue200: "#0063a8",
+
+    // Brand Colors - Secondary Sky Blue
+    brandSecondrarySkyBlue400: "#00a6e9",
+    brandSecondrarySkyBlue300: "#5bbeff",
+    brandSecondrarySkyBlue200: "#caedfc",
+
+    // Brand Colors - Secondary Aquamarine
+    brandSecondaryAquamarine400: "#00a6a6",
+    brandSecondaryAquamarine300: "#00c5c5",
+    brandSecondaryAquamarine200: "#00d9da",
+
+    // Brand Colors - Semantic
+    brandSemanticAlertsSuccess: "#28793e",
+    brandSemanticAlertsSucessLight: "#d9f0e0",
+    brandSemanticAlertsError: "#c02746",
+    brandSemanticAlertsErrorLight: "#fcdfe1",
+    brandSemanticWarningsYellowLight: "#fff4de",
+
+    // Extended Colors
+    extendedCreamYellow: "#f9cd52",
+    extendedOrange: "#f7893a",
+
+    // Semantic Icon
+    icon: "#1C274D",
+  },
+
+  typography: {
+    title1Book: {
+      family: "Benton Sans BBVA",
+      size: "22px",
+      weight: 350,
+      lineHeight: "100%",
+      letterSpacing: 0,
     },
-    "mobile": {
-      "display": {
-        "fontFamily": "Solomon Sans Bold",
-        "fontWeight": 700,
-        "fontSize": "48px"
-      },
-      "heading1": {
-        "fontFamily": "Solomon Sans Bold",
-        "fontWeight": 700,
-        "fontSize": "36px"
-      },
-      "heading2": {
-        "fontFamily": "Solomon Sans Bold",
-        "fontWeight": 700,
-        "fontSize": "28px"
-      },
-      "heading3": {
-        "fontFamily": "Solomon Sans Bold",
-        "fontWeight": 700,
-        "fontSize": "24px"
-      },
-      "heading4": {
-        "fontFamily": "Solomon Sans Bold",
-        "fontWeight": 700,
-        "fontSize": "20px"
-      },
-      "subtitle": {
-        "fontFamily": "Solomon Sans SemiBold",
-        "fontWeight": 600,
-        "fontSize": "16px"
-      },
-      "body": {
-        "fontFamily": "Solomon Sans Normal",
-        "fontWeight": 400,
-        "fontSize": "14px"
-      },
-      "bodySmall": {
-        "fontFamily": "Solomon Sans Normal",
-        "fontWeight": 400,
-        "fontSize": "12px"
-      },
-      "caption": {
-        "fontFamily": "Solomon Sans Book",
-        "fontWeight": 400,
-        "fontSize": "12px"
-      },
-      "buttonSmall": {
-        "fontFamily": "Solomon Sans SemiBold",
-        "fontWeight": 600,
-        "fontSize": "14px"
-      },
-      "buttonMedium": {
-        "fontFamily": "Solomon Sans SemiBold",
-        "fontWeight": 600,
-        "fontSize": "16px"
-      },
-      "overline": {
-        "fontFamily": "Solomon Sans Normal",
-        "fontWeight": 400,
-        "fontSize": "12px"
-      },
-      "bodyBold": {
-        "fontFamily": "Solomon Sans Bold",
-        "fontWeight": 700,
-        "fontSize": "14px"
-      }
-    }
-  },
-  "spacing": {
-    "padding": {
-      "none": "0px",
-      "xs": "4px",
-      "sm": "8px",
-      "md": "12px",
-      "lg": "16px",
-      "xl": "20px",
-      "xxl": "24px",
-      "xxxl": "32px"
+    title3Medium: {
+      family: "Benton Sans BBVA",
+      size: "18px",
+      weight: 500,
+      lineHeight: "100%",
+      letterSpacing: 0,
     },
-    "gap": {
-      "none": "0px",
-      "xs": "4px",
-      "sm": "8px",
-      "md": "16px",
-      "lg": "24px",
-      "xl": "32px"
+    subtitle1: {
+      family: "Benton Sans BBVA",
+      size: "16px",
+      weight: 350,
+      lineHeight: "100%",
+      letterSpacing: 0,
     },
-    "strokeWidth": {
-      "form": "1px",
-      "dividerLineInside": "2px",
-      "dividerLineDash": "0.5px",
-      "tableBorder": "1px",
-      "paginator": "0.5px",
-      "dropdownBorder": "1px",
-      "buttonOutline": "1px"
-    }
+    subtitle1Medium: {
+      family: "Benton Sans BBVA",
+      size: "16px",
+      weight: 500,
+      lineHeight: "100%",
+      letterSpacing: 0,
+    },
+    body: {
+      family: "Benton Sans BBVA",
+      size: "15px",
+      weight: 350,
+      lineHeight: "100%",
+      letterSpacing: 0,
+    },
+    bodyMedium: {
+      family: "Benton Sans BBVA",
+      size: "15px",
+      weight: 500,
+      lineHeight: "100%",
+      letterSpacing: 0,
+    },
+    captions: {
+      family: "Benton Sans BBVA",
+      size: "12px",
+      weight: 350,
+      lineHeight: "100%",
+      letterSpacing: 0,
+    },
+    captionsMedium: {
+      family: "Benton Sans BBVA",
+      size: "12px",
+      weight: 500,
+      lineHeight: "100%",
+      letterSpacing: 0,
+    },
+    labelsMedium: {
+      family: "Benton Sans BBVA",
+      size: "11px",
+      weight: 500,
+      lineHeight: "100%",
+      letterSpacing: 0,
+    },
   },
-  "radius": {
-    "none": "0px",
-    "xs": "4px",
-    "sm": "8px",
-    "md": "16px",
-    "lg": "24px",
-    "xl": "40px"
+
+  radius: {
+    sm: "5px",
+    md: "10px",
+    rounded: "25px",
   },
-  "shadows": {
-    "card": "0px 9px 19px -7px rgba(105, 105, 105, 0.15)"
+
+  strokeWeight: {
+    thin: "0.5px",
+    regular: "1px",
+    bold: "2px",
   },
-} as const;
+
+  shadows: {
+    light: "0 1px 3px rgba(215, 215, 215, 0.4)",
+    medium: "0 2px 5px rgba(190, 190, 190, 0.65)",
+  },
+
+  components: {
+    button: {
+      variants: {
+        size: {
+          small: { padding: "12px 16px", height: "51px" },
+          medium: { padding: "16px 20px", height: "51px" },
+          large: { padding: "20px 24px", height: "51px" },
+        },
+        state: {
+          default: { opacity: 1 },
+          pressed: { opacity: 0.8 },
+          disabled: { opacity: 0.5 },
+        },
+      },
+      defaultVariants: {
+        size: "medium",
+        state: "default",
+      },
+    },
+
+    atmWithdrawalButtons: {
+      variants: {
+        state: {
+          default: {},
+          pressed: {},
+        },
+      },
+      defaultVariants: {
+        state: "default",
+      },
+    },
+
+    barState: {
+      variants: {
+        state: {
+          selected: {},
+          inactive: {},
+        },
+      },
+      defaultVariants: {
+        state: "inactive",
+      },
+    },
+
+    circularChartCount: {
+      variants: {
+        itemCount: {
+          "2": {},
+          "3": {},
+          "4": {},
+          "5": {},
+        },
+      },
+      defaultVariants: {
+        itemCount: "5",
+      },
+    },
+
+    dates: {
+      variants: {
+        state: {
+          default: {},
+          active: {},
+        },
+      },
+      defaultVariants: {
+        state: "default",
+      },
+    },
+
+    modalListItem: {
+      variants: {
+        state: {
+          default: {},
+          pressed: {},
+        },
+      },
+      defaultVariants: {
+        state: "default",
+      },
+    },
+
+    radioButton: {
+      variants: {
+        state: {
+          default: {},
+          pressed: {},
+          disabled: {},
+        },
+      },
+      defaultVariants: {
+        state: "default",
+      },
+    },
+
+    tabItem: {
+      variants: {
+        state: {
+          selected: {},
+          disabled: {},
+        },
+        size: {
+          small: { width: "130px", height: "55px" },
+          large: { width: "195px", height: "55px" },
+        },
+      },
+      defaultVariants: {
+        state: "disabled",
+        size: "small",
+      },
+    },
+
+    toogleTabItem: {
+      variants: {
+        state: {
+          inactive: {},
+          hovered: {},
+          selected: {},
+        },
+      },
+      defaultVariants: {
+        state: "inactive",
+      },
+    },
+
+    alternativeButton: {
+      variants: {
+        state: {
+          default: {},
+          pressed: {},
+        },
+      },
+      defaultVariants: {
+        state: "default",
+      },
+    },
+
+    checkboxItem: {
+      variants: {
+        state: {
+          unselected: {},
+          selected: {},
+        },
+      },
+      defaultVariants: {
+        state: "unselected",
+      },
+    },
+
+    dropdown: {
+      variants: {
+        state: {
+          default: {},
+          disabled: {},
+        },
+      },
+      defaultVariants: {
+        state: "default",
+      },
+    },
+
+    input: {
+      variants: {
+        status: {
+          unfilled: {},
+          filled: {},
+          success: {},
+          error: {},
+        },
+        type: {
+          text: {},
+          typing: {},
+          hide: {},
+        },
+      },
+      defaultVariants: {
+        status: "unfilled",
+        type: "text",
+      },
+    },
+
+    navigationItem: {
+      variants: {
+        state: {
+          default: {},
+          selected: {},
+        },
+      },
+      defaultVariants: {
+        state: "default",
+      },
+    },
+
+    passiveAlerts: {
+      variants: {
+        state: {
+          neutral: {},
+          information: {},
+          warning: {},
+        },
+      },
+      defaultVariants: {
+        state: "neutral",
+      },
+    },
+
+    contactCard: {
+      variants: {
+        layout: {
+          column: {},
+          row: {},
+        },
+      },
+      defaultVariants: {
+        layout: "column",
+      },
+    },
+  },
+} as const
