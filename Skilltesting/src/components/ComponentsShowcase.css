@@ -1,0 +1,88 @@
+.components-showcase {
+  box-sizing: border-box;
+  color: var(--color-neutral-bbva-black-700, #090909);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-height: 100%;
+  padding: 32px;
+}
+
+.components-showcase__header h1 {
+  color: var(--color-brand-primary-core-blue-500, #001b45);
+  font-family: "Benton Sans BBVA", "Solomon Sans", system-ui, sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+  margin: 0;
+}
+
+.showcase-section {
+  background: var(--color-neutral-bbva-black-100, #fefefe);
+  border: 1px solid var(--color-neutral-bbva-black-300, #e9e9e9);
+  border-radius: var(--radius-md, 10px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+}
+
+.showcase-section h2 {
+  color: var(--color-brand-primary-core-blue-400, #002e64);
+  font-family: "Benton Sans BBVA", "Solomon Sans", system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+  margin: 0;
+}
+
+.showcase-grid {
+  align-items: start;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, max-content));
+}
+
+.showcase-grid--wide {
+  grid-template-columns: repeat(auto-fit, minmax(360px, max-content));
+}
+
+.showcase-grid--compact {
+  grid-template-columns: repeat(auto-fit, minmax(120px, max-content));
+}
+
+.showcase-item {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.showcase-label {
+  color: var(--color-neutral-bbva-black-600, #666666);
+  font-family: "Benton Sans BBVA", "Solomon Sans", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: capitalize;
+}
+
+@media (max-width: 720px) {
+  .components-showcase {
+    padding: 20px;
+  }
+
+  .showcase-section {
+    padding: 18px;
+  }
+
+  .showcase-grid,
+  .showcase-grid--wide,
+  .showcase-grid--compact {
+    grid-template-columns: 1fr;
+  }
+}

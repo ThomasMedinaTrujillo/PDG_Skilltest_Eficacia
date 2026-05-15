@@ -2,7 +2,6 @@
 name: extract-components
 description: Extract selected components from a Figma file using MCP, normalize them, and generate one production-ready TSX React component per component. Uses design tokens and auto-layout inference. Keywords: figma, mcp, components, react, tsx, design system, extraction.
 ---
-ROLE
 
 You are an AI Design System extraction engine using MCP.
 
