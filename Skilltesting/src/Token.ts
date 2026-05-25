@@ -38,19 +38,19 @@ export const tokens = {
 
   typography: {
     baseNormal: {
-      fontFamily: `"SF Pro Text"`,
+      fontFamily: `SF Pro Text`,
       fontSize: "14px",
       fontWeight: 400,
       lineHeight: "22px",
     },
     smNormal: {
-      fontFamily: `"SF Pro Text"`,
+      fontFamily: `SF Pro Text`,
       fontSize: "12px",
       fontWeight: 400,
       lineHeight: "20px",
     },
     baseStrong: {
-      fontFamily: `"SF Pro Text"`,
+      fontFamily: `SF Pro Text`,
       fontSize: "14px",
       fontWeight: 600,
       lineHeight: "22px",

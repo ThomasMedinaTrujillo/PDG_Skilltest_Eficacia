@@ -1,0 +1,23 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Checkbox/Inactive/Focused">
+<g id="Plate" filter="url(#filter0_d_985_8986)">
+<mask id="path-1-inside-1_985_8986" fill="white">
+<path d="M2 6C2 3.79086 3.79086 2 6 2H14C16.2091 2 18 3.79086 18 6V14C18 16.2091 16.2091 18 14 18H6C3.79086 18 2 16.2091 2 14V6Z"/>
+</mask>
+<path d="M2 6C2 3.79086 3.79086 2 6 2H14C16.2091 2 18 3.79086 18 6V14C18 16.2091 16.2091 18 14 18H6C3.79086 18 2 16.2091 2 14V6Z" fill="var(--fill-0, white)"/>
+<path d="M6 2V3H14V2V1H6V2ZM18 6H17V14H18H19V6H18ZM14 18V17H6V18V19H14V18ZM2 14H3V6H2H1V14H2ZM6 18V17C4.34315 17 3 15.6569 3 14H2H1C1 16.7614 3.23858 19 6 19V18ZM18 14H17C17 15.6569 15.6569 17 14 17V18V19C16.7614 19 19 16.7614 19 14H18ZM14 2V3C15.6569 3 17 4.34315 17 6H18H19C19 3.23858 16.7614 1 14 1V2ZM6 2V1C3.23858 1 1 3.23858 1 6H2H3C3 4.34315 4.34315 3 6 3V2Z" fill="var(--stroke-0, #1677FF)" mask="url(#path-1-inside-1_985_8986)"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_985_8986" x="0" y="0" width="20" height="20" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="2" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_985_8986"/>
+<feOffset/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.0901961 0 0 0 0 0.470588 0 0 0 0 1 0 0 0 0.15 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_985_8986"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_985_8986" result="shape"/>
+</filter>
+</defs>
+</svg>
