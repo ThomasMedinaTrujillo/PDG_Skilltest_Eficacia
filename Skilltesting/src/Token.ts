@@ -1,353 +1,277 @@
 export const tokens = {
-  spacing: {
-    xs: "4px",
-    sm: "8px",
-    md: "16px",
-    lg: "24px",
-    xl: "32px",
-    "2xl": "40px",
-  },
-
   colors: {
-    // Neutral Colors
-    neutralBbvaBlack100: "#fefefe",
-    neutralBbvaBlack200: "#f4f4f4",
-    neutralBbvaBlack300: "#e9e9e9",
-    neutralBbvaBlack400: "#d4d3d3",
-    neutralBbvaBlack500: "#bebebe",
-    neutralBbvaBlack600: "#666666",
-    neutralBbvaBlack700: "#090909",
-
-    // Brand Colors - Primary
-    brandPrimaryCoreBlue500: "#001b45",
-    brandPrimaryCoreBlue400: "#002e64",
-    brandPrimaryCoreBlue300: "#004284",
-    brandPrimaryCoreBlue200: "#0063a8",
-
-    // Brand Colors - Secondary Sky Blue
-    brandSecondrarySkyBlue400: "#00a6e9",
-    brandSecondrarySkyBlue300: "#5bbeff",
-    brandSecondrarySkyBlue200: "#caedfc",
-
-    // Brand Colors - Secondary Aquamarine
-    brandSecondaryAquamarine400: "#00a6a6",
-    brandSecondaryAquamarine300: "#00c5c5",
-    brandSecondaryAquamarine200: "#00d9da",
-
-    // Brand Colors - Semantic
-    brandSemanticAlertsSuccess: "#28793e",
-    brandSemanticAlertsSucessLight: "#d9f0e0",
-    brandSemanticAlertsError: "#c02746",
-    brandSemanticAlertsErrorLight: "#fcdfe1",
-    brandSemanticWarningsYellowLight: "#fff4de",
-
-    // Extended Colors
-    extendedCreamYellow: "#f9cd52",
-    extendedOrange: "#f7893a",
-
-    // Semantic Icon
-    icon: "#1C274D",
+    magenta6: "#eb2f96",
+    magenta7: "#c41d7f",
+    red6: "#f5222d",
+    red7: "#cf1322",
+    cyan6: "#13c2c2",
+    cyan7: "#08979c",
+    green6: "#52c41a",
+    green7: "#389e0d",
+    purple6: "#722ed1",
+    purple7: "#531dab",
+    volcano6: "#fa541c",
+    volcano7: "#d4380d",
+    primary: "#1677ff",
+    primaryHover: "#4096ff",
+    primaryActive: "#0958d9",
+    success: "#52c41a",
+    warning: "#faad14",
+    error: "#ff4d4f",
+    errorHover: "#ff7875",
+    errorActive: "#d9363e",
+    errorBorderHover: "#ffa39e",
+    warningBorderHover: "#ffd666",
+    info: "#1677ff",
+    text: "#000000e0",
+    textDescription: "#00000073",
+    textPlaceholder: "#00000040",
+    textDisabled: "#00000040",
+    textLightSolid: "#ffffff",
+    bgContainer: "#ffffff",
+    bgContainerDisabled: "#0000000a",
+    border: "#d9d9d9",
+    controlOutline: "#0591ff1a",
+    errorOutline: "#ff26060f",
+    warningOutline: "#ffd7051a",
   },
 
   typography: {
-    title1Book: {
-      family: "Benton Sans BBVA",
-      size: "22px",
-      weight: 350,
-      lineHeight: "100%",
-      letterSpacing: 0,
+    baseNormal: {
+      fontFamily: `"SF Pro Text"`,
+      fontSize: "14px",
+      fontWeight: 400,
+      lineHeight: "22px",
     },
-    title3Medium: {
-      family: "Benton Sans BBVA",
-      size: "18px",
-      weight: 500,
-      lineHeight: "100%",
-      letterSpacing: 0,
+    smNormal: {
+      fontFamily: `"SF Pro Text"`,
+      fontSize: "12px",
+      fontWeight: 400,
+      lineHeight: "20px",
     },
-    subtitle1: {
-      family: "Benton Sans BBVA",
-      size: "16px",
-      weight: 350,
-      lineHeight: "100%",
-      letterSpacing: 0,
+    baseStrong: {
+      fontFamily: `"SF Pro Text"`,
+      fontSize: "14px",
+      fontWeight: 600,
+      lineHeight: "22px",
     },
-    subtitle1Medium: {
-      family: "Benton Sans BBVA",
-      size: "16px",
-      weight: 500,
-      lineHeight: "100%",
-      letterSpacing: 0,
+    heading3: {
+      fontFamily: `"SF Pro Text"`,
+      fontSize: "24px",
+      fontWeight: 600,
+      lineHeight: "32px",
     },
-    body: {
-      family: "Benton Sans BBVA",
-      size: "15px",
-      weight: 350,
-      lineHeight: "100%",
-      letterSpacing: 0,
+    lgNormal: {
+      fontFamily: `"SF Pro Text"`,
+      fontSize: "16px",
+      fontWeight: 400,
+      lineHeight: "24px",
     },
-    bodyMedium: {
-      family: "Benton Sans BBVA",
-      size: "15px",
-      weight: 500,
-      lineHeight: "100%",
-      letterSpacing: 0,
-    },
-    captions: {
-      family: "Benton Sans BBVA",
-      size: "12px",
-      weight: 350,
-      lineHeight: "100%",
-      letterSpacing: 0,
-    },
-    captionsMedium: {
-      family: "Benton Sans BBVA",
-      size: "12px",
-      weight: 500,
-      lineHeight: "100%",
-      letterSpacing: 0,
-    },
-    labelsMedium: {
-      family: "Benton Sans BBVA",
-      size: "11px",
-      weight: 500,
-      lineHeight: "100%",
-      letterSpacing: 0,
-    },
+  },
+
+  spacing: {
+    xxs: "4px",
+    xs: "8px",
+    sm: "12px",
+    lg: "24px",
   },
 
   radius: {
-    sm: "5px",
-    md: "10px",
-    rounded: "25px",
-  },
-
-  strokeWeight: {
-    thin: "0.5px",
-    regular: "1px",
-    bold: "2px",
+    sm: "4px",
+    md: "6px",
+    lg: "8px",
   },
 
   shadows: {
-    light: "0 1px 3px rgba(215, 215, 215, 0.4)",
-    medium: "0 2px 5px rgba(190, 190, 190, 0.65)",
+    boxShadow: "0 2px 4px 0 rgba(0,0,0,0.05), 0 1px 6px -1px rgba(0,0,0,0.05), 0 1px 2px 0 rgba(0,0,0,0.08)",
+    boxShadowSecondary: "0 9px 28px 8px rgba(0,0,0,0.05), 0 3px 6px -4px rgba(0,0,0,0.12), 0 6px 16px 0 rgba(0,0,0,0.08)",
+    focusPrimary: "0 0 0 2px rgba(23,120,255,0.15)",
+    activeShadow: "0 0 0 2px rgba(5,145,255,0.1)",
+    errorActiveShadow: "0 0 0 2px rgba(255,38,6,0.06)",
+    warningActiveShadow: "0 0 0 2px rgba(255,215,5,0.1)",
   },
 
   components: {
     button: {
       variants: {
-        size: {
-          small: { padding: "12px 16px", height: "51px" },
-          medium: { padding: "16px 20px", height: "51px" },
-          large: { padding: "20px 24px", height: "51px" },
-        },
-        state: {
-          default: { opacity: 1 },
-          pressed: { opacity: 0.8 },
-          disabled: { opacity: 0.5 },
-        },
-      },
-      defaultVariants: {
-        size: "medium",
-        state: "default",
-      },
-    },
-
-    atmWithdrawalButtons: {
-      variants: {
-        state: {
+        type: {
+          primary: {},
           default: {},
-          pressed: {},
-        },
-      },
-      defaultVariants: {
-        state: "default",
-      },
-    },
-
-    barState: {
-      variants: {
-        state: {
-          selected: {},
-          inactive: {},
-        },
-      },
-      defaultVariants: {
-        state: "inactive",
-      },
-    },
-
-    circularChartCount: {
-      variants: {
-        itemCount: {
-          "2": {},
-          "3": {},
-          "4": {},
-          "5": {},
-        },
-      },
-      defaultVariants: {
-        itemCount: "5",
-      },
-    },
-
-    dates: {
-      variants: {
-        state: {
-          default: {},
-          active: {},
-        },
-      },
-      defaultVariants: {
-        state: "default",
-      },
-    },
-
-    modalListItem: {
-      variants: {
-        state: {
-          default: {},
-          pressed: {},
-        },
-      },
-      defaultVariants: {
-        state: "default",
-      },
-    },
-
-    radioButton: {
-      variants: {
-        state: {
-          default: {},
-          pressed: {},
-          disabled: {},
-        },
-      },
-      defaultVariants: {
-        state: "default",
-      },
-    },
-
-    tabItem: {
-      variants: {
-        state: {
-          selected: {},
-          disabled: {},
+          dashed: {},
+          text: {},
+          link: {},
         },
         size: {
-          small: { width: "130px", height: "55px" },
-          large: { width: "195px", height: "55px" },
+          default: { height: "32px", padding: "0 15px" },
+          small: { height: "24px", padding: "0 7px" },
+          large: { height: "40px", padding: "0 15px" },
         },
-      },
-      defaultVariants: {
-        state: "disabled",
-        size: "small",
-      },
-    },
-
-    toogleTabItem: {
-      variants: {
-        state: {
-          inactive: {},
-          hovered: {},
-          selected: {},
-        },
-      },
-      defaultVariants: {
-        state: "inactive",
-      },
-    },
-
-    alternativeButton: {
-      variants: {
         state: {
           default: {},
+          hover: {},
+          focused: {},
           pressed: {},
-        },
-      },
-      defaultVariants: {
-        state: "default",
-      },
-    },
-
-    checkboxItem: {
-      variants: {
-        state: {
-          unselected: {},
-          selected: {},
-        },
-      },
-      defaultVariants: {
-        state: "unselected",
-      },
-    },
-
-    dropdown: {
-      variants: {
-        state: {
-          default: {},
           disabled: {},
         },
+        ghost: {
+          true: {},
+          false: {},
+        },
+        danger: {
+          true: {},
+          false: {},
+        },
       },
       defaultVariants: {
+        type: "default",
+        size: "default",
         state: "default",
+        ghost: "false",
+        danger: "false",
       },
     },
-
     input: {
       variants: {
         status: {
-          unfilled: {},
-          filled: {},
+          default: {},
           success: {},
+          warning: {},
           error: {},
         },
-        type: {
-          text: {},
-          typing: {},
-          hide: {},
+        size: {
+          default: { height: "32px", padding: "4px 11px" },
+          small: { height: "24px", padding: "0 7px" },
+          large: { height: "40px", padding: "7px 11px" },
         },
-      },
-      defaultVariants: {
-        status: "unfilled",
-        type: "text",
-      },
-    },
-
-    navigationItem: {
-      variants: {
         state: {
           default: {},
-          selected: {},
+          hover: {},
+          focused: {},
+          typing: {},
+          filled: {},
+          disabled: {},
         },
       },
       defaultVariants: {
+        status: "default",
+        size: "default",
         state: "default",
       },
     },
-
-    passiveAlerts: {
+    checkbox: {
       variants: {
+        status: {
+          active: {},
+          inactive: {},
+          indeterminate: {},
+        },
         state: {
-          neutral: {},
-          information: {},
+          default: {},
+          hover: {},
+          focused: {},
+          disabled: {},
+        },
+      },
+      defaultVariants: {
+        status: "inactive",
+        state: "default",
+      },
+    },
+    switch: {
+      variants: {
+        size: {
+          default: { height: "22px", minWidth: "44px" },
+          small: { height: "16px", minWidth: "28px" },
+        },
+        state: {
+          default: {},
+          pressed: {},
+          loading: {},
+          disabled: {},
+        },
+        active: {
+          true: {},
+          false: {},
+        },
+        type: {
+          basic: {},
+          icon: {},
+          number: {},
+        },
+      },
+      defaultVariants: {
+        size: "default",
+        state: "default",
+        active: "false",
+        type: "basic",
+      },
+    },
+    badge: {
+      variants: {
+        type: {
+          dot: {},
+          default: {},
+          small: {},
+        },
+        status: {
+          success: {},
+          error: {},
+          default: {},
+          processing: {},
           warning: {},
         },
       },
       defaultVariants: {
-        state: "neutral",
+        type: "default",
+        status: "default",
       },
     },
-
-    contactCard: {
+    popover: {
       variants: {
-        layout: {
-          column: {},
-          row: {},
+        placement: {
+          top: {},
+          topLeft: {},
+          topRight: {},
+          bottom: {},
+          bottomLeft: {},
+          bottomRight: {},
+          left: {},
+          leftTop: {},
+          leftBottom: {},
+          right: {},
+          rightTop: {},
+          rightBottom: {},
         },
       },
       defaultVariants: {
-        layout: "column",
+        placement: "top",
+      },
+    },
+    message: {
+      variants: {
+        type: {
+          normal: {},
+          warning: {},
+          success: {},
+          error: {},
+          loading: {},
+        },
+      },
+      defaultVariants: {
+        type: "normal",
+      },
+    },
+    statistic: {
+      variants: {
+        type: {
+          basic: {},
+          up: {},
+          down: {},
+        },
+      },
+      defaultVariants: {
+        type: "basic",
       },
     },
   },
-} as const
+} as const;

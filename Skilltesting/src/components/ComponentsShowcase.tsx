@@ -1,153 +1,101 @@
 
-
-import {
-  AtmWithdrawalButton,
-  BarState,
-  Button,
-  DateButton,
-  ModalListItem,
-  RadioButton,
-  TabItem,
-  ToggleTabItem,
-} from "./design-system";
+import { Button } from "./Button";
+import { Input } from "./Input";
+import { Checkbox } from "./Checkbox";
+import { Badge } from "./Badge";
+import { Message } from "./Message";
+import { Statistic } from "./Statistic";
 import "./ComponentsShowcase.css";
 
-const buttonSizes = ["small", "medium", "large"] as const;
-const buttonStates = ["default", "pressed", "disabled"] as const;
-
-const tabSizes = ["small", "large"] as const;
-const tabStates = ["selected", "disabled"] as const;
 
 export default function ComponentsShowcase() {
   return (
     <main className="components-showcase">
-      <header className="components-showcase__header">
-        <h1>Component Showcase</h1>
-      </header>
-
-      <section className="showcase-section">
+      <section style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
         <h2>Buttons</h2>
-        <div className="showcase-grid showcase-grid--wide">
-          {buttonSizes.flatMap((size) =>
-            buttonStates.map((state) => (
-              <div className="showcase-item" key={`${size}-${state}`}>
-                <span className="showcase-label">
-                  {size} / {state}
-                </span>
-                <Button size={size} state={state}>
-                  Button
-                </Button>
-              </div>
-            )),
-          )}
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <Button variant="primary">Primary</Button>
+          <Button variant="default">Default</Button>
+          <Button variant="dashed">Dashed</Button>
+          <Button variant="text">Text</Button>
+          <Button variant="link">Link</Button>
+        </div>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+          <Button variant="primary" size="small">Small</Button>
+          <Button variant="primary" size="default">Default</Button>
+          <Button variant="primary" size="large">Large</Button>
+        </div>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <Button variant="primary" danger>Danger Primary</Button>
+          <Button variant="default" danger>Danger Default</Button>
+          <Button variant="primary" ghost style={{ background: '#002329' }}>Ghost Primary</Button>
+          <Button variant="primary" disabled>Disabled</Button>
         </div>
       </section>
 
-      <section className="showcase-section">
-        <h2>ATM Withdrawal Buttons</h2>
-        <div className="showcase-grid">
-          <div className="showcase-item">
-            <span className="showcase-label">default</span>
-            <AtmWithdrawalButton amount="$ 20.000" />
-          </div>
-          <div className="showcase-item">
-            <span className="showcase-label">pressed</span>
-            <AtmWithdrawalButton amount="$ 20.000" state="pressed" />
-          </div>
+      <section style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
+        <h2>Inputs</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '300px' }}>
+          <Input placeholder="Default Input" />
+          <Input status="success" placeholder="Success Input" />
+          <Input status="warning" placeholder="Warning Input" />
+          <Input status="error" placeholder="Error Input" />
+          <Input disabled placeholder="Disabled Input" />
+        </div>
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <Input size="small" placeholder="Small" />
+          <Input size="default" placeholder="Default" />
+          <Input size="large" placeholder="Large" />
         </div>
       </section>
 
-      <section className="showcase-section">
-        <h2>Bar State</h2>
-        <div className="showcase-grid showcase-grid--compact">
-          <div className="showcase-item">
-            <span className="showcase-label">selected</span>
-            <BarState state="selected" />
-          </div>
-          <div className="showcase-item">
-            <span className="showcase-label">inactive</span>
-            <BarState state="inactive" />
-          </div>
+      <section style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
+        <h2>Checkbox</h2>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <Checkbox>Default</Checkbox>
+          <Checkbox defaultChecked>Checked</Checkbox>
+          <Checkbox indeterminate>Indeterminate</Checkbox>
+          <Checkbox disabled>Disabled</Checkbox>
+          <Checkbox disabled defaultChecked>Disabled Checked</Checkbox>
         </div>
       </section>
 
-      <section className="showcase-section">
-        <h2>Dates</h2>
-        <div className="showcase-grid showcase-grid--compact">
-          <div className="showcase-item">
-            <span className="showcase-label">default</span>
-            <DateButton date={1} />
-          </div>
-          <div className="showcase-item">
-            <span className="showcase-label">active</span>
-            <DateButton date={1} state="active" />
-          </div>
+      <section style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
+        <h2>Badge</h2>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <Badge status="success" text="Success" />
+          <Badge status="error" text="Error" />
+          <Badge status="default" text="Default" />
+          <Badge status="processing" text="Processing" />
+          <Badge status="warning" text="Warning" />
+        </div>
+        <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+          <Badge type="dot">
+            <div style={{ width: 40, height: 40, background: '#eee', borderRadius: 4 }} />
+          </Badge>
+          <Badge type="default" text="5">
+            <div style={{ width: 40, height: 40, background: '#eee', borderRadius: 4 }} />
+          </Badge>
         </div>
       </section>
 
-      <section className="showcase-section">
-        <h2>Modal List Item</h2>
-        <div className="showcase-grid">
-          <div className="showcase-item">
-            <span className="showcase-label">default</span>
-            <ModalListItem label="Label" />
-          </div>
-          <div className="showcase-item">
-            <span className="showcase-label">pressed</span>
-            <ModalListItem label="Label" state="pressed" />
-          </div>
+      <section style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
+        <h2>Message</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '300px' }}>
+          <Message type="normal">Normal message text here</Message>
+          <Message type="success">Success message text here</Message>
+          <Message type="warning">Warning message text here</Message>
+          <Message type="error">Error message text here</Message>
+          <Message type="loading">Loading message text here</Message>
         </div>
       </section>
 
-      <section className="showcase-section">
-        <h2>Radio Button</h2>
-        <div className="showcase-grid showcase-grid--wide">
-          <div className="showcase-item">
-            <span className="showcase-label">default</span>
-            <RadioButton label="Option" />
-          </div>
-          <div className="showcase-item">
-            <span className="showcase-label">disabled</span>
-            <RadioButton label="Option" state="disabled" />
-          </div>
-          <div className="showcase-item">
-            <span className="showcase-label">pressed</span>
-            <RadioButton label="Option" description="Option description" state="pressed" />
-          </div>
-        </div>
-      </section>
-
-      <section className="showcase-section">
-        <h2>Tab Item</h2>
-        <div className="showcase-grid">
-          {tabSizes.flatMap((size) =>
-            tabStates.map((state) => (
-              <div className="showcase-item" key={`${size}-${state}`}>
-                <span className="showcase-label">
-                  {size} / {state}
-                </span>
-                <TabItem label="Placeholder" size={size} state={state} />
-              </div>
-            )),
-          )}
-        </div>
-      </section>
-
-      <section className="showcase-section">
-        <h2>Toggle Tab Item</h2>
-        <div className="showcase-grid showcase-grid--compact">
-          <div className="showcase-item">
-            <span className="showcase-label">inactive</span>
-            <ToggleTabItem label="Title" state="inactive" />
-          </div>
-          <div className="showcase-item">
-            <span className="showcase-label">hovered</span>
-            <ToggleTabItem label="Title" state="hovered" />
-          </div>
-          <div className="showcase-item">
-            <span className="showcase-label">selected</span>
-            <ToggleTabItem label="Title" state="selected" />
-          </div>
+      <section style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
+        <h2>Statistic</h2>
+        <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+          <Statistic title="Active Users" value="112,893" type="basic" />
+          <Statistic title="Revenue" value="$12,045" type="up" />
+          <Statistic title="Bounce Rate" value="1.2%" type="down" />
         </div>
       </section>
     </main>
