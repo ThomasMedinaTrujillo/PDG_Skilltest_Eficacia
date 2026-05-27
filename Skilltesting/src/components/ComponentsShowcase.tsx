@@ -1,154 +1,129 @@
-
-import "./ComponentsShowcase.css";
-import { BadgeStatus } from "./Badge/BadgeStatus";
-import { Button } from "./Button/Button";
-import { Checkbox } from "./Checkbox/Checkbox";
-import { Input } from "./Input/Input";
-import { Message } from "./Message/Message";
-import { Statistic } from "./Statistic/Statistic";
-
-const buttonVariants = ["primary", "default", "dashed", "text", "link"] as const;
-const buttonSizes = ["small", "default", "large"] as const;
-const buttonStates = [
-  "default",
-  "hover",
-  "focused",
-  "pressed",
-  "disabled",
-] as const;
-
-const inputSizes = ["small", "default", "large"] as const;
-const inputStates = [
-  "default",
-  "hover",
-  "focused",
-  "typing",
-  "filled",
-  "disabled",
-] as const;
-const inputStatuses = ["default", "success", "warning", "error"] as const;
-
-const checkboxStatuses = ["active", "inactive", "indeterminate"] as const;
-const checkboxStates = ["default", "hover", "focused", "disabled"] as const;
-
-const badgeStatuses = ["success", "error", "default", "processing", "warning"] as const;
-const messageTypes = ["normal", "warning", "success", "error", "loading"] as const;
-const statisticTypes = ["basic", "down", "up"] as const;
+import './ComponentsShowcase.css'
+import { Badge } from './Badge/Badge';
+import { Button } from './Button/Button';
+import { Checkbox } from './Checkbox/Checkbox';
+import { Input } from './Input/Input';
+import { Menu } from './Menu/Menu';
+import { Message } from './Message/Message';
+import { Popover } from './Popover/Popover';
+import { Statistic } from './Statistic/Statistic';
+import { Steps } from './Steps/Steps';
+import { Switch } from './Switch/Switch';
+import { Upload } from './Upload/Upload';
 
 export default function ComponentsShowcase() {
   return (
     <main className="components-showcase">
-      <section className="components-showcase__section">
-        <h2>Buttons</h2>
-        <div className="components-showcase__grid">
-          {buttonVariants.map((variant) =>
-            buttonSizes.map((size) =>
-              buttonStates.map((state) => (
-                <Button
-                  key={`${variant}-${size}-${state}-solid`}
-                  variant={variant}
-                  size={size}
-                  state={state}
-                >
-                  {variant}
-                </Button>
-              ))
-            )
-          )}
-          {buttonVariants.map((variant) =>
-            buttonSizes.map((size) =>
-              buttonStates.map((state) => (
-                <Button
-                  key={`${variant}-${size}-${state}-ghost`}
-                  variant={variant}
-                  size={size}
-                  state={state}
-                  ghost
-                >
-                  {variant} ghost
-                </Button>
-              ))
-            )
-          )}
-          {buttonVariants.map((variant) =>
-            buttonSizes.map((size) =>
-              buttonStates.map((state) => (
-                <Button
-                  key={`${variant}-${size}-${state}-danger`}
-                  variant={variant}
-                  size={size}
-                  state={state}
-                  danger
-                >
-                  {variant} danger
-                </Button>
-              ))
-            )
-          )}
+      <header className="showcase-header">
+        <span>Ant Design System</span>
+        <h1>Extracted Components</h1>
+      </header>
+
+      <section className="showcase-section">
+        <h2>Button</h2>
+        <div className="showcase-row">
+          <Button type="primary">Button</Button>
+          <Button>Button</Button>
+          <Button type="dashed">Button</Button>
+          <Button type="text">Button</Button>
+          <Button type="link">Button</Button>
+          <Button type="primary" danger>Button</Button>
+          <Button size="small">Button</Button>
+          <Button size="large">Button</Button>
+          <Button disabled>Button</Button>
         </div>
       </section>
 
-      <section className="components-showcase__section">
-        <h2>Inputs</h2>
-        <div className="components-showcase__grid">
-          {inputStatuses.map((status) =>
-            inputSizes.map((size) =>
-              inputStates.map((state) => (
-                <Input
-                  key={`${status}-${size}-${state}`}
-                  status={status}
-                  size={size}
-                  state={state}
-                  placeholder="Input"
-                />
-              ))
-            )
-          )}
+      <section className="showcase-section">
+        <h2>Input</h2>
+        <div className="showcase-grid">
+          <Input placeholder="Input" />
+          <Input status="error" placeholder="Error" />
+          <Input status="warning" placeholder="Warning" />
+          <Input status="success" placeholder="Success" />
+          <Input size="small" placeholder="Small" />
+          <Input size="large" placeholder="Large" />
+          <Input prefix="https://" suffix=".com" defaultValue="ant.design" />
+          <Input disabled placeholder="Disabled" />
         </div>
       </section>
 
-      <section className="components-showcase__section">
-        <h2>Checkboxes</h2>
-        <div className="components-showcase__grid">
-          {checkboxStatuses.map((status) =>
-            checkboxStates.map((state) => (
-              <Checkbox
-                key={`${status}-${state}`}
-                status={status}
-                state={state}
-                defaultChecked={status === "active"}
-                defaultIndeterminate={status === "indeterminate"}
-                disabled={state === "disabled"}
-              />
-            ))
-          )}
+      <section className="showcase-section">
+        <h2>Checkbox & Badge</h2>
+        <div className="showcase-row">
+          <Checkbox defaultChecked label="Checkbox" />
+          <Checkbox label="Checkbox" />
+          <Checkbox indeterminate label="Checkbox" />
+          <Checkbox disabled label="Checkbox" />
+        </div>
+        <div className="showcase-row">
+          <Badge status="success" />
+          <Badge status="error" />
+          <Badge status="default" />
+          <Badge status="processing" />
+          <Badge status="warning" />
         </div>
       </section>
 
-      <section className="components-showcase__section">
-        <h2>Badges</h2>
-        <div className="components-showcase__grid">
-          {badgeStatuses.map((status) => (
-            <BadgeStatus key={status} status={status} />
-          ))}
+      <section className="showcase-section">
+        <h2>Message</h2>
+        <div className="showcase-row">
+          <Message />
+          <Message type="warning" />
+          <Message type="success" />
+          <Message type="error" />
+          <Message type="loading" />
         </div>
       </section>
 
-      <section className="components-showcase__section">
-        <h2>Messages</h2>
-        <div className="components-showcase__grid">
-          {messageTypes.map((type) => (
-            <Message key={type} type={type} />
-          ))}
+      <section className="showcase-section">
+        <h2>Switch</h2>
+        <div className="showcase-row">
+          <Switch defaultChecked />
+          <Switch />
+          <Switch size="small" defaultChecked />
+          <Switch type="number" checkedChildren="1" unCheckedChildren="0" defaultChecked />
+          <Switch state="loading" defaultChecked />
+          <Switch state="disabled" />
         </div>
       </section>
 
-      <section className="components-showcase__section">
-        <h2>Statistics</h2>
-        <div className="components-showcase__grid">
-          {statisticTypes.map((type) => (
-            <Statistic key={type} type={type} />
-          ))}
+      <section className="showcase-section">
+        <h2>Upload</h2>
+        <div className="showcase-grid">
+          <Upload />
+        </div>
+      </section>
+
+      <section className="showcase-section">
+        <h2>Menu</h2>
+        <div className="showcase-row">
+          <Menu />
+        </div>
+      </section>
+
+      <section className="showcase-section">
+        <h2>Steps</h2>
+        <div className="showcase-grid">
+          <Steps />
+        </div>
+      </section>
+
+      <section className="showcase-section">
+        <h2>Popover</h2>
+        <div className="showcase-row showcase-row--popover">
+          <Popover placement="top" title="Title" content="Top placement" />
+          <Popover placement="bottom" title="Title" content="Bottom placement" />
+          <Popover placement="right" title="Title" content="Right placement" />
+        </div>
+      </section>
+
+      <section className="showcase-section">
+        <h2>Statistic</h2>
+        <div className="showcase-row">
+          <Statistic />
+          <Statistic type="up" />
+          <Statistic type="down" />
         </div>
       </section>
     </main>

@@ -74,6 +74,7 @@ export const tokens = {
     xs: "8px",
     sm: "12px",
     lg: "24px",
+    xl: "32px",
   },
 
   radius: {
@@ -271,6 +272,67 @@ export const tokens = {
       },
       defaultVariants: {
         type: "basic",
+      },
+    },
+    upload: {
+      variants: {
+        state: {
+          default: {},
+          hover: {},
+          dragging: {},
+          disabled: {},
+        },
+        multiple: {
+          true: {},
+          false: {},
+        },
+      },
+      defaultVariants: {
+        state: "default",
+        multiple: "true",
+      },
+    },
+    menu: {
+      variants: {
+        theme: {
+          light: {},
+        },
+        mode: {
+          inline: {},
+        },
+        collapsed: {
+          true: { width: "56px" },
+          false: { width: "280px" },
+        },
+      },
+      defaultVariants: {
+        theme: "light",
+        mode: "inline",
+        collapsed: "false",
+      },
+    },
+    steps: {
+      variants: {
+        type: {
+          basic: {},
+        },
+        size: {
+          small: { iconSize: "24px", contentWidth: "360px" },
+        },
+        direction: {
+          vertical: {},
+        },
+        status: {
+          finish: {},
+          process: {},
+          wait: {},
+        },
+      },
+      defaultVariants: {
+        type: "basic",
+        size: "small",
+        direction: "vertical",
+        status: "process",
       },
     },
   },

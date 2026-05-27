@@ -1,0 +1,108 @@
+.workspace-screen {
+  min-height: 100vh;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0;
+  align-items: stretch;
+  background: var(--neutral-white);
+}
+
+.workspace-screen__menu {
+  min-height: 100%;
+}
+
+.workspace-screen__content {
+  display: grid;
+  grid-template-columns: minmax(0, 480px) minmax(180px, 1fr);
+  gap: var(--spacing-xl);
+  align-items: start;
+  padding: calc(var(--spacing-xl) * 2) var(--spacing-xl);
+}
+
+.workspace-screen__form,
+.workspace-screen__header,
+.workspace-screen__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.workspace-screen__form {
+  gap: var(--spacing-xl);
+}
+
+.workspace-screen__header {
+  gap: var(--spacing-sm);
+}
+
+.workspace-screen__header h1 {
+  margin: 0;
+  color: var(--text);
+  font-family: var(--ds-font);
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.workspace-screen__header p,
+.workspace-screen__field p,
+.workspace-screen__field > span {
+  color: var(--text);
+  font-family: var(--ds-font);
+  font-size: var(--ds-font-size-base);
+  line-height: var(--ds-line-base);
+  letter-spacing: 0;
+}
+
+.workspace-screen__field {
+  gap: var(--spacing-sm);
+}
+
+.workspace-screen__field p {
+  margin: 0;
+  font-size: var(--ds-font-size-sm);
+  line-height: var(--ds-line-sm);
+}
+
+.workspace-screen__field .ds-input,
+.workspace-screen__field .ds-upload {
+  width: 100%;
+}
+
+.workspace-screen__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.workspace-screen__actions .ds-button {
+  width: 100%;
+}
+
+.workspace-screen__steps {
+  padding-top: var(--spacing-xs);
+}
+
+@media (max-width: 960px) {
+  .workspace-screen {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace-screen__content {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace-screen__menu {
+    width: 100%;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .workspace-screen__content {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .workspace-screen__actions {
+    grid-template-columns: 1fr;
+  }
+}

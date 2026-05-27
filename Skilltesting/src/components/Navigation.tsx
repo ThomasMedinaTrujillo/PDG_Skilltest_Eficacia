@@ -7,7 +7,8 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: "Components Showcase", path: "/" },
+  { label: "Workspace Creation", path: "/" },
+  { label: "Components Showcase", path: "/components" },
 ];
 
 export default function Navigation() {
